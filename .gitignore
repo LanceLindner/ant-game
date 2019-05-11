@@ -20,3 +20,5 @@
 .loadpath
 .externalToolBuilders/
 *.launch
+
+/desktop/assets/sprites/atlas/astlas.atlas

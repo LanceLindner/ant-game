@@ -1,4 +1,4 @@
-package main.main;
+package main.persistance;
 
 public class SaveData {
 

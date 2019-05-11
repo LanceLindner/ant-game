@@ -15,7 +15,7 @@ public class Main extends ApplicationAdapter {
 		Persistance.load();
 
 		batch = new SpriteBatch();
-		img = new Texture("assets/sprites/sprites/box.jpg");
+		img = new Texture("assets/sprites/sprites/box.png");
 	}
 
 	@Override

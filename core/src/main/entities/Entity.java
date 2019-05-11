@@ -20,7 +20,7 @@ public class Entity {
 
 	}
 
-	public void render(SpriteBatch batch) {
+	public void draw(SpriteBatch batch) {
 		batch.draw(img, x, y);
 	}
 }

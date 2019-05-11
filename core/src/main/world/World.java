@@ -22,9 +22,9 @@ public class World {
 		}
 	}
 
-	public void render(OrthographicCamera camera, SpriteBatch batch) {
+	public void draw(OrthographicCamera camera, SpriteBatch batch) {
 		for (Entity entity : entities) {
-			entity.render(batch);
+			entity.draw(batch);
 		}
 	}
 }

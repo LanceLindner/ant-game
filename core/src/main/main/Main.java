@@ -34,7 +34,7 @@ public class Main extends ApplicationAdapter {
 		// batch.draw(img, 0, 0);
 
 		world.update();
-		world.render(camera, batch);
+		world.draw(camera, batch);
 
 		batch.end();
 	}

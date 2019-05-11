@@ -31,7 +31,7 @@ public class Main extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0.2f, 0.1f, 0.3f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		//batch.draw(img, 0, 0);
+		// batch.draw(img, 0, 0);
 
 		world.update();
 		world.render(camera, batch);

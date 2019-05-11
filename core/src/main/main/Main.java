@@ -12,6 +12,8 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+		Persistance.load();
+
 		batch = new SpriteBatch();
 		img = new Texture("assets/sprites/sprites/box.jpg");
 	}
@@ -25,8 +27,13 @@ public class Main extends ApplicationAdapter {
 		batch.end();
 	}
 
+	// Called when the window is exited
+	// Saves game data and disposes disposable objects
+
 	@Override
 	public void dispose() {
+		Persistance.save();
+
 		batch.dispose();
 		img.dispose();
 	}

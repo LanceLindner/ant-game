@@ -6,19 +6,19 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import main.floors.Floor;
 import main.persistance.Persistance;
-import main.world.World;
 
 public class Main extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
-	private World world;
+	private Floor floor;
 
 	@Override
 	public void create() {
 		Persistance.load();
 
-		world = new World();
+		floor = new Floor();
 
 		batch = new SpriteBatch();
 	}
@@ -29,8 +29,8 @@ public class Main extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
-		world.update();
-		world.draw(camera, batch);
+		floor.update();
+		floor.draw(camera, batch);
 
 		batch.end();
 	}
@@ -41,6 +41,6 @@ public class Main extends ApplicationAdapter {
 
 		batch.dispose();
 
-		world.dispose();
+		floor.dispose();
 	}
 }

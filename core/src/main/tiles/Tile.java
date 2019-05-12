@@ -1,10 +1,10 @@
 package main.tiles;
 
 import main.entities.Entity;
-import main.world.World;
+import main.floors.Floor;
 
 public class Tile {
-	private World world;
+	private Floor world;
 	private int x;
 	private int y;
 

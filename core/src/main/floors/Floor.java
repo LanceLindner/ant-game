@@ -1,19 +1,23 @@
-package main.world;
+package main.floors;
 
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import main.entities.Entity;
 
-public class World extends TiledMap {
+public class Floor {
+	private TiledMap tiledMap;
 	private OrthogonalTiledMapRenderer tiledMapRenderer;
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
-	public World() {
+	public Floor() {
+		tiledMap = new TmxMapLoader().load("assets/floors/test.tmx");
+		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 		for (int i = 0; i < 100; ++i) {
 			entities.add(new Entity());
 		}
@@ -29,5 +33,10 @@ public class World extends TiledMap {
 		for (Entity entity : entities) {
 			entity.draw(batch);
 		}
+	}
+
+	public void dispose() {
+		tiledMap.dispose();
+		tiledMapRenderer.dispose();
 	}
 }

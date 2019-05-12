@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import main.main.Globals;
 
 public abstract class Entity {
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 
 	protected static Texture image = new Texture("assets/sprites/sprites/box.png");
 
@@ -25,6 +25,8 @@ public abstract class Entity {
 	}
 
 	public void draw(SpriteBatch batch) {
-		batch.draw(image, x, y, Globals.TILE_SIZE, Globals.TILE_SIZE);
+		int drawX = (int) (x * Globals.TILE_SIZE + Globals.TILE_SIZE / 2);
+		int drawY = (int) (y * Globals.TILE_SIZE + Globals.TILE_SIZE / 2);
+		batch.draw(image, drawX, drawY, Globals.TILE_SIZE, Globals.TILE_SIZE);
 	}
 }

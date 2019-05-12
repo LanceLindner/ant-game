@@ -7,7 +7,7 @@ public class TestEntity extends Entity {
 
 	@Override
 	public void move() {
-		x += (int) (Math.random() * 20.0 - 10.0);
-		y += (int) (Math.random() * 20.0 - 10.0);
+		x += Math.random() * 1.0 - 0.5;
+		y += Math.random() * 1.0 - 0.5;
 	}
 }

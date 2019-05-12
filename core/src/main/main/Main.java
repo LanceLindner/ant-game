@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 
 import main.floors.Floor;
 import main.persistance.Persistance;
@@ -46,12 +45,7 @@ public class Main extends ApplicationAdapter {
 		Globals.deltaTime = Gdx.graphics.getDeltaTime();
 		Globals.globalTime += Globals.deltaTime;
 
-		floor.update();
-
-		camera.position.set(new Vector2(0, 0), 0);
-		camera.update();
-
-		floor.draw(camera, batch);
+		floor.render(camera, batch);
 	}
 
 	@Override

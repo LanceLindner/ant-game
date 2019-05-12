@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import main.entities.Entity;
+import main.entities.Player;
 import main.entities.TestEntity;
 
 public class Floor {
@@ -16,12 +17,22 @@ public class Floor {
 	private OrthogonalTiledMapRenderer tiledMapRenderer;
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
+	private Player player;
+
 	public Floor() {
 		tiledMap = new TmxMapLoader().load("assets/floors/test3.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 		for (int i = 0; i < 50; ++i) {
 			entities.add(new TestEntity(0, 0));
 		}
+		player = new Player(0, 0);
+		entities.add(player);
+	}
+
+	public void render(OrthographicCamera camera, SpriteBatch batch) {
+		update();
+		player.updateCamera(camera);
+		draw(camera, batch);
 	}
 
 	public void update() {

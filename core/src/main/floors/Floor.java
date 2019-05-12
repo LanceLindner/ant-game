@@ -20,7 +20,7 @@ public class Floor {
 		tiledMap = new TmxMapLoader().load("assets/floors/test3.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 		for (int i = 0; i < 50; ++i) {
-			entities.add(new TestEntity());
+			entities.add(new TestEntity(0, 0));
 		}
 	}
 

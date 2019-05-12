@@ -43,6 +43,9 @@ public class Main extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0.2f, 0.1f, 0.3f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+		Globals.deltaTime = Gdx.graphics.getDeltaTime();
+		Globals.globalTime += Globals.deltaTime;
+
 		floor.update();
 
 		camera.position.set(new Vector2(0, 0), 0);

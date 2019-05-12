@@ -10,4 +10,7 @@ public class Globals {
 	public static int windowHeight;
 	public static int windowWidthInTilePixels;
 	public static int windowHeightInTilePixels;
+
+	public static double globalTime = 0;
+	public static double deltaTime = 1;
 }

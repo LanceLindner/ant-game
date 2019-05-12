@@ -11,12 +11,16 @@ public abstract class Entity {
 
 	protected static Texture image = new Texture("assets/sprites/sprites/box.png");
 
-	public Entity() {
-		x = 0;
-		y = 0;
+	public Entity(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	public void update() {
+		move();
+	}
+
+	public void move() {
 
 	}
 

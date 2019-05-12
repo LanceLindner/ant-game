@@ -1,13 +1,13 @@
 
 atlas.png
-size: 512,256
+size: 32,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 box
   rotate: false
   xy: 2, 2
-  size: 293, 228
-  orig: 293, 228
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1

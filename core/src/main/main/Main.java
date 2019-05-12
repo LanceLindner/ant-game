@@ -32,7 +32,7 @@ public class Main extends ApplicationAdapter {
 		Globals.windowHeight = Gdx.graphics.getHeight();
 		Globals.windowWidthInTilePixels = Globals.TILES_PER_WIDTH * Globals.TILE_SIZE;
 		Globals.windowHeightInTilePixels = Globals.TILES_PER_HEIGHT * Globals.TILE_SIZE;
-		System.out.println(Globals.TILES_PER_WIDTH * Globals.TILE_SIZE);
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Globals.windowWidthInTilePixels, Globals.windowHeightInTilePixels);
 		camera.update();
@@ -48,9 +48,7 @@ public class Main extends ApplicationAdapter {
 		camera.position.set(new Vector2(0, 0), 0);
 		camera.update();
 
-		batch.begin();
 		floor.draw(camera, batch);
-		batch.end();
 	}
 
 	@Override

@@ -3,24 +3,24 @@ package main.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Entity {
-	private int x;
-	private int y;
+import main.main.Globals;
 
-	private static Texture img = new Texture("assets/sprites/sprites/box.png");
+public abstract class Entity {
+	protected int x;
+	protected int y;
+
+	protected static Texture image = new Texture("assets/sprites/sprites/box.png");
 
 	public Entity() {
-		x = 300;
-		y = 300;
+		x = 0;
+		y = 0;
 	}
 
 	public void update() {
-		x += (int) (Math.random() * 200.0 - 100.0);
-		y += (int) (Math.random() * 200.0 - 100.0);
 
 	}
 
 	public void draw(SpriteBatch batch) {
-		batch.draw(img, x, y);
+		batch.draw(image, x, y, Globals.TILE_SIZE, Globals.TILE_SIZE);
 	}
 }

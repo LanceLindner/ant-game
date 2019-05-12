@@ -24,17 +24,17 @@ public class Main extends ApplicationAdapter {
 
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		font.getData().setScale(0.2f);
+		font.getData().setScale(Globals.DEFAULT_FONT_SCALE);
 
 		floor = new Floor();
 
 		Globals.windowWidth = Gdx.graphics.getWidth();
 		Globals.windowHeight = Gdx.graphics.getHeight();
-		int numberOfGamePixelsX = Globals.TILES_PER_WIDTH * Globals.TILE_SIZE;
-		int numberOfGamePixelsY = Globals.TILES_PER_HEIGHT * Globals.TILE_SIZE;
-
+		Globals.windowWidthInTilePixels = Globals.TILES_PER_WIDTH * Globals.TILE_SIZE;
+		Globals.windowHeightInTilePixels = Globals.TILES_PER_HEIGHT * Globals.TILE_SIZE;
+		System.out.println(Globals.TILES_PER_WIDTH * Globals.TILE_SIZE);
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, numberOfGamePixelsX, numberOfGamePixelsY);
+		camera.setToOrtho(false, Globals.windowWidthInTilePixels, Globals.windowHeightInTilePixels);
 		camera.update();
 	}
 

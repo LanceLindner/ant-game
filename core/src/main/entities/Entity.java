@@ -15,8 +15,8 @@ public class Entity {
 	}
 
 	public void update() {
-		x += (int) (Math.random() * 10.0 - 5.0);
-		y += (int) (Math.random() * 10.0 - 5.0);
+		x += (int) (Math.random() * 200.0 - 100.0);
+		y += (int) (Math.random() * 200.0 - 100.0);
 
 	}
 

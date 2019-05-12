@@ -30,9 +30,14 @@ public class Floor {
 	}
 
 	public void draw(OrthographicCamera camera, SpriteBatch batch) {
-		for (Entity entity : entities) {
-			entity.draw(batch);
-		}
+		tiledMapRenderer.setView(camera);
+		tiledMapRenderer.render(new int[] { 0 });
+
+		// batch.setProjectionMatrix(camera.combined);
+
+		// for (Entity entity : entities) {
+		// entity.draw(batch);
+		// }
 	}
 
 	public void dispose() {

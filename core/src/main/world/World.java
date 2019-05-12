@@ -11,7 +11,7 @@ public class World {
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	public World() {
-		for (int i = 0; i < 5000; ++i) {
+		for (int i = 0; i < 100; ++i) {
 			entities.add(new Entity());
 		}
 	}

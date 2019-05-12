@@ -16,7 +16,7 @@ public class Floor {
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	public Floor() {
-		tiledMap = new TmxMapLoader().load("assets/floors/test.tmx");
+		tiledMap = new TmxMapLoader().load("assets/floors/test3.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 		for (int i = 0; i < 100; ++i) {
 			entities.add(new Entity());

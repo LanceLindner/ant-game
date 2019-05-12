@@ -30,11 +30,11 @@ public class Main extends ApplicationAdapter {
 
 		Globals.windowWidth = Gdx.graphics.getWidth();
 		Globals.windowHeight = Gdx.graphics.getHeight();
-		int numberOfGamePixelsX = Globals.windowWidth / (Globals.windowWidth / (10 * 16));
-		int numberOfGamePixelsY = Globals.windowHeight / (Globals.windowHeight / (10 * 16));
+		int numberOfGamePixelsX = Globals.TILES_PER_WIDTH * Globals.TILE_SIZE;
+		int numberOfGamePixelsY = Globals.TILES_PER_HEIGHT * Globals.TILE_SIZE;
 
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, numberOfGamePixelsX * 30, numberOfGamePixelsY * 30);
+		camera.setToOrtho(false, numberOfGamePixelsX, numberOfGamePixelsY);
 		camera.update();
 	}
 

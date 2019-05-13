@@ -25,8 +25,8 @@ public abstract class Entity {
 	}
 
 	public void draw(SpriteBatch batch) {
-		int drawX = (int) (x * Globals.TILE_SIZE + Globals.TILE_SIZE / 2);
-		int drawY = (int) (y * Globals.TILE_SIZE + Globals.TILE_SIZE / 2);
+		int drawX = (int) (x * Globals.TILE_SIZE);
+		int drawY = (int) (y * Globals.TILE_SIZE);
 		batch.draw(image, drawX, drawY, Globals.TILE_SIZE, Globals.TILE_SIZE);
 	}
 }

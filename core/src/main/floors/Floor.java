@@ -10,8 +10,11 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import main.entities.Entity;
 import main.entities.Player;
+import main.tiles.Tile;
 
 public abstract class Floor {
+	private Tile[][] tiles;
+
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRenderer tiledMapRenderer;
 	protected ArrayList<Entity> entities = new ArrayList<Entity>();

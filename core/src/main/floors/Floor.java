@@ -10,21 +10,18 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import main.entities.Entity;
 import main.entities.Player;
-import main.entities.TestEntity;
 
-public class Floor {
+public abstract class Floor {
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRenderer tiledMapRenderer;
-	private ArrayList<Entity> entities = new ArrayList<Entity>();
+	protected ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	private Player player;
 
-	public Floor() {
-		tiledMap = new TmxMapLoader().load("assets/floors/test3.tmx");
+	public Floor(String floorFileName) {
+		tiledMap = new TmxMapLoader().load("assets/floors/" + floorFileName + ".tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-		for (int i = 0; i < 50; ++i) {
-			entities.add(new TestEntity(0, 0));
-		}
+
 		player = new Player(0, 0);
 		entities.add(player);
 	}

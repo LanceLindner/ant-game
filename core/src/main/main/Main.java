@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import main.floors.Floor;
+import main.floors.TestFloor;
 import main.persistance.Persistance;
 
 public class Main extends ApplicationAdapter {
@@ -25,7 +26,7 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.getData().setScale(Globals.DEFAULT_FONT_SCALE);
 
-		floor = new Floor();
+		floor = new TestFloor();
 
 		Globals.windowWidth = Gdx.graphics.getWidth();
 		Globals.windowHeight = Gdx.graphics.getHeight();

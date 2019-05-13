@@ -1,4 +1,4 @@
-package main.entities.ant;
+package main.entities.ants;
 
 public class Brain {
 

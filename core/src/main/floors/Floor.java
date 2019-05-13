@@ -46,16 +46,16 @@ public abstract class Floor {
 		tiles = new Tile[numberOfHorizontalTiles][numberOfVerticalTiles];
 		for (int i = 0; i < tiles.length; ++i) {
 			for (int j = 0; j < tiles[0].length; ++j) {
-				tiles[i][j] = new Tile(this, i, j, getTileTypeByCoordinate(i, j, INTERACTABLE_LAYER));
+				tiles[i][j] = new Tile(this, i, j, getTileType(i, j, INTERACTABLE_LAYER));
 			}
 		}
 	}
 
-	public Tile getTileByCoordinate(int x, int y) {
+	public Tile getTile(int x, int y) {
 		return tiles[x][y];
 	}
 
-	public TileType getTileTypeByCoordinate(int col, int row, int layer) {
+	public TileType getTileType(int col, int row, int layer) {
 		Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col, row);
 
 		if (cell != null) {

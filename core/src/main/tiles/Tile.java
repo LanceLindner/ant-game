@@ -13,7 +13,8 @@ public class Tile {
 
 	private double visibility;
 
-	public Tile(int x, int y, TileType tileType) {
+	public Tile(Floor floor, int x, int y, TileType tileType) {
+		this.floor = floor;
 		this.x = x;
 		this.y = y;
 		this.tileType = tileType;

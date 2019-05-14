@@ -1,5 +1,7 @@
 package main.tiles;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import main.entities.Entity;
 import main.floors.Floor;
 
@@ -40,6 +42,12 @@ public class Tile {
 	public void update() {
 		if (entity != null) {
 			entity.update();
+		}
+	}
+
+	public void draw(SpriteBatch batch) {
+		if (entity != null) {
+			entity.draw(batch);
 		}
 	}
 }

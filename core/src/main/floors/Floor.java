@@ -37,7 +37,6 @@ public abstract class Floor {
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
 		player = new Player(0, 0);
-		entities.add(player);
 	}
 
 	private void tiledMapToTiles() {
@@ -87,6 +86,7 @@ public abstract class Floor {
 		for (Entity entity : entities) {
 			entity.update();
 		}
+		player.update();
 	}
 
 	public void draw(OrthographicCamera camera, SpriteBatch batch) {
@@ -96,9 +96,19 @@ public abstract class Floor {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 
+		int[] bounds = player.getVisibleTileBounds();
+
+		for (int i = bounds[0]; i < bounds[1]; ++i) {
+			for (int j = bounds[2]; j < bounds[3]; ++j) {
+				tiles[i][j].draw(batch);
+			}
+		}
+
+		// this for loop will be deleted once we can draw entities from the tile
 		for (Entity entity : entities) {
 			entity.draw(batch);
 		}
+		player.draw(batch);
 		batch.end();
 
 		tiledMapRenderer.render(new int[] { SHADOW_LAYER });

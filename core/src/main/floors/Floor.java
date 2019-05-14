@@ -76,6 +76,13 @@ public abstract class Floor {
 	}
 
 	public void update() {
+		int[] bounds = player.getVisibleTileBounds();
+
+		for (int i = bounds[0]; i < bounds[1]; ++i) {
+			for (int j = bounds[2]; j < bounds[3]; ++j) {
+				tiles[i][j].update();
+			}
+		}
 		for (Entity entity : entities) {
 			entity.update();
 		}

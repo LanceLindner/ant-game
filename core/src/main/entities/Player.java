@@ -14,6 +14,15 @@ public class Player extends Entity {
 		super(x, y);
 	}
 
+	public int[] getVisibleTileBounds() {
+		int[] bounds = new int[4];
+		bounds[0] = (int) (x - Globals.TILES_PER_WIDTH / 2);
+		bounds[1] = (int) (x - Globals.TILES_PER_WIDTH / 2);
+		bounds[2] = (int) (y - Globals.TILES_PER_HEIGHT / 2);
+		bounds[3] = (int) (y - Globals.TILES_PER_HEIGHT / 2);
+		return bounds;
+	}
+
 	@Override
 	public void move() {
 		if (Gdx.input.isKeyPressed(Keys.W)) {

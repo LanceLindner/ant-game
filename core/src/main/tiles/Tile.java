@@ -36,4 +36,8 @@ public class Tile {
 	public TileType getTileType() {
 		return tileType;
 	}
+
+	public void update() {
+
+	}
 }

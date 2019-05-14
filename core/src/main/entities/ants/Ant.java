@@ -1,15 +1,18 @@
 package main.entities.ants;
 
-public class Ant {
+import main.entities.Entity;
+
+public class Ant extends Entity {
 
 	private Brain brain;
 	private int health;
 	private int direction;
 
-	public Ant() {
-
+	public Ant(int x, int y) {
+		super(x, y);
 	}
 
+	@Override
 	public void move() {
 		int out[] = brain.getOutput();
 	}

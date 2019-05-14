@@ -83,6 +83,7 @@ public abstract class Floor {
 				tiles[i][j].update();
 			}
 		}
+		// this for loop will be deleted once we can update entities from the tile
 		for (Entity entity : entities) {
 			entity.update();
 		}

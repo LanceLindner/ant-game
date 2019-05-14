@@ -38,6 +38,8 @@ public class Tile {
 	}
 
 	public void update() {
-
+		if (entity != null) {
+			entity.update();
+		}
 	}
 }

@@ -2,8 +2,6 @@ package main.entities.brain;
 
 import java.util.ArrayList;
 
-import main.entities.ants.Neuron;
-
 public class Brain {
 	private Neuron[] inputNeurons;
 	private Neuron[] hiddenNeurons;

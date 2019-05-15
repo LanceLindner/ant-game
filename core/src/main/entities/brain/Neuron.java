@@ -1,4 +1,4 @@
-package main.entities.ants;
+package main.entities.brain;
 
 import java.util.ArrayList;
 

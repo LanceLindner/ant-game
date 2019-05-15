@@ -1,4 +1,4 @@
-package main.entities.ants;
+package main.entities.brain;
 
 public class Axon {
 	private Neuron inputNeuron;

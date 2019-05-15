@@ -30,6 +30,7 @@ public class Tile {
 				Music music = AudioManager.loadMusic(tileType.getMusicName());
 				musicContainer = new MusicContainer(music, x, y, false, tileType.getMinVolumeDistance(),
 						tileType.getMaxVolumeDistance(), false, true);
+				AudioManager.streamMusic(musicContainer);
 			}
 		}
 	}

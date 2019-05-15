@@ -6,40 +6,54 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 public class AudioManager {
-	public static ArrayList<MusicContainer> MusicContainers = new ArrayList<MusicContainer>();
-
-	public static double listenerX = 0;
-	public static double listenerY = 0;
+	public static ArrayList<MusicContainer> musicContainers = new ArrayList<MusicContainer>();
 
 	public static Music loadMusic(String musicName) {
 		return Gdx.audio.newMusic(Gdx.files.internal("assets/music/" + musicName + ".mp3"));
 	}
 
-	public static void update(int newListenerX, int newListenerY) {
-		listenerX = newListenerX;
-		listenerY = newListenerY;
-		for (MusicContainer musicConatiner : MusicContainers) {
-			if (musicConatiner.isGlobal() == false) {
-				float minVolumeDistance = musicConatiner.getMinVolumeDistance();
-				float maxVolumeDistance = musicConatiner.getMaxVolumeDistance();
+	private static void addMusicContainer(MusicContainer musicContainer) {
+		musicContainers.add(musicContainer);
+	}
 
-				float xDistance = (float) (Math.abs(musicConatiner.getX() - listenerX) - maxVolumeDistance);
-				float yDistance = (float) (Math.abs(musicConatiner.getY() - listenerY) - maxVolumeDistance);
+	public static void streamMusic(MusicContainer musicContainer) {
+		musicContainer.getMusic().setPan(0, 0);
+		addMusicContainer(musicContainer);
+		musicContainer.getMusic().play();
 
-				if (xDistance < 0)
-					xDistance = 0;
-				if (yDistance < 0)
-					yDistance = 0;
+	}
 
-				float pan = panBounds(xDistance / minVolumeDistance);
-				float volume = volumeBounds(1 - xDistance / minVolumeDistance / 2 - yDistance / minVolumeDistance / 2);
-
-				if (musicConatiner.isInvertedRange() == true)
-					volume = 1 - volume;
-
-				musicConatiner.getMusic().setPan(pan, volume);
+	public static void update(double listenerX, double listenerY) {
+		for (MusicContainer musicContainer : musicContainers) {
+			if (musicContainer.isGlobal() == false) {
+				update(musicContainer, listenerX, listenerY);
 			}
 		}
+	}
+
+	private static void update(MusicContainer musicContainer, double listenerX, double listenerY) {
+		double minVolumeDistance = musicContainer.getMinVolumeDistance();
+		double maxVolumeDistance = musicContainer.getMaxVolumeDistance();
+
+		double xDistance = Math.abs(musicContainer.getX() - listenerX) - maxVolumeDistance;
+		double yDistance = Math.abs(musicContainer.getY() - listenerY) - maxVolumeDistance;
+
+		if (xDistance < 0)
+			xDistance = 0;
+		if (yDistance < 0)
+			yDistance = 0;
+
+		float pan = panBounds(xDistance / minVolumeDistance);
+		float volume = volumeBounds(1 - xDistance / minVolumeDistance / 2 - yDistance / minVolumeDistance / 2);
+
+		if (musicContainer.isInvertedRange() == true)
+			volume = 1 - volume;
+
+		musicContainer.getMusic().setPan(pan, volume);
+	}
+
+	public static float volumeBounds(double volume) {
+		return volumeBounds((float) volume);
 	}
 
 	public static float volumeBounds(float volume) {
@@ -48,6 +62,10 @@ public class AudioManager {
 		if (volume > 1)
 			volume = 1;
 		return volume;
+	}
+
+	public static float panBounds(double pan) {
+		return panBounds((float) pan);
 	}
 
 	public static float panBounds(float pan) {

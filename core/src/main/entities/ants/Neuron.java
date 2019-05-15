@@ -75,11 +75,13 @@ public class Neuron {
 	}
 
 	public void setValue(double newValue) {
-		newValue = (int) Math.round(newValue * Math.pow(10, 1)) / Math.pow(10, 1);
-		if (Math.abs(newValue - value) > 0.05) {
-			double deltaValue = newValue - value;
-			value = newValue;
-			updateOutputAxons(deltaValue);
+		if (active == true) {
+			newValue = (int) Math.round(newValue * Math.pow(10, 1)) / Math.pow(10, 1);
+			if (Math.abs(newValue - value) > 0.05) {
+				double deltaValue = newValue - value;
+				value = newValue;
+				updateOutputAxons(deltaValue);
+			}
 		}
 	}
 

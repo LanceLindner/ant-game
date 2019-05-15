@@ -35,14 +35,16 @@ public class Brain {
 		}
 	}
 
-	public void update(int[] input) {
-
+	public void setInput(double[] input) {
+		for (int i = 0; i < inputNeurons.length; ++i) {
+			inputNeurons[i].setValue(input[i]);
+		}
 	}
 
 	public int[] getOutput() {
 		int[] outputValues = new int[outputNeurons.length];
 		for (int i = 0; i < outputNeurons.length; ++i) {
-			outputValues[i] = (int) outputNeurons[i].getValue();
+			outputValues[i] = (int) Math.round(outputNeurons[i].getValue());
 		}
 		return null;
 	}

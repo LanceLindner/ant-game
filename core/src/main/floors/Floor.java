@@ -36,7 +36,7 @@ public abstract class Floor {
 		tiledMapToTiles();
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
-		player = new Player(0, 0);
+		player = new Player(tiles.length / 2, tiles[0].length / 2);
 	}
 
 	private void tiledMapToTiles() {

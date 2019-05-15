@@ -21,6 +21,9 @@ public class AudioManager {
 
 	public static void streamMusic(MusicContainer musicContainer) {
 		addMusicContainer(musicContainer);
+		if (musicContainer.getMusicType().isRandomStart() == true) {
+			musicContainer.getMusic().setPosition((float) (Math.random() * 60));
+		}
 		musicContainer.getMusic().play();
 		update(listenerX, listenerY);
 	}

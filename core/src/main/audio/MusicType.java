@@ -3,7 +3,7 @@ package main.audio;
 import java.util.HashMap;
 
 public enum MusicType {
-	LONG(1, false, 25, 0, false, true);
+	LONG(1, false, 500, 25, false, true, true);
 
 	private int id;
 
@@ -12,15 +12,17 @@ public enum MusicType {
 	private int maxVolumeDistance;
 	private boolean rangeInverted;
 	private boolean shouldLoop;
+	private boolean randomStart;
 
 	private MusicType(int id, boolean global, int minVolumeDistance, int maxVolumeDistance, boolean invertedRange,
-			boolean shouldLoop) {
+			boolean shouldLoop, boolean randomStart) {
 		this.id = id;
 		this.global = global;
 		this.minVolumeDistance = minVolumeDistance;
 		this.maxVolumeDistance = maxVolumeDistance;
 		this.rangeInverted = invertedRange;
 		this.shouldLoop = shouldLoop;
+		this.randomStart = randomStart;
 	}
 
 	public boolean isGlobal() {
@@ -41,6 +43,10 @@ public enum MusicType {
 
 	public boolean isShouldLoop() {
 		return shouldLoop;
+	}
+
+	public boolean isRandomStart() {
+		return randomStart;
 	}
 
 	private static HashMap<Integer, MusicType> tileMap;

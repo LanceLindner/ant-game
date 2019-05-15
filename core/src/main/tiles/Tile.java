@@ -28,8 +28,7 @@ public class Tile {
 		if (tileType != null) {
 			if (tileType.getMusicName() != null) {
 				Music music = AudioManager.loadMusic(tileType.getMusicName());
-				musicContainer = new MusicContainer(music, x, y, false, tileType.getMinVolumeDistance(),
-						tileType.getMaxVolumeDistance(), false, true);
+				musicContainer = new MusicContainer(music, x, y, tileType.getMusicType());
 				AudioManager.streamMusic(musicContainer);
 			}
 		}

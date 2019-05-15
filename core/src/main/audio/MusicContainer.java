@@ -3,24 +3,54 @@ package main.audio;
 import com.badlogic.gdx.audio.Music;
 
 public class MusicContainer {
-	public Music music;
-	public double x;
-	public double y;
-	boolean global;
-	public int range;
-	public boolean invertedRange;
+	private Music music;
+	private double x;
+	private double y;
+	private boolean global;
+	private int range;
+	private int clampRange;
+	private boolean invertedRange;
 
-	public MusicContainer(Music music, boolean global) {
-		this(music, 0, 0, global, 100, false, true);
+	public Music getMusic() {
+		return music;
 	}
 
-	public MusicContainer(Music music, double x, double y, boolean global, int range, boolean invertedRange,
-			boolean shouldLoop) {
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public boolean isGlobal() {
+		return global;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public int getClampRange() {
+		return clampRange;
+	}
+
+	public boolean isInvertedRange() {
+		return invertedRange;
+	}
+
+	public MusicContainer(Music music, boolean global) {
+		this(music, 0, 0, global, 100, 0, false, true);
+	}
+
+	public MusicContainer(Music music, double x, double y, boolean global, int range, int clampRange,
+			boolean invertedRange, boolean shouldLoop) {
 		this.music = music;
 		this.x = x;
 		this.y = y;
 		this.global = global;
 		this.range = range;
+		this.clampRange = clampRange;
 		this.invertedRange = invertedRange;
 		if (shouldLoop == true)
 			music.setLooping(shouldLoop);

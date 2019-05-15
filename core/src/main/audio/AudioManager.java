@@ -12,14 +12,15 @@ public class AudioManager {
 		listenerX = newListenerX;
 		listenerY = newListenerY;
 		for (MusicContainer musicConatiner : MusicContainers) {
-			if (musicConatiner.global == false) {
-				float pan = panBounds((float) (Math.abs(musicConatiner.x - listenerX) / musicConatiner.range));
+			if (musicConatiner.isGlobal() == false) {
+				float pan = panBounds(
+						(float) (Math.abs(musicConatiner.getX() - listenerX) / musicConatiner.getRange()));
 				float volume = volumeBounds(
-						(float) (1 - Math.abs(musicConatiner.x - listenerX) / musicConatiner.range / 2
-								- Math.abs(musicConatiner.y - listenerY) / musicConatiner.range / 2));
-				if (musicConatiner.invertedRange == true)
+						(float) (1 - Math.abs(musicConatiner.getX() - listenerX) / musicConatiner.getRange() / 2
+								- Math.abs(musicConatiner.getY() - listenerY) / musicConatiner.getRange() / 2));
+				if (musicConatiner.isInvertedRange() == true)
 					volume = 1 - volume;
-				musicConatiner.music.setPan(pan, volume);
+				musicConatiner.getMusic().setPan(pan, volume);
 			}
 		}
 	}

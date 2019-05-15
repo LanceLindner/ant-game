@@ -9,7 +9,7 @@ public abstract class Entity {
 	protected double x;
 	protected double y;
 
-	protected static Texture image = new Texture("assets/sprites/sprites/box.png");
+	protected Texture image = new Texture("assets/sprites/sprites/box.png");
 
 	public Entity(int x, int y) {
 		this.x = x;

@@ -3,7 +3,7 @@ package main.tiles;
 import java.util.HashMap;
 
 public enum TileType {
-	WALL1(17, true), WALL2(18, true), WALL3(19, true), WALL4(20, true), Snore1(33, "snore", 20, 0);
+	WALL1(17, true), WALL2(18, true), WALL3(19, true), WALL4(20, true), Snore1(33, "snore", 25, 0);
 
 	private final int id;
 	private boolean solid;

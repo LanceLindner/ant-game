@@ -8,6 +8,9 @@ import com.badlogic.gdx.audio.Music;
 public class AudioManager {
 	public static ArrayList<MusicContainer> musicContainers = new ArrayList<MusicContainer>();
 
+	private static double listenerX = 0;
+	private static double listenerY = 0;
+
 	public static Music loadMusic(String musicName) {
 		return Gdx.audio.newMusic(Gdx.files.internal("assets/music/" + musicName + ".mp3"));
 	}
@@ -17,21 +20,22 @@ public class AudioManager {
 	}
 
 	public static void streamMusic(MusicContainer musicContainer) {
-		musicContainer.getMusic().setPan(0, 0);
 		addMusicContainer(musicContainer);
 		musicContainer.getMusic().play();
-
+		update(listenerX, listenerY);
 	}
 
-	public static void update(double listenerX, double listenerY) {
+	public static void update(double newListenerX, double newListenerY) {
+		listenerX = newListenerX;
+		listenerY = newListenerY;
 		for (MusicContainer musicContainer : musicContainers) {
 			if (musicContainer.isGlobal() == false) {
-				update(musicContainer, listenerX, listenerY);
+				update(musicContainer);
 			}
 		}
 	}
 
-	private static void update(MusicContainer musicContainer, double listenerX, double listenerY) {
+	private static void update(MusicContainer musicContainer) {
 		double minVolumeDistance = musicContainer.getMinVolumeDistance();
 		double maxVolumeDistance = musicContainer.getMaxVolumeDistance();
 

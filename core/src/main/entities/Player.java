@@ -13,6 +13,7 @@ public class Player extends Entity {
 
 	public Player(int x, int y) {
 		super(x, y);
+		AudioManager.update(x, y);
 	}
 
 	public int[] getVisibleTileBounds() {

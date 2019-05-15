@@ -9,7 +9,7 @@ import main.audio.AudioManager;
 import main.main.Globals;
 
 public class Player extends Entity {
-	private double velocityMutliplier = 10;
+	private double velocityMutliplier = 100;
 
 	public Player(int x, int y) {
 		super(x, y);

@@ -42,16 +42,28 @@ public class AudioManager {
 		double minVolumeDistance = musicContainer.getMusicType().getMinVolumeDistance();
 		double maxVolumeDistance = musicContainer.getMusicType().getMaxVolumeDistance();
 
-		double xDistance = Math.abs(musicContainer.getX() - listenerX) - maxVolumeDistance;
-		double yDistance = Math.abs(musicContainer.getY() - listenerY) - maxVolumeDistance;
+		double xDistance = musicContainer.getX() - listenerX;
+		double yDistance = musicContainer.getY() - listenerY;
+
+		double xDistanceCorrected = Math.abs(xDistance) - maxVolumeDistance;
+		double yDistanceCorrected = Math.abs(yDistance) - maxVolumeDistance;
+
+		int panDirection;
 
 		if (xDistance < 0)
-			xDistance = 0;
-		if (yDistance < 0)
-			yDistance = 0;
+			panDirection = -1;
+		else {
+			panDirection = 1;
+		}
 
-		float pan = panBounds(xDistance / minVolumeDistance);
-		float volume = volumeBounds(1 - xDistance / minVolumeDistance / 2 - yDistance / minVolumeDistance / 2);
+		if (xDistanceCorrected < 0)
+			xDistanceCorrected = 0;
+		if (yDistanceCorrected < 0)
+			yDistanceCorrected = 0;
+
+		float pan = panBounds(xDistanceCorrected / minVolumeDistance * panDirection);
+		float volume = volumeBounds(
+				1 - xDistanceCorrected / minVolumeDistance / 2 - yDistanceCorrected / minVolumeDistance / 2);
 
 		if (musicContainer.getMusicType().isRangeInverted() == true)
 			volume = 1 - volume;

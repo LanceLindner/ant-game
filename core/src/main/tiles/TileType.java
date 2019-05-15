@@ -18,7 +18,7 @@ public enum TileType {
 
 	private TileType(int id, String musicName, int musicRange, int musicClampRange) {
 		this.id = id;
-		// musicContainer = new MusicContainer();
+		musicContainer = new MusicContainer();
 	}
 
 	public int getID() {

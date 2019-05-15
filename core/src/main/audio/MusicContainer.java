@@ -7,8 +7,8 @@ public class MusicContainer {
 	private double x;
 	private double y;
 	private boolean global;
-	private int range;
-	private int clampRange;
+	private int minVolumeDistance;
+	private int maxVolumeDistance;
 	private boolean invertedRange;
 
 	public Music getMusic() {
@@ -27,12 +27,12 @@ public class MusicContainer {
 		return global;
 	}
 
-	public int getRange() {
-		return range;
+	public int getMinVolumeDistance() {
+		return minVolumeDistance;
 	}
 
-	public int getClampRange() {
-		return clampRange;
+	public int getMaxVolumeDistance() {
+		return maxVolumeDistance;
 	}
 
 	public boolean isInvertedRange() {
@@ -49,8 +49,8 @@ public class MusicContainer {
 		this.x = x;
 		this.y = y;
 		this.global = global;
-		this.range = range;
-		this.clampRange = clampRange;
+		this.minVolumeDistance = range;
+		this.maxVolumeDistance = clampRange;
 		this.invertedRange = invertedRange;
 		if (shouldLoop == true)
 			music.setLooping(shouldLoop);

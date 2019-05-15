@@ -13,13 +13,23 @@ public class AudioManager {
 		listenerY = newListenerY;
 		for (MusicContainer musicConatiner : MusicContainers) {
 			if (musicConatiner.isGlobal() == false) {
-				float pan = panBounds(
-						(float) (Math.abs(musicConatiner.getX() - listenerX) / musicConatiner.getRange()));
-				float volume = volumeBounds(
-						(float) (1 - Math.abs(musicConatiner.getX() - listenerX) / musicConatiner.getRange() / 2
-								- Math.abs(musicConatiner.getY() - listenerY) / musicConatiner.getRange() / 2));
+				float minVolumeDistance = musicConatiner.getMinVolumeDistance();
+				float maxVolumeDistance = musicConatiner.getMaxVolumeDistance();
+
+				float xDistance = (float) (Math.abs(musicConatiner.getX() - listenerX) - maxVolumeDistance);
+				float yDistance = (float) (Math.abs(musicConatiner.getY() - listenerY) - maxVolumeDistance);
+
+				if (xDistance < 0)
+					xDistance = 0;
+				if (yDistance < 0)
+					yDistance = 0;
+
+				float pan = panBounds(xDistance / minVolumeDistance);
+				float volume = volumeBounds(1 - xDistance / minVolumeDistance / 2 - yDistance / minVolumeDistance / 2);
+
 				if (musicConatiner.isInvertedRange() == true)
 					volume = 1 - volume;
+
 				musicConatiner.getMusic().setPan(pan, volume);
 			}
 		}

@@ -3,16 +3,50 @@ package main.entities.ants;
 import java.util.ArrayList;
 
 public class Neuron {
-	public double value = 0;
-	public boolean active = false;
+	private double value = 0;
+	private boolean active = false;
 
-	public ArrayList<Axon> inputAxons = new ArrayList<Axon>();
-	public ArrayList<Axon> outputAxons = new ArrayList<Axon>();
+	private ArrayList<Axon> inputAxons = new ArrayList<Axon>();
+	private ArrayList<Axon> outputAxons = new ArrayList<Axon>();
 
-	public double x;
-	public double y;
+	private double x;
+	private double y;
 
-	public Neuron childNeuron;// used for cloning
+	private Neuron childNeuron;// used for cloning
+
+	public double getValue() {
+		if (value > 1)
+			return 1;
+		else if (value < 0)
+			return 0;
+		else
+			return value;
+
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public ArrayList<Axon> getInputAxons() {
+		return inputAxons;
+	}
+
+	public ArrayList<Axon> getOutputAxons() {
+		return outputAxons;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public Neuron getChildNeuron() {
+		return childNeuron;
+	}
 
 	public Neuron() {
 	}
@@ -26,14 +60,12 @@ public class Neuron {
 		}
 	}
 
-	public double getValue() {
-		if (value > 1)
-			return 1;
-		else if (value < 0)
-			return 0;
-		else
-			return value;
+	public void removeInputAxon(Axon axon) {
+		inputAxons.remove(axon);
+	}
 
+	public void removeOutputAxon(Axon axon) {
+		outputAxons.remove(axon);
 	}
 
 	private void updateOutputAxons(double deltaValue) {

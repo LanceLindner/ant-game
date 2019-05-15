@@ -19,8 +19,8 @@ public class Axon {
 	}
 
 	public void delete() {
-		inputNeuron.outputAxons.remove(this);
-		outputNeuron.inputAxons.remove(this);
+		inputNeuron.removeOutputAxon(this);
+		outputNeuron.removeInputAxon(this);
 	}
 
 	public void randomizeWeight() {

@@ -1,10 +1,10 @@
 package main.entities.ants;
 
 public class Axon {
-	public Neuron inputNeuron;
-	public Neuron outputNeuron;
+	private Neuron inputNeuron;
+	private Neuron outputNeuron;
 
-	public double weight;
+	private double weight;
 
 	public Axon(Neuron inputNeuron, Neuron outputNeuron) {
 		this.inputNeuron = inputNeuron;

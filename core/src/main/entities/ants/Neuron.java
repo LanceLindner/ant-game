@@ -14,6 +14,18 @@ public class Neuron {
 
 	private Neuron childNeuron;// used for cloning
 
+	public Neuron() {
+	}
+
+	public void delete() {
+		for (Axon axon : inputAxons) {
+			axon.delete();
+		}
+		for (Axon axon : outputAxons) {
+			axon.delete();
+		}
+	}
+
 	public double getValue() {
 		if (value > 1)
 			return 1;
@@ -46,18 +58,6 @@ public class Neuron {
 
 	public Neuron getChildNeuron() {
 		return childNeuron;
-	}
-
-	public Neuron() {
-	}
-
-	public void delete() {
-		for (Axon axon : inputAxons) {
-			axon.delete();
-		}
-		for (Axon axon : outputAxons) {
-			axon.delete();
-		}
 	}
 
 	public void removeInputAxon(Axon axon) {

@@ -7,8 +7,8 @@ public class Overworld extends Floor {
 	public Overworld() {
 		super("overworld");
 
-		entities.add(new TestEntity(495, 495));
-		entities.add(new Ant(495, 495));
+		entities.add(new TestEntity(this, 505, 505));
+		entities.add(new Ant(this, 495, 495));
 	}
 
 }

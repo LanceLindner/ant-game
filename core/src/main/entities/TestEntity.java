@@ -1,8 +1,10 @@
 package main.entities;
 
+import main.floors.Floor;
+
 public class TestEntity extends Entity {
-	public TestEntity(int x, int y) {
-		super(x, y);
+	public TestEntity(Floor floor, int x, int y) {
+		super(floor, x, y);
 	}
 
 	@Override

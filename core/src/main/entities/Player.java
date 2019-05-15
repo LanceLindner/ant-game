@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 
 import main.audio.AudioManager;
+import main.floors.Floor;
 import main.main.Globals;
 
 public class Player extends Entity {
 	private double velocityMutliplier = 100;
 
-	public Player(int x, int y) {
-		super(x, y);
+	public Player(Floor floor, int x, int y) {
+		super(floor, x, y);
 		AudioManager.update(x, y);
 	}
 

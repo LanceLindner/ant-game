@@ -2,23 +2,26 @@ package main.tiles;
 
 import java.util.HashMap;
 
-import main.audio.MusicContainer;
-
 public enum TileType {
 	WALL1(17, true), WALL2(18, true), WALL3(19, true), WALL4(20, true);
 
 	private final int id;
-	private boolean solidity;
-	private MusicContainer musicContainer;
+	private boolean solid;
 
-	private TileType(int id, boolean solidity) {
+	private String musicName;
+	private int minVolumeDistance;
+	private int maxVolumeDistance;
+
+	private TileType(int id, boolean solid) {
 		this.id = id;
-		this.solidity = solidity;
+		this.solid = solid;
 	}
 
 	private TileType(int id, String musicName, int minVolumeDistance, int maxVolumeDistance) {
 		this.id = id;
-		// musicContainer = new MusicContainer();
+		this.musicName = musicName;
+		this.minVolumeDistance = minVolumeDistance;
+		this.maxVolumeDistance = maxVolumeDistance;
 	}
 
 	public int getID() {
@@ -26,7 +29,19 @@ public enum TileType {
 	}
 
 	public boolean isSolid() {
-		return solidity;
+		return solid;
+	}
+
+	public String getMusicName() {
+		return musicName;
+	}
+
+	public int getMinVolumeDistance() {
+		return minVolumeDistance;
+	}
+
+	public int getMaxVolumeDistance() {
+		return maxVolumeDistance;
 	}
 
 	private static HashMap<Integer, TileType> tileMap;

@@ -2,6 +2,7 @@ package main.tiles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import main.audio.MusicContainer;
 import main.entities.Entity;
 import main.floors.Floor;
 
@@ -12,6 +13,8 @@ public class Tile {
 	private TileType tileType;
 
 	private Entity entity;
+
+	private MusicContainer musicContainer;
 
 	private double visibility;
 

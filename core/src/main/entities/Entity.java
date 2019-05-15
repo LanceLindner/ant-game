@@ -16,13 +16,7 @@ public abstract class Entity {
 		this.y = y;
 	}
 
-	public void update() {
-		move();
-	}
-
-	public void move() {
-
-	}
+	public abstract void update();
 
 	public void draw(SpriteBatch batch) {
 		int drawX = (int) (x * Globals.TILE_SIZE);

@@ -13,7 +13,7 @@ public class Ant extends Entity {
 	}
 
 	@Override
-	public void move() {
+	public void update() {
 		int out[] = brain.getOutput();
 	}
 

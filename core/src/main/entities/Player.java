@@ -9,7 +9,7 @@ import main.audio.AudioManager;
 import main.main.Globals;
 
 public class Player extends Entity {
-	private double velocityMutliplier = 100;
+	private double velocityMutliplier = 10;
 
 	public Player(int x, int y) {
 		super(x, y);
@@ -26,7 +26,7 @@ public class Player extends Entity {
 	}
 
 	@Override
-	public void move() {
+	public void update() {
 		boolean changed = false;
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			y += velocityMutliplier * Globals.deltaTime;

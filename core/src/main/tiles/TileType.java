@@ -16,9 +16,9 @@ public enum TileType {
 		this.solidity = solidity;
 	}
 
-	private TileType(int id, String musicName, int musicRange, int musicClampRange) {
+	private TileType(int id, String musicName, int minVolumeDistance, int maxVolumeDistance) {
 		this.id = id;
-		musicContainer = new MusicContainer();
+		// musicContainer = new MusicContainer();
 	}
 
 	public int getID() {

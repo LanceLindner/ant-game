@@ -1,7 +1,9 @@
 package main.entities.ants;
 
 import main.entities.Entity;
+import main.entities.brain.Brain;
 
+//will probably be made abstract soon
 public class Ant extends Entity {
 
 	private Brain brain;

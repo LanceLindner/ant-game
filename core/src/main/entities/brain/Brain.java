@@ -1,4 +1,4 @@
-package main.entities.ants;
+package main.entities.brain;
 
 public class Brain {
 
@@ -14,7 +14,7 @@ public class Brain {
 
 	}
 
-	protected int[] getOutput() {
+	public int[] getOutput() {
 		return output;
 	}
 }

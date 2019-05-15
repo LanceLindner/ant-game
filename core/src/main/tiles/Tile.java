@@ -1,7 +1,9 @@
 package main.tiles;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import main.audio.AudioManager;
 import main.audio.MusicContainer;
 import main.entities.Entity;
 import main.floors.Floor;
@@ -23,7 +25,13 @@ public class Tile {
 		this.x = x;
 		this.y = y;
 		this.tileType = tileType;
-
+		if (tileType != null) {
+			if (tileType.getMusicName() != null) {
+				Music music = AudioManager.loadMusic(tileType.getMusicName());
+				musicContainer = new MusicContainer(music, x, y, false, tileType.getMinVolumeDistance(),
+						tileType.getMaxVolumeDistance(), false, true);
+			}
+		}
 	}
 
 	public boolean containsEntity() {

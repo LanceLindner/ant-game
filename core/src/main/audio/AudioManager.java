@@ -2,11 +2,18 @@ package main.audio;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+
 public class AudioManager {
 	public static ArrayList<MusicContainer> MusicContainers = new ArrayList<MusicContainer>();
 
 	public static double listenerX = 0;
 	public static double listenerY = 0;
+
+	public static Music loadMusic(String musicName) {
+		return Gdx.audio.newMusic(Gdx.files.internal("assets/music/" + musicName + ".mp3"));
+	}
 
 	public static void update(int newListenerX, int newListenerY) {
 		listenerX = newListenerX;

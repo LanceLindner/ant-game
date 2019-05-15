@@ -43,14 +43,14 @@ public class MusicContainer {
 		this(music, 0, 0, global, 100, 0, false, true);
 	}
 
-	public MusicContainer(Music music, double x, double y, boolean global, int range, int clampRange,
+	public MusicContainer(Music music, double x, double y, boolean global, int minVolumeDistance, int maxVolumeDistance,
 			boolean invertedRange, boolean shouldLoop) {
 		this.music = music;
 		this.x = x;
 		this.y = y;
 		this.global = global;
-		this.minVolumeDistance = range;
-		this.maxVolumeDistance = clampRange;
+		this.minVolumeDistance = minVolumeDistance;
+		this.maxVolumeDistance = maxVolumeDistance;
 		this.invertedRange = invertedRange;
 		if (shouldLoop == true)
 			music.setLooping(shouldLoop);

@@ -17,6 +17,8 @@ public abstract class Entity {
 		this.x = x;
 		this.y = y;
 		this.floor = floor;
+
+		floor.getTile(x, y).addEntity(this);
 	}
 
 	public abstract void update();

@@ -107,6 +107,7 @@ public class Ant extends Entity {
 				return;
 			}
 		}
+
 		x = tileAhead.getX();
 		y = tileAhead.getY();
 	}

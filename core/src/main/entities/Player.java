@@ -15,6 +15,7 @@ public class Player extends Entity {
 	public Player(Floor floor, int x, int y) {
 		super(floor, x, y);
 		AudioManager.update(x, y);
+		floor.getTile(x, y).removeEntity();
 	}
 
 	public int[] getVisibleTileBounds() {

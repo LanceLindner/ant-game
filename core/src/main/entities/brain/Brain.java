@@ -75,4 +75,12 @@ public class Brain {
 		}
 		return null;
 	}
+
+	public Neuron[] getInputNeurons() {
+		return inputNeurons;
+	}
+
+	public Neuron[] getOutputNeurons() {
+		return outputNeurons;
+	}
 }

@@ -61,4 +61,12 @@ public class Tile {
 			entity.draw(batch);
 		}
 	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
 }

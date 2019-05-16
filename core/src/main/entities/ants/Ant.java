@@ -26,13 +26,28 @@ public class Ant extends Entity {
 
 	@Override
 	public void update() {
-		// todo: initizalize brain
-		// int out[] = brain.getOutput();
+
+		Tile TileAhead = getTileAhead();
+
+		if (TileAhead.getTileType().isSolid()) {
+			isAlive = false;
+		}
+
+		if (isAlive) {
+
+			int[] inputValues = new int[brain.getInputNeurons().length];
+
+			// We will need to work a couple things out in the future, this right now is
+			// just for testing
+			/*
+			 * Index 0: Whether the tile ahead is a wall or not
+			 */
+		}
 	}
 
 	// Will return the tile ahead of the direction the ant is facing, defaults to
 	// the tile it is on
-	private Tile getBlockAhead() {
+	private Tile getTileAhead() {
 		switch (direction) {
 		case 0:
 			return floor.getTile((int) x, (int) (y + 1));
@@ -46,6 +61,11 @@ public class Ant extends Entity {
 			return floor.getTile((int) x, (int) y);
 
 		}
+	}
+
+	private void moveForward(Tile tileAhead) {
+		x = tileAhead.getX();
+		y = tileAhead.getY();
 	}
 
 	private void turnLeft() {

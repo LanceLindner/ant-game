@@ -9,10 +9,6 @@ public class Brain {
 	public ArrayList<Neuron> activeInput = new ArrayList<Neuron>();
 
 	public Brain(int numberOfInputNeurons, int numberOfOutputNeurons) {
-		initializeEmptyBrain(numberOfInputNeurons, numberOfOutputNeurons);
-	}
-
-	public void initializeEmptyBrain(int numberOfInputNeurons, int numberOfOutputNeurons) {
 		inputNeurons = new Neuron[numberOfInputNeurons];
 		outputNeurons = new Neuron[numberOfOutputNeurons];
 
@@ -22,6 +18,20 @@ public class Brain {
 		for (int i = 0; i < outputNeurons.length; ++i) {
 			outputNeurons[i] = new Neuron(i, 0);
 		}
+	}
+
+	@Override
+	public Brain clone() {
+		Brain newBrain = new Brain(inputNeurons.length, outputNeurons.length);
+
+		for (int i = 0; i < inputNeurons.length; ++i) {
+			newBrain.getInputNeurons()[i].setX(inputNeurons[i];
+		}
+		for (int i = 0; i < outputNeurons.length; ++i) {
+			outputNeurons[i] = new Neuron(i, 0);
+		}
+
+		return newBrain;
 	}
 
 	public void setInput(double[] input) {

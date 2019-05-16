@@ -6,6 +6,14 @@ public class Brain {
 	private Neuron[] inputNeurons;
 	private Neuron[] outputNeurons;
 
+	/**
+	 * Constructor for the brain.
+	 *
+	 * @param numberOfInputNeurons  the number of input neurons that should be
+	 *                              created
+	 * @param numberOfOutputNeurons the number of output neurons that should be
+	 *                              created
+	 */
 	public Brain(int numberOfInputNeurons, int numberOfOutputNeurons) {
 		inputNeurons = new Neuron[numberOfInputNeurons];
 		outputNeurons = new Neuron[numberOfOutputNeurons];
@@ -18,15 +26,32 @@ public class Brain {
 		}
 	}
 
+	/**
+	 * Connects an input and output neuron
+	 *
+	 * @param inputNeuronIndex  the index of the input neuron
+	 * @param outputNeuronIndex the index of the output neuron
+	 */
 	public void addAxon(int inputNeuronIndex, int outputNeuronIndex) {
 		inputNeurons[inputNeuronIndex].addOutputNeuronIndex(outputNeuronIndex);
 	}
 
+	/**
+	 * Removes a connection between an input and output neuron
+	 *
+	 * @param inputNeuronIndex  the index of the input neuron
+	 * @param outputNeuronIndex the index of the output neuron
+	 */
 	public void removeAxon(int inputNeuronIndex, int outputNeuronIndex) {
 		inputNeurons[inputNeuronIndex].removeOutputNeuronIndex(outputNeuronIndex);
 	}
 
-	public void setInput(double[] input) {
+	/**
+	 * Sets input neuron values and updates output accordingly
+	 *
+	 * @param input an array of input values that overwrites old input neuron values
+	 */
+	public void update(double[] input) {
 		for (int i = 0; i < inputNeurons.length; ++i) {
 			double deltaValue = inputNeurons[i].setValue(input[i]);
 			if (deltaValue != 0) {
@@ -38,6 +63,11 @@ public class Brain {
 		}
 	}
 
+	/**
+	 * Returns the values of the output neurons
+	 *
+	 * @return an array of the values contained by all of the output neurons
+	 */
 	public int[] getOutput() {
 		int[] outputValues = new int[outputNeurons.length];
 		for (int i = 0; i < outputNeurons.length; ++i) {

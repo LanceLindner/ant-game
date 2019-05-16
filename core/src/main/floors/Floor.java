@@ -17,7 +17,8 @@ import main.tiles.Tile;
 import main.tiles.TileType;
 
 public abstract class Floor {
-	public static final int SHADOW_LAYER = 3;
+	public static final int SHADOW_LAYER = 4;
+	public static final int RESIDUE_LAYER = 3;
 	public static final int DECORATIVE_LAYER = 2;
 	public static final int INTERACTABLE_LAYER = 1;
 	public static final int FLOOR_LAYER = 0;
@@ -91,7 +92,7 @@ public abstract class Floor {
 
 	public void draw(OrthographicCamera camera, SpriteBatch batch) {
 		tiledMapRenderer.setView(camera);
-		tiledMapRenderer.render(new int[] { FLOOR_LAYER, INTERACTABLE_LAYER, DECORATIVE_LAYER });
+		tiledMapRenderer.render(new int[] { FLOOR_LAYER, INTERACTABLE_LAYER, DECORATIVE_LAYER, RESIDUE_LAYER });
 
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();

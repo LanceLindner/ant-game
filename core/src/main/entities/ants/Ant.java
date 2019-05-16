@@ -13,10 +13,15 @@ public class Ant extends Entity {
 	private Brain brain;
 	private int health;
 	private int direction;
+	private boolean isAlive;
 
 	public Ant(Floor floor, int x, int y) {
 		super(floor, x, y);
 		image = new Texture("assets/sprites/sprites/ant.png");
+		isAlive = true;
+		direction = 0;
+		health = 10;
+		brain = new Brain(4, 0, 4);
 	}
 
 	@Override

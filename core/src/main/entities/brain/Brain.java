@@ -20,20 +20,6 @@ public class Brain {
 		}
 	}
 
-	@Override
-	public Brain clone() {
-		Brain newBrain = new Brain(inputNeurons.length, outputNeurons.length);
-
-		for (int i = 0; i < inputNeurons.length; ++i) {
-			newBrain.getInputNeurons()[i].setX(inputNeurons[i];
-		}
-		for (int i = 0; i < outputNeurons.length; ++i) {
-			outputNeurons[i] = new Neuron(i, 0);
-		}
-
-		return newBrain;
-	}
-
 	public void setInput(double[] input) {
 		for (int i = 0; i < inputNeurons.length; ++i) {
 			inputNeurons[i].setValue(input[i]);

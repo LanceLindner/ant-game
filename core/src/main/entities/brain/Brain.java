@@ -31,8 +31,8 @@ public class Brain {
 			double deltaValue = inputNeurons[i].setValue(input[i]);
 			if (deltaValue != 0) {
 				ArrayList<Integer> outputNeuronIndexes = inputNeurons[i].getOutputNeuronIndexes();
-				for (int j = 0; j < outputNeuronIndexes.size(); ++j) {
-					outputNeurons[j].setValue(deltaValue);
+				for (int j = 0; j < inputNeurons[i].getOutputNeuronIndexes().size(); ++j) {
+					outputNeurons[outputNeuronIndexes.get(j)].setValue(deltaValue);
 				}
 			}
 		}

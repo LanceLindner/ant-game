@@ -6,8 +6,6 @@ public class Brain {
 	private Neuron[] inputNeurons;
 	private Neuron[] outputNeurons;
 
-	public ArrayList<Neuron> activeInput = new ArrayList<Neuron>();
-
 	public Brain(int numberOfInputNeurons, int numberOfOutputNeurons) {
 		inputNeurons = new Neuron[numberOfInputNeurons];
 		outputNeurons = new Neuron[numberOfOutputNeurons];

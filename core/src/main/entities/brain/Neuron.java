@@ -6,8 +6,7 @@ public class Neuron {
 	private double value = 0;
 	private boolean active = false;
 
-	private ArrayList<Axon> inputAxons = new ArrayList<Axon>();
-	private ArrayList<Axon> outputAxons = new ArrayList<Axon>();
+	private ArrayList<Integer> outputNeuronIndexes = new ArrayList<Integer>();
 
 	private double x;
 	private double y;
@@ -15,15 +14,6 @@ public class Neuron {
 	public Neuron(int x, int y) {
 		this.x = x;
 		this.y = y;
-	}
-
-	public void delete() {
-		for (Axon axon : inputAxons) {
-			axon.delete();
-		}
-		for (Axon axon : outputAxons) {
-			axon.delete();
-		}
 	}
 
 	public double getValue() {
@@ -39,12 +29,8 @@ public class Neuron {
 		return active;
 	}
 
-	public ArrayList<Axon> getInputAxons() {
-		return inputAxons;
-	}
-
-	public ArrayList<Axon> getOutputAxons() {
-		return outputAxons;
+	public ArrayList<Integer> getOutputNeuronIndexes() {
+		return outputNeuronIndexes;
 	}
 
 	public double getX() {
@@ -55,41 +41,23 @@ public class Neuron {
 		return y;
 	}
 
-	public void addInputAxon(Axon axon) {
-		inputAxons.add(axon);
+	public void addOutputNeuronIndex(int axonIndex) {
+		outputNeuronIndexes.add(axonIndex);
 	}
 
-	public void addOutputAxon(Axon axon) {
-		outputAxons.add(axon);
+	public void removeOutputNeuronIndex(int axonIndex) {
+		outputNeuronIndexes.remove(axonIndex);
 	}
 
-	public void removeInputAxon(Axon axon) {
-		inputAxons.remove(axon);
-	}
-
-	public void removeOutputAxon(Axon axon) {
-		outputAxons.remove(axon);
-	}
-
-	private void updateOutputAxons(double deltaValue) {
-		for (Axon axon : outputAxons) {
-			axon.setOutputNeuronValue(deltaValue);
-		}
-	}
-
-	public void setValue(double newValue) {
+	public double setValue(double newValue) {
 		if (active == true) {
 			newValue = (int) Math.round(newValue * Math.pow(10, 1)) / Math.pow(10, 1);
 			if (Math.abs(newValue - value) > 0.05) {
 				double deltaValue = newValue - value;
 				value = newValue;
-				updateOutputAxons(deltaValue);
+				return deltaValue;
 			}
 		}
-	}
-
-	public void changeValue(double deltaValue) {
-		value += deltaValue;
-		updateOutputAxons(deltaValue);
+		return 0;
 	}
 }

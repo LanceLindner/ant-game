@@ -20,15 +20,23 @@ public class Brain {
 		}
 	}
 
-	public void addAxon(Neuron inputNeuron, Neuron outputNeuron) {
-		Axon axon = new Axon(inputNeuron, outputNeuron);
-		inputNeuron.addInputAxon(axon);
-		outputNeuron.addOutputAxon(axon);
+	public void addAxon(int inputNeuronIndex, int outputNeuronIndex) {
+		inputNeurons[inputNeuronIndex].addOutputNeuronIndex(outputNeuronIndex);
+	}
+
+	public void removeAxon(int inputNeuronIndex, int outputNeuronIndex) {
+		inputNeurons[inputNeuronIndex].removeOutputNeuronIndex(outputNeuronIndex);
 	}
 
 	public void setInput(double[] input) {
 		for (int i = 0; i < inputNeurons.length; ++i) {
-			inputNeurons[i].setValue(input[i]);
+			double deltaValue = inputNeurons[i].setValue(input[i]);
+			if (deltaValue != 0) {
+				ArrayList<Integer> outputNeuronIndexes = inputNeurons[i].getOutputNeuronIndexes();
+				for (int j = 0; j < outputNeuronIndexes.size(); ++j) {
+					outputNeurons[j].setValue(deltaValue);
+				}
+			}
 		}
 	}
 

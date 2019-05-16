@@ -12,9 +12,9 @@ public class Neuron {
 	private double x;
 	private double y;
 
-	private Neuron childNeuron;// used for cloning
-
-	public Neuron() {
+	public Neuron(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	public void delete() {
@@ -33,7 +33,6 @@ public class Neuron {
 			return 0;
 		else
 			return value;
-
 	}
 
 	public boolean isActive() {
@@ -54,10 +53,6 @@ public class Neuron {
 
 	public double getY() {
 		return y;
-	}
-
-	public Neuron getChildNeuron() {
-		return childNeuron;
 	}
 
 	public void removeInputAxon(Axon axon) {

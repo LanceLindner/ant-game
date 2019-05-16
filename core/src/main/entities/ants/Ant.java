@@ -21,7 +21,7 @@ public class Ant extends Entity {
 		isAlive = true;
 		direction = 0;
 		health = 10;
-		brain = new Brain(4, 0, 4);
+		brain = new Brain(4, 4);
 	}
 
 	@Override

@@ -4,32 +4,23 @@ import java.util.ArrayList;
 
 public class Brain {
 	private Neuron[] inputNeurons;
-	private Neuron[] hiddenNeurons;
 	private Neuron[] outputNeurons;
 
-	public ArrayList<Neuron> allNeurons = new ArrayList<Neuron>();
 	public ArrayList<Neuron> activeInput = new ArrayList<Neuron>();
 
-	public Brain(int numberOfInputNeurons, int numberOfHiddenNeurons, int numberOfOutputNeurons) {
-		initializeEmptyBrain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
+	public Brain(int numberOfInputNeurons, int numberOfOutputNeurons) {
+		initializeEmptyBrain(numberOfInputNeurons, numberOfOutputNeurons);
 	}
 
-	public void initializeEmptyBrain(int numberOfInputNeurons, int numberOfHiddenNeurons, int numberOfOutputNeurons) {
+	public void initializeEmptyBrain(int numberOfInputNeurons, int numberOfOutputNeurons) {
 		inputNeurons = new Neuron[numberOfInputNeurons];
-		hiddenNeurons = new Neuron[numberOfHiddenNeurons];
 		outputNeurons = new Neuron[numberOfOutputNeurons];
 
-		for (Neuron neuron : inputNeurons) {
-			neuron = new Neuron();
-			allNeurons.add(neuron);
+		for (int i = 0; i < inputNeurons.length; ++i) {
+			inputNeurons[i] = new Neuron(i, 0);
 		}
-		for (Neuron neuron : hiddenNeurons) {
-			neuron = new Neuron();
-			allNeurons.add(neuron);
-		}
-		for (Neuron neuron : outputNeurons) {
-			neuron = new Neuron();
-			allNeurons.add(neuron);
+		for (int i = 0; i < outputNeurons.length; ++i) {
+			outputNeurons[i] = new Neuron(i, 0);
 		}
 	}
 

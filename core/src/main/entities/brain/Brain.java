@@ -20,6 +20,12 @@ public class Brain {
 		}
 	}
 
+	public void addAxon(Neuron inputNeuron, Neuron outputNeuron) {
+		Axon axon = new Axon(inputNeuron, outputNeuron);
+		inputNeuron.addInputAxon(axon);
+		outputNeuron.addOutputAxon(axon);
+	}
+
 	public void setInput(double[] input) {
 		for (int i = 0; i < inputNeurons.length; ++i) {
 			inputNeurons[i].setValue(input[i]);

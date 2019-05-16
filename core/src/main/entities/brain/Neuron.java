@@ -55,6 +55,14 @@ public class Neuron {
 		return y;
 	}
 
+	public void addInputAxon(Axon axon) {
+		inputAxons.add(axon);
+	}
+
+	public void addOutputAxon(Axon axon) {
+		outputAxons.add(axon);
+	}
+
 	public void removeInputAxon(Axon axon) {
 		inputAxons.remove(axon);
 	}

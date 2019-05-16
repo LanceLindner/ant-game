@@ -107,9 +107,10 @@ public class Ant extends Entity {
 				return;
 			}
 		}
-
+		floor.getTile((int) x, (int) y).removeEntity();
 		x = tileAhead.getX();
 		y = tileAhead.getY();
+		floor.getTile((int) x, (int) y).addEntity(this);
 	}
 
 	private void turnLeft() {

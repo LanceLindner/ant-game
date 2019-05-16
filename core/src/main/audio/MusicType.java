@@ -3,7 +3,8 @@ package main.audio;
 import java.util.HashMap;
 
 public enum MusicType {
-	LONG_DISTANCE(1, false, 500, 25, false, true, true), SHORT_DISTANCE(2, false, 5, 0, false, true, true);
+	LONG_DISTANCE(1, false, 500, 25, false, true, true),
+	SHORT_DISTANCE(2, false, 5, 0, false, true, true);
 
 	private int id;
 

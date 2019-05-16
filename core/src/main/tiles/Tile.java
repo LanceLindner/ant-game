@@ -16,6 +16,8 @@ public class Tile {
 
 	private Entity entity;
 
+	private Entity corpse;
+
 	private MusicContainer musicContainer;
 
 	private double visibility;

@@ -48,9 +48,11 @@ public class Ant extends Entity {
 			inputValues[2] = 0;
 			inputValues[3] = 0;
 
-			/*
-			 * if (tileAhead.getTileType().isSolid()) { isAlive = false; }
-			 */
+			if (tileAhead.getTileType() != null) {
+				if (tileAhead.getTileType().isSolid()) {
+					isAlive = false;
+				}
+			}
 
 			if (isAlive) {
 

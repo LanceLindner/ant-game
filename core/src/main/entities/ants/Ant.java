@@ -15,33 +15,58 @@ public class Ant extends Entity {
 	private int direction;
 	private boolean isAlive;
 
+	private int numberOfInputs;
+	private int numberOfOutputs;
+
 	public Ant(Floor floor, int x, int y) {
 		super(floor, x, y);
 		image = new Texture("assets/sprites/sprites/ant.png");
 		isAlive = true;
 		direction = 0;
 		health = 10;
+
 		brain = new Brain(4, 4);
+		brain.addAxon(0, 0);
+
+		numberOfInputs = 4;
+		numberOfOutputs = 4;
 	}
 
 	@Override
 	public void update() {
 
-		Tile TileAhead = getTileAhead();
+		Tile tileAhead = getTileAhead();
 
-		if (TileAhead.getTileType().isSolid()) {
-			isAlive = false;
-		}
+		double[] inputValues = new double[numberOfInputs];
+		inputValues[0] = 0;
+		inputValues[1] = 0;
+		inputValues[2] = 0;
+		inputValues[3] = 0;
+
+		/*
+		 * if (tileAhead.getTileType().isSolid()) { isAlive = false; }
+		 */
 
 		if (isAlive) {
 
-			int[] inputValues = new int[brain.getInputNeurons().length];
-
 			// We will need to work a couple things out in the future, this right now is
 			// just for testing
+
 			/*
-			 * Index 0: Whether the tile ahead is a wall or not
+			 * Index 0: Whether the tile ahead is not a wall
 			 */
+
+			// Will always be equal to 1 because otherwise the if statement wouldn't execute
+			inputValues[0] = 1;
+
+			brain.update(inputValues);
+
+			int[] outputValues = brain.getOutput();
+
+			if (outputValues[0] == 1) {
+				moveForward(tileAhead);
+			}
+
 		}
 	}
 
@@ -59,7 +84,6 @@ public class Ant extends Entity {
 			return floor.getTile((int) (x - 1), (int) y);
 		default:
 			return floor.getTile((int) x, (int) y);
-
 		}
 	}
 

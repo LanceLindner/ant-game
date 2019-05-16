@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Neuron {
 	private double value = 0;
-	private boolean active = false;
+	private boolean active = true;
 
 	private ArrayList<Integer> outputNeuronIndexes = new ArrayList<Integer>();
 

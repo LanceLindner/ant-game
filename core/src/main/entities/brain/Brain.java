@@ -73,14 +73,7 @@ public class Brain {
 		for (int i = 0; i < outputNeurons.length; ++i) {
 			outputValues[i] = (int) Math.round(outputNeurons[i].getValue());
 		}
-		return null;
+		return outputValues;
 	}
 
-	public Neuron[] getInputNeurons() {
-		return inputNeurons;
-	}
-
-	public Neuron[] getOutputNeurons() {
-		return outputNeurons;
-	}
 }

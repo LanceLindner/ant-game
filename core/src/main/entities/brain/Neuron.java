@@ -8,12 +8,7 @@ public class Neuron {
 
 	private ArrayList<Integer> outputNeuronIndexes = new ArrayList<Integer>();
 
-	private double x;
-	private double y;
-
-	public Neuron(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public Neuron() {
 	}
 
 	public double getValue() {
@@ -25,20 +20,8 @@ public class Neuron {
 			return value;
 	}
 
-	public boolean isActive() {
-		return active;
-	}
-
 	public ArrayList<Integer> getOutputNeuronIndexes() {
 		return outputNeuronIndexes;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
 	}
 
 	public void addOutputNeuronIndex(int axonIndex) {

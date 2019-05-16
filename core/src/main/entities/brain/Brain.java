@@ -11,10 +11,10 @@ public class Brain {
 		outputNeurons = new Neuron[numberOfOutputNeurons];
 
 		for (int i = 0; i < inputNeurons.length; ++i) {
-			inputNeurons[i] = new Neuron(i, 0);
+			inputNeurons[i] = new Neuron();
 		}
 		for (int i = 0; i < outputNeurons.length; ++i) {
-			outputNeurons[i] = new Neuron(i, 0);
+			outputNeurons[i] = new Neuron();
 		}
 	}
 

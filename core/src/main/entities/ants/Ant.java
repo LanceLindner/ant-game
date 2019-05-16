@@ -28,7 +28,7 @@ public class Ant extends Entity {
 		direction = 0;
 		health = 10;
 
-		brain = new Brain(4, 4);
+		brain = new Brain(4, 4, 4);
 		brain.addAxon(0, 0);
 
 		numberOfInputs = 4;

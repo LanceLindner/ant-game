@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Brain {
 	private Neuron[] inputNeurons;
+	private Neuron[] hiddenNeurons;
 	private Neuron[] outputNeurons;
 
 	/**
@@ -11,15 +12,21 @@ public class Brain {
 	 *
 	 * @param numberOfInputNeurons  the number of input neurons that should be
 	 *                              created
+	 * @param numberOfHiddenNeurons the number of hidden neurons that should be
+	 *                              created
 	 * @param numberOfOutputNeurons the number of output neurons that should be
 	 *                              created
 	 */
-	public Brain(int numberOfInputNeurons, int numberOfOutputNeurons) {
+	public Brain(int numberOfInputNeurons, int numberOfHiddenNeurons, int numberOfOutputNeurons) {
 		inputNeurons = new Neuron[numberOfInputNeurons];
+		inputNeurons = new Neuron[numberOfHiddenNeurons];
 		outputNeurons = new Neuron[numberOfOutputNeurons];
 
 		for (int i = 0; i < inputNeurons.length; ++i) {
 			inputNeurons[i] = new Neuron();
+		}
+		for (int i = 0; i < hiddenNeurons.length; ++i) {
+			hiddenNeurons[i] = new Neuron();
 		}
 		for (int i = 0; i < outputNeurons.length; ++i) {
 			outputNeurons[i] = new Neuron();

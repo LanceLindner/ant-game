@@ -48,12 +48,6 @@ public class Ant extends Entity {
 			inputValues[2] = 0;
 			inputValues[3] = 0;
 
-			if (tileAhead.getTileType() != null) {
-				if (tileAhead.getTileType().isSolid()) {
-					isAlive = false;
-				}
-			}
-
 			if (isAlive) {
 
 				// We will need to work a couple things out in the future, this right now is
@@ -64,18 +58,25 @@ public class Ant extends Entity {
 				 */
 
 				// Will always be equal to 1 because otherwise the if statement wouldn't execute
-				inputValues[0] = 1;
+
+				if (tileAhead.getTileType() == null || !tileAhead.getTileType().isSolid()) {
+					inputValues[0] = 1;
+				} else {
+					inputValues[0] = 0;
+				}
 
 				brain.update(inputValues);
 
 				int[] outputValues = brain.getOutput();
 
 				if (outputValues[0] == 1) {
-					moveForward(tileAhead);
+					moveForward();
+				} else {
+					turnRight();
 				}
 
 			}
-			cooldown = 1;
+			cooldown = 0;
 		}
 		cooldown -= Globals.deltaTime;
 	}
@@ -97,16 +98,26 @@ public class Ant extends Entity {
 		}
 	}
 
-	private void moveForward(Tile tileAhead) {
+	private void moveForward() {
+		Tile tileAhead = getTileAhead();
+
+		if (tileAhead.getTileType() != null) {
+			if (tileAhead.getTileType().isSolid()) {
+				isAlive = false;
+				return;
+			}
+		}
 		x = tileAhead.getX();
 		y = tileAhead.getY();
 	}
 
 	private void turnLeft() {
-		direction = (direction - 1) % 4;
+		direction = ((direction + 3) % 4);
+		// moveForward();
 	}
 
 	private void turnRight() {
 		direction = (direction + 1) % 4;
+		// moveForward();
 	}
 }

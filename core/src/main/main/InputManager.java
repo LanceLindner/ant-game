@@ -1,13 +1,15 @@
 package main.main;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class InputManager implements InputProcessor {
 	private static OrthographicCamera camera;
 
-	public static void setCamera(OrthographicCamera theCamera) {
+	public InputManager(OrthographicCamera theCamera) {
 		camera = theCamera;
+		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
@@ -54,8 +56,9 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		camera.zoom += amount;
-		System.out.println("t");
+		System.out.println(camera.zoom);
+		camera.zoom *= Math.pow(2, amount);
+		// System.out.println("t");
 		return false;
 	}
 

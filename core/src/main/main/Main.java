@@ -36,7 +36,7 @@ public class Main extends ApplicationAdapter {
 		camera.update();
 
 		floor = new Overworld();
-		InputManager.setCamera(camera);
+		new InputManager(camera);
 	}
 
 	@Override

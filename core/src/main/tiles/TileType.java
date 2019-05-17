@@ -11,14 +11,24 @@ public enum TileType {
 	WALL4(20, true),
 
 	SNORE1(33, "snore", 1),
-	AHH1(34, "test", 2);
+	AHH1(34, "test", 2),
+
+	SHADOW1(49),
+	SHADOW2(50),
+	SHADOW3(51),
+	SHADOW4(52),
+	SHADOW5(53);
 
 	private final int id;
-	private boolean solid;
+	private boolean solid = false;
 
 	private String musicName;
 
 	private MusicType musicType;
+
+	private TileType(int id) {
+		this.id = id;
+	}
 
 	private TileType(int id, boolean solid) {
 		this.id = id;

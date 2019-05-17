@@ -50,7 +50,7 @@ public abstract class Floor {
 			for (int j = 0; j < tiles[0].length; ++j) {
 				tiles[i][j] = new Tile(this, i, j, getTileType(i, j, INTERACTABLE_LAYER));
 				if (debugLighting == false)
-					setTiledMapTile(i, j, SHADOW_LAYER, 50);
+					setTiledMapTile(i, j, SHADOW_LAYER, 49);
 			}
 		}
 	}
@@ -84,8 +84,15 @@ public abstract class Floor {
 
 		for (int i = -radius; i < radius; ++i) {
 			for (int j = -radius; j < radius; ++j) {
-				if (i * i + j * j < radius * radius) {
-					setTiledMapTile(x + i, y + j, SHADOW_LAYER, -1);
+				int sumOfLegsSquared = i * i + j * j;
+				int radiusSquared = radius * radius;
+				int id = (radiusSquared - sumOfLegsSquared) / radiusSquared * 3 + 50;
+
+				if (sumOfLegsSquared < radiusSquared) {
+					TileType tileType = getTileType(x + i, y + j, SHADOW_LAYER);
+					if (tileType.getID() < id)
+						setTiledMapTile(x + i, y + j, SHADOW_LAYER, id);
+
 				}
 			}
 		}

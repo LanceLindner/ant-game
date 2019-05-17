@@ -2,7 +2,6 @@ package main.entities.ants;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import main.entities.Entity;
 import main.entities.brain.Brain;
@@ -28,12 +27,13 @@ public class Ant extends Entity {
 		super(floor, x, y);
 		image = new Texture("assets/sprites/sprites/ant.png");
 		isAlive = true;
-		direction = 1;
+		direction = 0;
 		health = 10;
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
-		brain.addRandomAxons((int) (Math.random() * 10));
+		brain.addAxon(0, 0, 0, 2);
+		// brain.addRandomAxons((int) (Math.random() * 10));
 
 		cooldown = 0;
 	}
@@ -42,9 +42,22 @@ public class Ant extends Entity {
 	public void draw(SpriteBatch batch) {
 		float drawX = (float) (x * Globals.TILE_SIZE);
 		float drawY = (float) (y * Globals.TILE_SIZE);
-		batch.draw(new TextureRegion(image, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
-				(float) Globals.TILE_SIZE / 2, (float) Globals.TILE_SIZE, (float) Globals.TILE_SIZE, (float) 1,
-				(float) 1, (float) (-(direction + 1) * 90), false);
+
+		System.out.println(direction);
+		switch (direction) {
+		case 0:
+			drawX -= cooldown * (Globals.TILE_SIZE / 2);
+		case 1:
+			drawY -= cooldown * (Globals.TILE_SIZE / 2);
+		case 2:
+			drawX += cooldown * (Globals.TILE_SIZE / 2);
+		case 3:
+			drawY -= cooldown * (Globals.TILE_SIZE / 2);
+		default:
+
+		}
+
+		batch.draw(image, drawX, drawY, Globals.TILE_SIZE, Globals.TILE_SIZE);
 	}
 
 	@Override
@@ -82,7 +95,7 @@ public class Ant extends Entity {
 				if (outputValues[0] == 1) {
 					moveForward();
 				} else {
-					turnRight();
+					// turnRight();
 				}
 
 			}

@@ -16,8 +16,9 @@ public class Ant extends Entity {
 	private int direction;
 	private boolean isAlive;
 
-	private int numberOfInputs;
-	private int numberOfOutputs;
+	private int numberOfInputNeurons = 4;
+	private int numberOfHiddenNeurons = 4;
+	private int numberOfOutputNeurons = 4;
 
 	private double cooldown;
 
@@ -28,11 +29,9 @@ public class Ant extends Entity {
 		direction = 0;
 		health = 10;
 
-		brain = new Brain(4, 4, 4);
-		brain.addAxon(0, 0, 0, 2);
+		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
-		numberOfInputs = 4;
-		numberOfOutputs = 4;
+		brain.addAxon(0, 0, 0, 2);
 
 		cooldown = 0;
 	}
@@ -42,7 +41,7 @@ public class Ant extends Entity {
 		if (cooldown <= 0) {
 			Tile tileAhead = getTileAhead();
 
-			int[] inputValues = new int[numberOfInputs];
+			int[] inputValues = new int[numberOfInputNeurons];
 			inputValues[0] = 0;
 			inputValues[1] = 0;
 			inputValues[2] = 0;

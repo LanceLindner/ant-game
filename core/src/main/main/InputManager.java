@@ -56,9 +56,7 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		System.out.println(camera.zoom);
 		camera.zoom *= Math.pow(2, amount);
-		// System.out.println("t");
 		return false;
 	}
 

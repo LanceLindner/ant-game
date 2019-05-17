@@ -1,6 +1,8 @@
 package main.entities.ants;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import main.entities.Entity;
 import main.entities.brain.Brain;
@@ -26,7 +28,7 @@ public class Ant extends Entity {
 		super(floor, x, y);
 		image = new Texture("assets/sprites/sprites/ant.png");
 		isAlive = true;
-		direction = 0;
+		direction = 1;
 		health = 10;
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
@@ -34,6 +36,15 @@ public class Ant extends Entity {
 		brain.addRandomAxons((int) (Math.random() * 10));
 
 		cooldown = 0;
+	}
+
+	@Override
+	public void draw(SpriteBatch batch) {
+		float drawX = (float) (x * Globals.TILE_SIZE);
+		float drawY = (float) (y * Globals.TILE_SIZE);
+		batch.draw(new TextureRegion(image, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
+				(float) Globals.TILE_SIZE / 2, (float) Globals.TILE_SIZE, (float) Globals.TILE_SIZE, (float) 1,
+				(float) 1, (float) (-(direction + 1) * 90), false);
 	}
 
 	@Override
@@ -75,7 +86,7 @@ public class Ant extends Entity {
 				}
 
 			}
-			cooldown = 0;
+			cooldown = 1;
 		}
 		cooldown -= Globals.deltaTime;
 	}

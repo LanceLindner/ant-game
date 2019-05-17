@@ -31,7 +31,7 @@ public class Ant extends Entity {
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
-		brain.addAxon(0, 0, 0, 2);
+		brain.addRandomAxons((int) (Math.random() * 10));
 
 		cooldown = 0;
 	}

@@ -38,6 +38,30 @@ public class Brain {
 	}
 
 	/**
+	 * Connects two random neurons that fit the required conditions a number of
+	 * times specified by the parameter
+	 * 
+	 * @param numberOfAxons the number of times to connect two random neurons
+	 */
+	public void addRandomAxons(int numberOfAxons) {
+		for (int i = 0; i < numberOfAxons; ++i)
+			addRandomAxon();
+	}
+
+	/**
+	 * Connects two random neurons that fit the required conditions
+	 */
+	public void addRandomAxon() {
+		int inputNeuronY = (int) (Math.random() * 2);
+		int outputNeuronY = (int) (Math.random() * (2 - inputNeuronY) + 1 + inputNeuronY);
+
+		int inputNeuronX = (int) (Math.random() * neurons.get(inputNeuronY).length);
+		int outputNeuronX = (int) (Math.random() * neurons.get(outputNeuronY).length);
+
+		addAxon(inputNeuronX, inputNeuronY, outputNeuronX, outputNeuronY);
+	}
+
+	/**
 	 * Connects an output neuron to an input neuron by x and y coordinates in the
 	 * brain
 	 *

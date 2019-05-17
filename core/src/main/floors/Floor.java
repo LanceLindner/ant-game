@@ -79,6 +79,16 @@ public abstract class Floor {
 		return null;
 	}
 
+	public void lightArea(int x, int y, int radius) {
+		for (int i = x - radius; i < x + radius; ++i) {
+			for (int j = y - radius; j < y + radius; ++j) {
+				if (i * i + j * j < radius * radius) {
+					setTiledMapTile(i, j, SHADOW_LAYER, -1);
+				}
+			}
+		}
+	}
+
 	public void render(OrthographicCamera camera, SpriteBatch batch) {
 		update();
 		player.updateCamera(camera);

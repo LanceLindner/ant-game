@@ -35,8 +35,8 @@ public class Main extends ApplicationAdapter {
 		camera.setToOrtho(false, Globals.windowWidthInTilePixels, Globals.windowHeightInTilePixels);
 		camera.update();
 
-		Floor.setCamera(camera);
 		floor = new Overworld();
+		InputManager.setCamera(camera);
 	}
 
 	@Override

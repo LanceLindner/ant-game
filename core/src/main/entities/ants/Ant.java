@@ -27,8 +27,10 @@ public class Ant extends Entity {
 		super(floor, x, y);
 		image = new Texture("assets/sprites/sprites/ant.png");
 		isAlive = true;
-		direction = 0;
+		direction = 1;
 		health = 10;
+
+		floor.lightArea(x, y);
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
@@ -43,17 +45,24 @@ public class Ant extends Entity {
 		float drawX = (float) (x * Globals.TILE_SIZE);
 		float drawY = (float) (y * Globals.TILE_SIZE);
 
+		// drawY += 2 * Globals.TILE_SIZE;
 		// System.out.println(direction);
 		switch (direction) {
 		case 0:
-			drawX -= cooldown * (Globals.TILE_SIZE / 2);
+
+			drawY -= cooldown * Globals.TILE_SIZE;
+			break;
 		case 1:
-			drawY -= cooldown * (Globals.TILE_SIZE / 2);
+			drawX -= cooldown * Globals.TILE_SIZE;
+			break;
 		case 2:
-			drawX += cooldown * (Globals.TILE_SIZE / 2);
+			drawY += cooldown * Globals.TILE_SIZE;
+			break;
 		case 3:
-			drawY -= cooldown * (Globals.TILE_SIZE / 2);
+			drawX -= cooldown * Globals.TILE_SIZE;
+			break;
 		default:
+			break;
 
 		}
 

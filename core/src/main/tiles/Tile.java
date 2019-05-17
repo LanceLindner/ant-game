@@ -36,6 +36,10 @@ public class Tile {
 		}
 	}
 
+	public void setCorpse(Entity deadEntity) {
+		corpse = deadEntity;
+	}
+
 	public boolean containsEntity() {
 		return (entity != null);
 	}

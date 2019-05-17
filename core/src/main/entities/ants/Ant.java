@@ -17,6 +17,7 @@ public class Ant extends Entity {
 	private int health;
 	private int direction;
 	private boolean isAlive;
+	private double antSpeed;
 
 	private int numberOfInputNeurons = 4;
 	private int numberOfHiddenNeurons = 4;
@@ -36,6 +37,7 @@ public class Ant extends Entity {
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
 		brain.addRandomAxons(5);
+		antSpeed = 2;
 
 		cooldown = 0;
 	}
@@ -115,7 +117,7 @@ public class Ant extends Entity {
 			cooldown = 1;
 		}
 		if (isAlive) {
-			cooldown -= Globals.deltaTime;
+			cooldown -= antSpeed * Globals.deltaTime;
 		}
 	}
 
@@ -146,6 +148,9 @@ public class Ant extends Entity {
 
 				x = tileAhead.getX();
 				y = tileAhead.getY();
+
+				tileAhead.removeEntity();
+				tileAhead.setCorpse(this);
 				return;
 			}
 		}

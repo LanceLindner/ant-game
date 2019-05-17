@@ -58,7 +58,7 @@ public class Tile {
 			id = (int) (Math.random() * 4 + 71);
 			break;
 		default:
-			id = -87;
+			id = 112;
 		}
 
 		floor.setTiledMapTile(x, y, Floor.RESIDUE_LAYER, id);

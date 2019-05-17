@@ -25,6 +25,8 @@ public abstract class Floor {
 	public static final int INTERACTABLE_LAYER = 1;
 	public static final int FLOOR_LAYER = 0;
 
+	private static OrthographicCamera camera;
+
 	private Tile[][] tiles;
 
 	private TiledMap tiledMap;
@@ -34,12 +36,16 @@ public abstract class Floor {
 
 	private Player player;
 
+	public static void setCamera(OrthographicCamera theCamera) {
+		camera = theCamera;
+	}
+
 	public Floor(String floorFileName) {
 		tiledMap = new TmxMapLoader().load("assets/floors/" + floorFileName + ".tmx");
 		tiledMapToTiles();
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
-		player = new Player(this, tiles.length / 2, tiles[0].length / 2);
+		player = new Player(this, tiles.length / 2, tiles[0].length / 2, camera);
 	}
 
 	private void tiledMapToTiles() {

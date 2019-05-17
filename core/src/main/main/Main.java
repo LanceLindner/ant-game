@@ -26,8 +26,6 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.getData().setScale(Globals.DEFAULT_FONT_SCALE);
 
-		floor = new Overworld();
-
 		Globals.windowWidth = Gdx.graphics.getWidth();
 		Globals.windowHeight = Gdx.graphics.getHeight();
 		Globals.windowWidthInTilePixels = Globals.TILES_PER_WIDTH * Globals.TILE_SIZE;
@@ -36,6 +34,9 @@ public class Main extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Globals.windowWidthInTilePixels, Globals.windowHeightInTilePixels);
 		camera.update();
+
+		Floor.setCamera(camera);
+		floor = new Overworld();
 	}
 
 	@Override

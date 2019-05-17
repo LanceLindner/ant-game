@@ -11,9 +11,11 @@ import main.main.Globals;
 
 public class Player extends Entity {
 	private double velocityMutliplier = 10;
+	private OrthographicCamera camera;
 
-	public Player(Floor floor, int x, int y) {
+	public Player(Floor floor, int x, int y, OrthographicCamera camera) {
 		super(floor, x, y);
+		this.camera = camera;
 		AudioManager.update(x, y);
 		floor.getTile(x, y).removeEntity();
 	}
@@ -49,6 +51,7 @@ public class Player extends Entity {
 		if (changed == true) {
 			AudioManager.update(x, y);
 		}
+
 	}
 
 	public void updateCamera(OrthographicCamera camera) {

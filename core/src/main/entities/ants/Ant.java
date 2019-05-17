@@ -134,6 +134,7 @@ public class Ant extends Entity {
 		x = tileAhead.getX();
 		y = tileAhead.getY();
 		floor.getTile((int) x, (int) y).addEntity(this);
+		floor.lightArea((int) x, (int) y);
 	}
 
 	private void turnLeft() {

@@ -17,6 +17,8 @@ import main.tiles.Tile;
 import main.tiles.TileType;
 
 public abstract class Floor {
+	public static boolean debugLighting = false;
+
 	public static final int SHADOW_LAYER = 4;
 	public static final int RESIDUE_LAYER = 3;
 	public static final int DECORATIVE_LAYER = 2;
@@ -47,6 +49,8 @@ public abstract class Floor {
 		for (int i = 0; i < tiles.length; ++i) {
 			for (int j = 0; j < tiles[0].length; ++j) {
 				tiles[i][j] = new Tile(this, i, j, getTileType(i, j, INTERACTABLE_LAYER));
+				if (debugLighting == false)
+					setTiledMapTile(i, j, SHADOW_LAYER, 50);
 			}
 		}
 	}
@@ -55,8 +59,14 @@ public abstract class Floor {
 		return tiles[x][y];
 	}
 
-	public TileType getTileType(int col, int row, int layer) {
-		Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col, row);
+	public void setTiledMapTile(int x, int y, int layer, int id) {
+		Cell cell = new Cell();
+		cell.setTile(tiledMap.getTileSets().getTile(id));
+		((TiledMapTileLayer) tiledMap.getLayers().get(layer)).setCell(x, y, cell);
+	}
+
+	public TileType getTileType(int x, int y, int layer) {
+		Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(x, y);
 
 		if (cell != null) {
 			TiledMapTile tile = cell.getTile();
@@ -67,6 +77,16 @@ public abstract class Floor {
 			}
 		}
 		return null;
+	}
+
+	public void lightArea(int x, int y, int radius) {
+		for (int i = x - radius; i < x + radius; ++i) {
+			for (int j = y - radius; j < y + radius; ++j) {
+				if (i * i + j * j < radius * radius) {
+					setTiledMapTile(i, j, SHADOW_LAYER, -1);
+				}
+			}
+		}
 	}
 
 	public void render(OrthographicCamera camera, SpriteBatch batch) {

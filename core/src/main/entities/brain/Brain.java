@@ -29,10 +29,10 @@ public class Brain {
 			for (int j = 0; j < neurons.get(i).length; ++j) {
 				boolean conjunctive;
 				if (j == 1)
-					conjunctive = true;
+					neurons.get(i)[j] = new ConjunctiveNeuron();
 				else
-					conjunctive = false;
-				neurons.get(i)[j] = new Neuron(conjunctive);
+					neurons.get(i)[j] = new Neuron();
+
 			}
 		}
 	}
@@ -54,10 +54,10 @@ public class Brain {
 	 * Removes a connection between an output neuron and an input neuron by their x
 	 * and y coordinates in the brain
 	 *
-	 * @param inputNeuronX    the input neuron's x position
-	 * @param inputNeuronYthe input neuron's y position
-	 * @param outputNeuronX   the output neuron's x position
-	 * @param outputNeuronY   the output neuron's y position
+	 * @param inputNeuronX  the input neuron's x position
+	 * @param inputNeuronY  the input neuron's y position
+	 * @param outputNeuronX the output neuron's x position
+	 * @param outputNeuronY the output neuron's y position
 	 */
 	public void removeAxon(int inputNeuronX, int inputNeuronY, int outputNeuronX, int outputNeuronY) {
 		neurons.get(inputNeuronY)[inputNeuronX].removeOutputNeuronPosition(outputNeuronX, outputNeuronY);
@@ -80,7 +80,9 @@ public class Brain {
 
 	private void update(ArrayList<int[]> outputNeuronPositions, int deltaValue) {
 		for (int i = 0; i < outputNeuronPositions.size(); ++i) {
-			neurons.get(outputNeuronPositions.get(i)[1])[outputNeuronPositions.get(i)[0]].setValue(deltaValue);
+			neurons.get(outputNeuronPositions.get(i)[1])[outputNeuronPositions.get(i)[0]].changeValue(deltaValue);
+			update(neurons.get(outputNeuronPositions.get(i)[1])[outputNeuronPositions.get(i)[0]]
+					.getOutputNeuronPositions(), deltaValue);
 		}
 	}
 

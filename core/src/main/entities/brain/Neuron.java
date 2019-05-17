@@ -3,22 +3,16 @@ package main.entities.brain;
 import java.util.ArrayList;
 
 public class Neuron {
-	private int value = 0;
-	private boolean active = true;
-
-	private boolean conjunctive = false;
+	protected int value = 0;
+	protected boolean active = true;
+	protected int numberOfInputs;
 
 	private ArrayList<int[]> outputNeuronPositions = new ArrayList<int[]>();
 
 	/**
 	 * Constructor for Neuron
-	 *
-	 * @param conjunctive boolean that controls whether this neuron calculates
-	 *                    conjunctively (with multiplication) or disjunctively (with
-	 *                    addition)
 	 */
-	public Neuron(boolean conjunctive) {
-		this.conjunctive = conjunctive;
+	public Neuron() {
 	}
 
 	/**
@@ -48,19 +42,21 @@ public class Neuron {
 	}
 
 	/**
-	 * Adds an output neuron position to the list of neurons to change when this
-	 * neuron's values are changed
+	 * Adds an output neuron position to the list of neurons so that the neuron can
+	 * be changed when this neuron's values are changed and increments the number of
+	 * inputs counter
 	 *
 	 * @param outputNeuronX the x position of the output neuron that should be added
 	 * @param outputNeuronY the y position of the output neuron that should be added
 	 */
 	public void addOutputNeuronPosition(int outputNeuronX, int outputNeuronY) {
 		outputNeuronPositions.add(new int[] { outputNeuronX, outputNeuronY });
+		++numberOfInputs;
 	}
 
 	/**
-	 * Remove the index of a given output neuron from the list of neurons to change
-	 * when this neuron's values are changed
+	 * Remove an output neuron position from the list of this neurons positions and
+	 * decrements the number of inputs counter
 	 *
 	 * @param outputNeuronX the x position of the output neuron that should be
 	 *                      removed
@@ -69,15 +65,17 @@ public class Neuron {
 	 */
 	public void removeOutputNeuronPosition(int outputNeuronX, int outputNeuronY) {
 		outputNeuronPositions.remove(new int[] { outputNeuronX, outputNeuronY });
+		--numberOfInputs;
 	}
 
 	/**
-	 * If this neuron is active and the difference between the two is greater than
-	 * 10%, this neurons value is set to the parameter's value and the difference is
-	 * returned so that the brain can change all output neurons
+	 * If this neuron is active and there is a difference between the new and old
+	 * values, this neurons value is set to the parameter's value and the difference
+	 * is returned so that the brain can change all output neurons. This should only
+	 * be called for input neurons
 	 *
-	 * @param newValue the value that this neuron's value will be set to if the
-	 *                 difference between the two is greater than 10%
+	 * @param newValue the value that this neuron's value will be set to if their is
+	 *                 a difference between the two
 	 * @return how much all output neurons should change
 	 */
 	public int setValue(int newValue) {
@@ -89,5 +87,15 @@ public class Neuron {
 			}
 		}
 		return 0;
+	}
+
+	/**
+	 * Adds the parameter to this neuron's value. This should be called only by
+	 * non-input neurons
+	 *
+	 * @param difference the parameter to be added
+	 */
+	public void changeValue(int difference) {
+		value += difference;
 	}
 }

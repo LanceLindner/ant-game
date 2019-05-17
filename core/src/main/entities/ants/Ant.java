@@ -69,7 +69,7 @@ public class Ant extends Entity {
 
 		batch.draw(new TextureRegion(image, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
 				(float) Globals.TILE_SIZE / 2, (float) Globals.TILE_SIZE, (float) Globals.TILE_SIZE, (float) 1,
-				(float) 1, (float) (-(direction + 1) * 90), false);
+				(float) 1, (float) ((direction - 3) * 90), false);
 	}
 
 	@Override

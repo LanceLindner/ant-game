@@ -37,7 +37,7 @@ public class Ant extends Entity {
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
 		brain.addRandomAxons(5);
-		antSpeed = 2;
+		antSpeed = 1;
 
 		cooldown = 0;
 	}
@@ -101,6 +101,12 @@ public class Ant extends Entity {
 					inputValues[0] = 1;
 				}
 
+				if (tileAhead.containsEntity()) {
+					inputValues[1] = 1;
+				} else {
+					inputValues[1] = 0;
+				}
+
 				brain.update(inputValues);
 
 				int[] outputValues = brain.getOutput();
@@ -109,9 +115,8 @@ public class Ant extends Entity {
 					turnRight();
 				} else if (outputValues[1] == 1) {
 					turnLeft();
-				} else {
-					moveForward();
 				}
+				moveForward();
 
 			}
 			cooldown = 1;
@@ -145,6 +150,7 @@ public class Ant extends Entity {
 			if (tileAhead.getTileType().isSolid()) {
 				isAlive = false;
 				cooldown = 0;
+				floor.getTile((int) x, (int) y).removeEntity();
 
 				x = tileAhead.getX();
 				y = tileAhead.getY();
@@ -153,6 +159,19 @@ public class Ant extends Entity {
 				tileAhead.setCorpse(this);
 				return;
 			}
+		}
+
+		if (tileAhead.containsEntity()) {
+			isAlive = false;
+			cooldown = 0;
+			floor.getTile((int) x, (int) y).removeEntity();
+
+			x = tileAhead.getX();
+			y = tileAhead.getY();
+
+			tileAhead.removeEntity();
+			tileAhead.setCorpse(this);
+			return;
 		}
 		floor.getTile((int) x, (int) y).removeEntity();
 		x = tileAhead.getX();
@@ -163,11 +182,11 @@ public class Ant extends Entity {
 
 	private void turnLeft() {
 		direction = ((direction + 3) % 4);
-		moveForward();
+		// moveForward();
 	}
 
 	private void turnRight() {
 		direction = (direction + 1) % 4;
-		moveForward();
+		// moveForward();
 	}
 }

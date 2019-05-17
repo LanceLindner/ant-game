@@ -43,7 +43,7 @@ public class Ant extends Entity {
 		float drawX = (float) (x * Globals.TILE_SIZE);
 		float drawY = (float) (y * Globals.TILE_SIZE);
 
-		System.out.println(direction);
+		// System.out.println(direction);
 		switch (direction) {
 		case 0:
 			drawX -= cooldown * (Globals.TILE_SIZE / 2);

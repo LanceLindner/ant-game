@@ -50,7 +50,7 @@ public abstract class Floor {
 			for (int j = 0; j < tiles[0].length; ++j) {
 				tiles[i][j] = new Tile(this, i, j, getTileType(i, j, INTERACTABLE_LAYER));
 				if (debugLighting == false)
-					setTiledMapTile(i, j, SHADOW_LAYER, 51);
+					setTiledMapTile(i, j, SHADOW_LAYER, 50);
 			}
 		}
 	}
@@ -81,10 +81,11 @@ public abstract class Floor {
 
 	public void lightArea(int x, int y) {
 		int radius = 5;
-		for (int i = x - radius; i < x + radius; ++i) {
-			for (int j = y - radius; j < y + radius; ++j) {
+
+		for (int i = -radius; i < radius; ++i) {
+			for (int j = -radius; j < radius; ++j) {
 				if (i * i + j * j < radius * radius) {
-					setTiledMapTile(i, j, SHADOW_LAYER, 5);
+					setTiledMapTile(x + i, y + j, SHADOW_LAYER, -1);
 				}
 			}
 		}

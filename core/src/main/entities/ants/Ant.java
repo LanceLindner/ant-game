@@ -29,7 +29,7 @@ public class Ant extends Entity {
 		health = 10;
 
 		brain = new Brain(4, 4, 4);
-		brain.addAxon(0, 0);
+		brain.addAxon(0, 0, 0, 2);
 
 		numberOfInputs = 4;
 		numberOfOutputs = 4;

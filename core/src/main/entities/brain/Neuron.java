@@ -6,7 +6,7 @@ public class Neuron {
 	private double value = 0;
 	private boolean active = true;
 
-	private ArrayList<Integer> outputNeuronIndexes = new ArrayList<Integer>();
+	private ArrayList<int[]> outputNeuronPositions = new ArrayList<int[]>();
 
 	/**
 	 * Constructor for the neuron
@@ -34,32 +34,34 @@ public class Neuron {
 	 * called by the brain when this neuron's setValue() method returns a value that
 	 * indicated the output neurons need to be updated
 	 *
-	 * @return an ArraList of this neuron's output neurons indexes
+	 * @return an ArrayList of this neuron's output neuron positions in the brain
 	 */
-	public ArrayList<Integer> getOutputNeuronIndexes() {
-		return outputNeuronIndexes;
+	public ArrayList<int[]> getOutputNeuronPositions() {
+		return outputNeuronPositions;
 	}
 
 	/**
-	 * Adds an output neuron index to the list of neurons to change when this
+	 * Adds an output neuron position to the list of neurons to change when this
 	 * neuron's values are changed
 	 *
-	 * @param outputNeuronIndex outputNeuronIndex the index of the output neurons
-	 *                          that should be added
+	 * @param outputNeuronX the x position of the output neuron that should be added
+	 * @param outputNeuronY the y position of the output neuron that should be added
 	 */
-	public void addOutputNeuronIndex(int outputNeuronIndex) {
-		outputNeuronIndexes.add(outputNeuronIndex);
+	public void addOutputNeuronPosition(int outputNeuronX, int outputNeuronY) {
+		outputNeuronPositions.add(new int[] { outputNeuronX, outputNeuronY });
 	}
 
 	/**
 	 * Remove the index of a given output neuron from the list of neurons to change
 	 * when this neuron's values are changed
 	 *
-	 * @param outputNeuronIndex the index of the output neurons that should be
-	 *                          removed
+	 * @param outputNeuronX the x position of the output neuron that should be
+	 *                      removed
+	 * @param outputNeuronY the y position of the output neuron that should be
+	 *                      removed
 	 */
-	public void removeOutputNeuronIndex(int outputNeuronIndex) {
-		outputNeuronIndexes.remove(outputNeuronIndex);
+	public void removeOutputNeuronPosition(int outputNeuronX, int outputNeuronY) {
+		outputNeuronPositions.remove(new int[] { outputNeuronX, outputNeuronY });
 	}
 
 	/**
@@ -71,7 +73,7 @@ public class Neuron {
 	 *                 difference between the two is greater than 10%
 	 * @return how much all output neurons should change
 	 */
-	public double setValue(double newValue) {
+	public double setValue(double newValue) {// this is incomplete
 		if (active == true) {
 			newValue = (int) Math.round(newValue * Math.pow(10, 1)) / Math.pow(10, 1);
 			if (Math.abs(newValue - value) > 0.05) {

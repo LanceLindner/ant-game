@@ -6,12 +6,15 @@ public class Neuron {
 	private double value = 0;
 	private boolean active = true;
 
+	private boolean conjunctive = false;
+
 	private ArrayList<int[]> outputNeuronPositions = new ArrayList<int[]>();
 
 	/**
 	 * Constructor for the neuron
 	 */
-	public Neuron() {
+	public Neuron(boolean conjunctive) {
+		this.conjunctive = conjunctive;
 	}
 
 	/**

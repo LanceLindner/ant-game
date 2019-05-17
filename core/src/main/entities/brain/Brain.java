@@ -27,7 +27,12 @@ public class Brain {
 
 		for (int i = 0; i < neurons.size(); ++i) {
 			for (int j = 0; j < neurons.get(i).length; ++j) {
-				neurons.get(i)[j] = new Neuron();
+				boolean conjunctive;
+				if (j == 1)
+					conjunctive = true;
+				else
+					conjunctive = false;
+				neurons.get(i)[j] = new Neuron(conjunctive);
 			}
 		}
 	}

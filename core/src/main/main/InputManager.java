@@ -56,7 +56,7 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		if (!(camera.zoom >= 16 && amount > 0) && !(camera.zoom <= 0.25 && amount < 0))
+		if (!(camera.zoom >= 8 && amount > 0) && !(camera.zoom <= 0.25 && amount < 0))
 			camera.zoom *= Math.pow(2, amount);
 		return false;
 	}

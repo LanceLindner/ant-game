@@ -61,7 +61,11 @@ public class Tile {
 			id = -87;
 		}
 
-		floor.setTiledMapTile(x, y, floor.RESIDUE_LAYER, id);
+		floor.setTiledMapTile(x, y, Floor.RESIDUE_LAYER, id);
+	}
+
+	public void removeResidue() {
+		setResidue(0);
 	}
 
 	public boolean containsEntity() {

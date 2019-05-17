@@ -30,7 +30,7 @@ public enum TileType {
 	YELLOW_RESIDUE3(73),
 	YELLOW_RESIDUE4(74),
 
-	NULL(87);
+	NULL(87),;
 
 	private final int id;
 	private boolean solid = false;

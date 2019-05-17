@@ -45,7 +45,13 @@ public class Tile {
 	}
 
 	public int getResidue() {
-		return 0;
+		int id = floor.getTileType(x, y, Floor.RESIDUE_LAYER).getID();
+		if (id < 71 && id > 64)
+			return 1;
+		else if (id < 86 && id > 71)
+			return 1;
+		else
+			return 0;
 	}
 
 	public void setResidue(int type) {

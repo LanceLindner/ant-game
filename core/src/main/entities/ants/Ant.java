@@ -42,7 +42,7 @@ public class Ant extends Entity {
 		if (cooldown <= 0) {
 			Tile tileAhead = getTileAhead();
 
-			double[] inputValues = new double[numberOfInputs];
+			int[] inputValues = new int[numberOfInputs];
 			inputValues[0] = 0;
 			inputValues[1] = 0;
 			inputValues[2] = 0;

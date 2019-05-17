@@ -3,7 +3,7 @@ package main.entities.brain;
 import java.util.ArrayList;
 
 public class Neuron {
-	private double value = 0;
+	private int value = 0;
 	private boolean active = true;
 
 	private boolean conjunctive = false;
@@ -11,7 +11,11 @@ public class Neuron {
 	private ArrayList<int[]> outputNeuronPositions = new ArrayList<int[]>();
 
 	/**
-	 * Constructor for the neuron
+	 * Constructor for Neuron
+	 *
+	 * @param conjunctive boolean that controls whether this neuron calculates
+	 *                    conjunctively (with multiplication) or disjunctively (with
+	 *                    addition)
 	 */
 	public Neuron(boolean conjunctive) {
 		this.conjunctive = conjunctive;
@@ -76,11 +80,10 @@ public class Neuron {
 	 *                 difference between the two is greater than 10%
 	 * @return how much all output neurons should change
 	 */
-	public double setValue(double newValue) {// this is incomplete
+	public int setValue(int newValue) {
 		if (active == true) {
-			newValue = (int) Math.round(newValue * Math.pow(10, 1)) / Math.pow(10, 1);
-			if (Math.abs(newValue - value) > 0.05) {
-				double deltaValue = newValue - value;
+			if (newValue != value) {
+				int deltaValue = newValue - value;
 				value = newValue;
 				return deltaValue;
 			}

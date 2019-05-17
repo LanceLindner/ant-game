@@ -69,16 +69,16 @@ public class Brain {
 	 * @param inputValues an array of input values that overwrites old input neuron
 	 *                    values
 	 */
-	public void update(double[] inputValues) {
+	public void update(int[] inputValues) {
 		for (int i = 0; i < neurons.get(0).length; ++i) {
-			double deltaValue = neurons.get(0)[i].setValue(inputValues[i]);
+			int deltaValue = neurons.get(0)[i].setValue(inputValues[i]);
 			if (deltaValue != 0) {
 				update(neurons.get(0)[i].getOutputNeuronPositions(), deltaValue);
 			}
 		}
 	}
 
-	private void update(ArrayList<int[]> outputNeuronPositions, double deltaValue) {
+	private void update(ArrayList<int[]> outputNeuronPositions, int deltaValue) {
 		for (int i = 0; i < outputNeuronPositions.size(); ++i) {
 			neurons.get(outputNeuronPositions.get(i)[1])[outputNeuronPositions.get(i)[0]].setValue(deltaValue);
 		}

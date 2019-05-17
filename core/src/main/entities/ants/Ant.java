@@ -2,6 +2,7 @@ package main.entities.ants;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import main.entities.Entity;
 import main.entities.brain.Brain;
@@ -27,7 +28,7 @@ public class Ant extends Entity {
 		super(floor, x, y);
 		image = new Texture("assets/sprites/sprites/ant.png");
 		isAlive = true;
-		direction = 1;
+		direction = 3;
 		health = 10;
 
 		floor.lightArea(x, y);
@@ -59,14 +60,16 @@ public class Ant extends Entity {
 			drawY += cooldown * Globals.TILE_SIZE;
 			break;
 		case 3:
-			drawX -= cooldown * Globals.TILE_SIZE;
+			drawX += cooldown * Globals.TILE_SIZE;
 			break;
 		default:
 			break;
 
 		}
 
-		batch.draw(image, drawX, drawY, Globals.TILE_SIZE, Globals.TILE_SIZE);
+		batch.draw(new TextureRegion(image, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
+				(float) Globals.TILE_SIZE / 2, (float) Globals.TILE_SIZE, (float) Globals.TILE_SIZE, (float) 1,
+				(float) 1, (float) (-(direction + 1) * 90), false);
 	}
 
 	@Override

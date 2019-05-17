@@ -8,7 +8,7 @@ public class Overworld extends Floor {
 		super("overworld");
 
 		entities.add(new TestEntity(this, 505, 505));
-		for (int i = 0; i < 1000; ++i)
+		for (int i = 0; i < 50; ++i)
 			entities.add(new Ant(this, 495, 495, (int) (Math.random() * 4)));
 	}
 

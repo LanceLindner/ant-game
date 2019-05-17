@@ -28,7 +28,7 @@ public class Brain {
 		for (int i = 0; i < neurons.size(); ++i) {
 			for (int j = 0; j < neurons.get(i).length; ++j) {
 				boolean conjunctive;
-				if (j == 1)
+				if (i == 1)
 					neurons.get(i)[j] = new ConjunctiveNeuron();
 				else
 					neurons.get(i)[j] = new Neuron();
@@ -40,7 +40,7 @@ public class Brain {
 	/**
 	 * Connects two random neurons that fit the required conditions a number of
 	 * times specified by the parameter
-	 * 
+	 *
 	 * @param numberOfAxons the number of times to connect two random neurons
 	 */
 	public void addRandomAxons(int numberOfAxons) {

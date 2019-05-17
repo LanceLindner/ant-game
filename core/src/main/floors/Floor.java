@@ -80,19 +80,18 @@ public abstract class Floor {
 	}
 
 	public void lightArea(int x, int y) {
-		int radius = 5;
+		int radius = 7;
 
 		for (int i = -radius; i < radius; ++i) {
 			for (int j = -radius; j < radius; ++j) {
 				int sumOfLegsSquared = i * i + j * j;
 				int radiusSquared = radius * radius;
-				int id = (radiusSquared - sumOfLegsSquared) / radiusSquared * 3 + 50;
 
 				if (sumOfLegsSquared < radiusSquared) {
+					int id = (int) (((1 - (double) sumOfLegsSquared / (double) radiusSquared)) * 4 + 50);
 					TileType tileType = getTileType(x + i, y + j, SHADOW_LAYER);
 					if (tileType.getID() < id)
 						setTiledMapTile(x + i, y + j, SHADOW_LAYER, id);
-
 				}
 			}
 		}

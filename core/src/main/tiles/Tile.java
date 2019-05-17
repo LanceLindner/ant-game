@@ -36,6 +36,34 @@ public class Tile {
 		}
 	}
 
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public int getResidue() {
+		return 0;
+	}
+
+	public void setResidue(int type) {
+		int id;
+		switch (type) {
+		case (1):
+			id = (int) (Math.random() * 4 + 65);
+			break;
+		case (2):
+			id = (int) (Math.random() * 4 + 71);
+			break;
+		default:
+			id = -87;
+		}
+
+		floor.setTiledMapTile(x, y, floor.RESIDUE_LAYER, id);
+	}
+
 	public boolean containsEntity() {
 		return (entity != null);
 	}
@@ -64,11 +92,4 @@ public class Tile {
 		}
 	}
 
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
 }

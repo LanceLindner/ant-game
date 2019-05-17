@@ -80,7 +80,7 @@ public abstract class Floor {
 	}
 
 	public void lightArea(int x, int y) {
-		int radius = 7;
+		int radius = 10;
 
 		for (int i = -radius; i < radius; ++i) {
 			for (int j = -radius; j < radius; ++j) {

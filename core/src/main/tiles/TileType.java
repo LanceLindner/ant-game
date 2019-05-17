@@ -18,7 +18,19 @@ public enum TileType {
 	SHADOW3(51),
 	SHADOW4(52),
 	SHADOW5(53),
-	SHADOW6(54);
+	SHADOW6(54),
+
+	GREEN_RESIDUE1(65),
+	GREEN_RESIDUE2(66),
+	GREEN_RESIDUE3(67),
+	GREEN_RESIDUE4(68),
+
+	YELLOW_RESIDUE1(71),
+	YELLOW_RESIDUE2(72),
+	YELLOW_RESIDUE3(73),
+	YELLOW_RESIDUE4(74),
+
+	NULL(87);
 
 	private final int id;
 	private boolean solid = false;

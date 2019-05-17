@@ -35,7 +35,7 @@ public class Ant extends Entity {
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
-		brain.addRandomAxons((int) (Math.random() * 2));
+		brain.addRandomAxons(5);
 
 		cooldown = 0;
 	}
@@ -68,12 +68,12 @@ public class Ant extends Entity {
 
 		batch.draw(new TextureRegion(image, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
 				(float) Globals.TILE_SIZE / 2, (float) Globals.TILE_SIZE, (float) Globals.TILE_SIZE, (float) 1,
-				(float) 1, (float) ((direction - 3) * 90), false);
+				(float) 1, (float) (-(direction + 3) * 90), true);
 	}
 
 	@Override
 	public void update() {
-		if (cooldown <= 0) {
+		if (cooldown <= 0 && isAlive) {
 			Tile tileAhead = getTileAhead();
 
 			int[] inputValues = new int[numberOfInputNeurons];
@@ -114,7 +114,9 @@ public class Ant extends Entity {
 			}
 			cooldown = 1;
 		}
-		cooldown -= Globals.deltaTime;
+		if (isAlive) {
+			cooldown -= Globals.deltaTime;
+		}
 	}
 
 	// Will return the tile ahead of the direction the ant is facing, defaults to
@@ -140,6 +142,10 @@ public class Ant extends Entity {
 		if (tileAhead.getTileType() != null) {
 			if (tileAhead.getTileType().isSolid()) {
 				isAlive = false;
+				cooldown = 0;
+
+				x = tileAhead.getX();
+				y = tileAhead.getY();
 				return;
 			}
 		}

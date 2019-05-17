@@ -24,19 +24,18 @@ public class Ant extends Entity {
 
 	private double cooldown;
 
-	public Ant(Floor floor, int x, int y) {
+	public Ant(Floor floor, int x, int y, int direction) {
 		super(floor, x, y);
 		image = new Texture("assets/sprites/sprites/ant.png");
 		isAlive = true;
-		direction = 3;
+		this.direction = direction;
 		health = 10;
 
 		floor.lightArea(x, y);
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
-		brain.addAxon(0, 0, 0, 2);
-		// brain.addRandomAxons((int) (Math.random() * 10));
+		brain.addRandomAxons((int) (Math.random() * 2));
 
 		cooldown = 0;
 	}
@@ -89,15 +88,15 @@ public class Ant extends Entity {
 				// just for testing
 
 				/*
-				 * Index 0: Whether the tile ahead is not a wall
+				 * Index 0: Whether the tile ahead is a wall
 				 */
 
 				// Will always be equal to 1 because otherwise the if statement wouldn't execute
 
 				if (tileAhead.getTileType() == null || !tileAhead.getTileType().isSolid()) {
-					inputValues[0] = 1;
-				} else {
 					inputValues[0] = 0;
+				} else {
+					inputValues[0] = 1;
 				}
 
 				brain.update(inputValues);
@@ -105,9 +104,11 @@ public class Ant extends Entity {
 				int[] outputValues = brain.getOutput();
 
 				if (outputValues[0] == 1) {
-					moveForward();
+					turnRight();
+				} else if (outputValues[1] == 1) {
+					turnLeft();
 				} else {
-					// turnRight();
+					moveForward();
 				}
 
 			}
@@ -151,11 +152,11 @@ public class Ant extends Entity {
 
 	private void turnLeft() {
 		direction = ((direction + 3) % 4);
-		// moveForward();
+		moveForward();
 	}
 
 	private void turnRight() {
 		direction = (direction + 1) % 4;
-		// moveForward();
+		moveForward();
 	}
 }

@@ -110,7 +110,7 @@ public abstract class Floor {
 	}
 
 	public void update() {
-		int[] bounds = player.getVisibleTileBounds();
+		int[] bounds = correctBounds(player.getVisibleTileBounds());
 
 		for (int i = bounds[0]; i < bounds[1]; ++i) {
 			for (int j = bounds[2]; j < bounds[3]; ++j) {
@@ -130,7 +130,8 @@ public abstract class Floor {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 
-		int[] bounds = player.getVisibleTileBounds();
+		int[] bounds = correctBounds(player.getVisibleTileBounds());
+
 		for (int i = bounds[0]; i < bounds[1]; ++i) {
 			for (int j = bounds[2]; j < bounds[3]; ++j) {
 
@@ -141,6 +142,18 @@ public abstract class Floor {
 		batch.end();
 
 		tiledMapRenderer.render(new int[] { SHADOW_LAYER });
+	}
+
+	private int[] correctBounds(int[] bounds) {
+		if (bounds[0] < 0)
+			bounds[0] = 0;
+		if (bounds[1] > tiles.length - 1)
+			bounds[1] = tiles.length - 1;
+		if (bounds[2] < 0)
+			bounds[2] = 0;
+		if (bounds[3] > tiles.length - 1)
+			bounds[3] = tiles.length - 1;
+		return bounds;
 	}
 
 	public void dispose() {

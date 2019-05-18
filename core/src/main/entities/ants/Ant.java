@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import main.audio.AudioManager;
+import main.audio.SoundType;
 import main.entities.Entity;
 import main.entities.brain.Brain;
 import main.floors.Floor;
@@ -37,7 +39,7 @@ public class Ant extends Entity {
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
 		brain.addRandomAxons(5);
-		antSpeed = 1;
+		antSpeed = 10;
 
 		cooldown = 0;
 	}
@@ -69,8 +71,7 @@ public class Ant extends Entity {
 		}
 
 		batch.draw(new TextureRegion(image, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
-				(float) Globals.TILE_SIZE / 2, (float) Globals.TILE_SIZE, (float) Globals.TILE_SIZE, (float) 1,
-				(float) 1, (float) (-(direction + 3) * 90), true);
+				(float) Globals.TILE_SIZE / 2, Globals.TILE_SIZE, Globals.TILE_SIZE, 1, 1, -(direction + 3) * 90, true);
 	}
 
 	@Override
@@ -155,8 +156,7 @@ public class Ant extends Entity {
 				x = tileAhead.getX();
 				y = tileAhead.getY();
 
-				tileAhead.removeEntity();
-				tileAhead.setCorpse(this);
+				die();
 				return;
 			}
 		}
@@ -169,8 +169,7 @@ public class Ant extends Entity {
 			x = tileAhead.getX();
 			y = tileAhead.getY();
 
-			tileAhead.removeEntity();
-			tileAhead.setCorpse(this);
+			die();
 			return;
 		}
 		floor.getTile((int) x, (int) y).removeEntity();
@@ -188,5 +187,12 @@ public class Ant extends Entity {
 	private void turnRight() {
 		direction = (direction + 1) % 4;
 		// moveForward();
+	}
+
+	private void die() {
+		Tile tileAhead = getTileAhead();
+		tileAhead.removeEntity();
+		tileAhead.setCorpse(this);
+		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound());
 	}
 }

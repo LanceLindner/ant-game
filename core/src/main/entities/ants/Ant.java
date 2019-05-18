@@ -119,11 +119,14 @@ public class Ant extends Entity {
 					turnLeft();
 				}
 				if (outputValues[2] == 1) {
-					setResidue();
+					setResidue(1);
 				}
 				if (outputValues[3] == 1) {
-					removeResidue();
+					setResidue(2);
 				}
+				/*
+				 * if (outputValues[4] == 1) { removeResidue(); }
+				 */
 				moveForward();
 
 			}
@@ -196,8 +199,8 @@ public class Ant extends Entity {
 		// moveForward();
 	}
 
-	private void setResidue() {
-		floor.getTile((int) x, (int) y).setResidue(1);
+	private void setResidue(int type) {
+		floor.getTile((int) x, (int) y).setResidue(type);
 	}
 
 	private void removeResidue() {

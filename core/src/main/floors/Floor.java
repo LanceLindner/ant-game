@@ -95,9 +95,11 @@ public abstract class Floor {
 
 				if (sumOfLegsSquared < radiusSquared) {
 					int id = (int) (((1 - (double) sumOfLegsSquared / (double) radiusSquared)) * 4 + 50);
-					TileType tileType = getTileType(x + i, y + j, SHADOW_LAYER);
-					if (tileType.getID() < id)
-						setTiledMapTile(x + i, y + j, SHADOW_LAYER, id);
+					if (isTileSafe(x + i, y + j) == true) {
+						TileType tileType = getTileType(x + i, y + j, SHADOW_LAYER);
+						if (tileType.getID() < id)
+							setTiledMapTile(x + i, y + j, SHADOW_LAYER, id);
+					}
 				}
 			}
 		}
@@ -110,7 +112,7 @@ public abstract class Floor {
 	}
 
 	public void update() {
-		int[] bounds = correctBounds(player.getVisibleTileBounds());
+		int[] bounds = correctTileBounds(player.getVisibleTileBounds());
 
 		for (int i = bounds[0]; i < bounds[1]; ++i) {
 			for (int j = bounds[2]; j < bounds[3]; ++j) {
@@ -130,7 +132,7 @@ public abstract class Floor {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 
-		int[] bounds = correctBounds(player.getVisibleTileBounds());
+		int[] bounds = correctTileBounds(player.getVisibleTileBounds());
 
 		for (int i = bounds[0]; i < bounds[1]; ++i) {
 			for (int j = bounds[2]; j < bounds[3]; ++j) {
@@ -144,7 +146,13 @@ public abstract class Floor {
 		tiledMapRenderer.render(new int[] { SHADOW_LAYER });
 	}
 
-	private int[] correctBounds(int[] bounds) {
+	private boolean isTileSafe(int x, int y) {
+		if (x < 0 || x > tiles.length - 1 || y < 0 || y > tiles.length - 1)
+			return false;
+		return true;
+	}
+
+	private int[] correctTileBounds(int[] bounds) {
 		if (bounds[0] < 0)
 			bounds[0] = 0;
 		if (bounds[1] > tiles.length - 1)

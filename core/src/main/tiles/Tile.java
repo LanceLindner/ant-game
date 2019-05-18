@@ -7,6 +7,7 @@ import main.audio.AudioManager;
 import main.audio.MusicContainer;
 import main.entities.Entity;
 import main.floors.Floor;
+import main.main.AssetManagerManager;
 
 public class Tile {
 	private Floor floor;
@@ -29,7 +30,7 @@ public class Tile {
 		this.tileType = tileType;
 		if (tileType != null) {
 			if (tileType.getMusicName() != null) {
-				Music music = AudioManager.loadMusic(tileType.getMusicName());
+				Music music = AssetManagerManager.getMusic(tileType.getMusicName());
 				musicContainer = new MusicContainer(music, x, y, tileType.getMusicType());
 				AudioManager.streamMusic(musicContainer);
 			}

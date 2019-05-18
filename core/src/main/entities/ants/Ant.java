@@ -1,6 +1,5 @@
 package main.entities.ants;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -9,6 +8,7 @@ import main.audio.SoundType;
 import main.entities.Entity;
 import main.entities.brain.Brain;
 import main.floors.Floor;
+import main.main.AssetManagerManager;
 import main.main.Globals;
 import main.tiles.Tile;
 
@@ -29,7 +29,7 @@ public class Ant extends Entity {
 
 	public Ant(Floor floor, int x, int y, int direction) {
 		super(floor, x, y);
-		image = new Texture("assets/sprites/sprites/ant.png");
+		image = AssetManagerManager.getTexture("ant");
 		isAlive = true;
 		this.direction = direction;
 		health = 10;

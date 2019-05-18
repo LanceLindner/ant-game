@@ -2,8 +2,6 @@ package main.audio;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public class AudioManager {
@@ -13,11 +11,6 @@ public class AudioManager {
 
 	private static double listenerX = 0;
 	private static double listenerY = 0;
-
-	// to be handled by the AssetManager once implemented
-	public static Sound loadSound(String soundName) {
-		return Gdx.audio.newSound(Gdx.files.internal("assets/sound/" + soundName + ".mp3"));
-	}
 
 	public static void playSound(Sound sound) {
 		sound.play();
@@ -40,11 +33,6 @@ public class AudioManager {
 		float pan = panBounds((soundX - listenerX) / soundRange * panDirection);
 
 		sound.play(volume, pitch, pan);
-	}
-
-	// to be handled by the AssetManager once implemented
-	public static Music loadMusic(String musicName) {
-		return Gdx.audio.newMusic(Gdx.files.internal("assets/music/" + musicName + ".mp3"));
 	}
 
 	private static void addMusicContainer(MusicContainer musicContainer) {

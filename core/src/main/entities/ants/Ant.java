@@ -38,7 +38,7 @@ public class Ant extends Entity {
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
-		brain.addRandomAxons(5);
+		brain.addRandomAxons(25);
 		antSpeed = 10;
 
 		cooldown = 0;
@@ -114,8 +114,15 @@ public class Ant extends Entity {
 
 				if (outputValues[0] == 1) {
 					turnRight();
-				} else if (outputValues[1] == 1) {
+				}
+				if (outputValues[1] == 1) {
 					turnLeft();
+				}
+				if (outputValues[2] == 1) {
+					setResidue();
+				}
+				if (outputValues[3] == 1) {
+					removeResidue();
 				}
 				moveForward();
 
@@ -187,6 +194,14 @@ public class Ant extends Entity {
 	private void turnRight() {
 		direction = (direction + 1) % 4;
 		// moveForward();
+	}
+
+	private void setResidue() {
+		floor.getTile((int) x, (int) y).setResidue(1);
+	}
+
+	private void removeResidue() {
+		floor.getTile((int) x, (int) y).removeResidue();
 	}
 
 	private void die() {

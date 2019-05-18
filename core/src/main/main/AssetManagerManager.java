@@ -1,11 +1,17 @@
 package main.main;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
 public class AssetManagerManager {
+	private AssetManager assetManager = new AssetManager();
+
+	public void load() {
+		assetManager.finishLoading();
+	}
 
 	/*
 	 * The contents of these methods are scaffolding until we implement the

@@ -95,9 +95,11 @@ public class Tile {
 	}
 
 	public void update() {
-		if (entity != null) {
-			entity.update();
-		}
+		// commented out for now because our code scaffolding in Floor already updates
+		// enemies once
+		/*
+		 * if (entity != null) { entity.update(); }
+		 */
 	}
 
 	public void draw(SpriteBatch batch) {

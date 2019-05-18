@@ -85,7 +85,7 @@ public abstract class Floor {
 		return null;
 	}
 
-	public void lightArea(int x, int y) {
+	public void brightenArea(int x, int y) {
 		int radius = 10;
 
 		for (int i = -radius; i < radius; ++i) {
@@ -117,7 +117,6 @@ public abstract class Floor {
 				tiles[i][j].update();
 			}
 		}
-		// this for loop will be deleted once we can update entities from the tile
 		for (Entity entity : entities) {
 			entity.update();
 		}
@@ -138,8 +137,6 @@ public abstract class Floor {
 				tiles[i][j].draw(batch);
 			}
 		}
-
-		// this for loop will be deleted once we can draw entities from the tile
 		for (Entity entity : entities) {
 			entity.draw(batch);
 		}

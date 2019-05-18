@@ -34,7 +34,7 @@ public class Ant extends Entity {
 		this.direction = direction;
 		health = 10;
 
-		floor.lightArea(x, y);
+		floor.brightenArea(x, y);
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
@@ -176,7 +176,7 @@ public class Ant extends Entity {
 		x = tileAhead.getX();
 		y = tileAhead.getY();
 		floor.getTile((int) x, (int) y).addEntity(this);
-		floor.lightArea((int) x, (int) y);
+		floor.brightenArea((int) x, (int) y);
 	}
 
 	private void turnLeft() {

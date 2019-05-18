@@ -10,6 +10,7 @@ import main.floors.Floor;
 import main.main.Globals;
 
 public class Player extends Entity {
+	private static final double INITIAL_VELOCITY = 10;
 	private double velocityMutliplier = 10;
 
 	public Player(Floor floor, int x, int y) {
@@ -56,5 +57,7 @@ public class Player extends Entity {
 		int cameraY = (int) (y * Globals.TILE_SIZE + Globals.TILE_SIZE / 2);
 		camera.position.set(new Vector2(cameraX, cameraY), 0);
 		camera.update();
+
+		velocityMutliplier = INITIAL_VELOCITY * camera.zoom;
 	}
 }

@@ -45,12 +45,18 @@ public abstract class Floor {
 	private void tiledMapToTiles() {
 		int numberOfHorizontalTiles = ((TiledMapTileLayer) tiledMap.getLayers().get(0)).getWidth();
 		int numberOfVerticalTiles = ((TiledMapTileLayer) tiledMap.getLayers().get(0)).getHeight();
+
+		int id;
+		if (debugLighting == false)
+			id = 49;
+		else
+			id = 97;
+
 		tiles = new Tile[numberOfHorizontalTiles][numberOfVerticalTiles];
 		for (int i = 0; i < tiles.length; ++i) {
 			for (int j = 0; j < tiles[0].length; ++j) {
 				tiles[i][j] = new Tile(this, i, j, getTileType(i, j, INTERACTABLE_LAYER));
-				if (debugLighting == false)
-					setTiledMapTile(i, j, SHADOW_LAYER, 49);
+				setTiledMapTile(i, j, SHADOW_LAYER, id);
 			}
 		}
 	}

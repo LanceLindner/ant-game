@@ -21,10 +21,10 @@ public class Player extends Entity {
 
 	public int[] getVisibleTileBounds() {
 		int[] bounds = new int[4];
-		bounds[0] = (int) (x - Globals.TILES_PER_WIDTH / 2);
-		bounds[1] = (int) (x - Globals.TILES_PER_WIDTH / 2);
-		bounds[2] = (int) (y - Globals.TILES_PER_HEIGHT / 2);
-		bounds[3] = (int) (y - Globals.TILES_PER_HEIGHT / 2);
+		bounds[0] = (int) (x - (double) Globals.TILES_PER_WIDTH / 2 * velocityMutliplier / INITIAL_VELOCITY);
+		bounds[1] = (int) (x + (double) Globals.TILES_PER_WIDTH / 2 * velocityMutliplier / INITIAL_VELOCITY + 2);
+		bounds[2] = (int) (y - (double) Globals.TILES_PER_HEIGHT / 2 * velocityMutliplier / INITIAL_VELOCITY);
+		bounds[3] = (int) (y + (double) Globals.TILES_PER_HEIGHT / 2 * velocityMutliplier / INITIAL_VELOCITY + 2);
 		return bounds;
 	}
 

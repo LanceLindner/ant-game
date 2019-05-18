@@ -104,6 +104,9 @@ public class Tile {
 	}
 
 	public void draw(SpriteBatch batch) {
+		if (corpse != null) {
+			corpse.draw(batch);
+		}
 		if (entity != null) {
 			entity.draw(batch);
 		}

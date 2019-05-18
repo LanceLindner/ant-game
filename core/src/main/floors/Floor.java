@@ -131,14 +131,11 @@ public abstract class Floor {
 		batch.begin();
 
 		int[] bounds = player.getVisibleTileBounds();
-
 		for (int i = bounds[0]; i < bounds[1]; ++i) {
 			for (int j = bounds[2]; j < bounds[3]; ++j) {
+
 				tiles[i][j].draw(batch);
 			}
-		}
-		for (Entity entity : entities) {
-			entity.draw(batch);
 		}
 		player.draw(batch);
 		batch.end();

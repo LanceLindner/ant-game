@@ -1,5 +1,7 @@
 package main.main;
 
+import AssetManagement.AssetManagerManager;
+
 public class Globals {
 	public static final int TILE_SIZE = 16;
 	public static final int TILES_PER_WIDTH = 11;

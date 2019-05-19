@@ -4,7 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import main.audio.AudioManager;
+
 public class InputManager implements InputProcessor {
+	private static double maxZoom = 8.0;
+	private static double minZoom = 0.25;
+
 	private static OrthographicCamera camera;
 
 	public InputManager(OrthographicCamera theCamera) {
@@ -56,8 +61,10 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		if (!(camera.zoom >= 8 && amount > 0) && !(camera.zoom <= 0.25 && amount < 0))
+		if (!(camera.zoom >= maxZoom && amount > 0) && !(camera.zoom <= minZoom && amount < 0)) {
 			camera.zoom *= Math.pow(2, amount);
+			AudioManager.setZoomModifier(camera.zoom, maxZoom);
+		}
 		return false;
 	}
 

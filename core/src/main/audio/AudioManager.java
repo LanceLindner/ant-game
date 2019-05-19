@@ -5,30 +5,34 @@ import java.util.ArrayList;
 import com.badlogic.gdx.audio.Sound;
 
 public class AudioManager {
-	public static final double soundRange = 20;
+	private static final double soundRange = 20;
+	private static double zoomModifier = 1;
 
 	public static ArrayList<MusicContainer> musicContainers = new ArrayList<MusicContainer>();
 
 	private static double listenerX = 0;
 	private static double listenerY = 0;
 
+	public static void setZoomModifier(double zoom, double maxZoom) {
+		zoomModifier = 1 / zoom;
+	}
+
 	public static void playSound(Sound sound) {
 		sound.play();
 	}
 
 	public static void playSound(Sound sound, double soundX, double soundY) {
-		double xDistance = soundX - listenerX;
-		double yDistance = soundY - listenerY;
+		double[] position = getDistance(soundX, soundY);
 
 		int panDirection;
 
-		if (xDistance < 0)
+		if (position[0] < 0)
 			panDirection = -1;
 		else {
 			panDirection = 1;
 		}
 
-		float volume = volumeBounds(1 - xDistance / soundRange / 2 - yDistance / soundRange / 2);
+		float volume = volumeBounds(1 - position[0] / soundRange / 2 - position[1] / soundRange / 2);
 		float pitch = (float) (Math.random() * .2 + 0.9);
 		float pan = panBounds((soundX - listenerX) / soundRange * panDirection);
 
@@ -89,6 +93,12 @@ public class AudioManager {
 		float pan = panBounds(xDistanceCorrected / minVolumeDistance * panDirection);
 
 		musicContainer.getMusic().setPan(pan, volume);
+	}
+
+	private static double[] getDistance(double soundX, double soundY) {
+		double distanceX = soundX - listenerX;
+		double distanceY = soundY - listenerY;
+		return new double[] { distanceX, distanceY };
 	}
 
 	public static float volumeBounds(double volume) {

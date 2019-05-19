@@ -7,9 +7,8 @@ import com.badlogic.gdx.audio.Sound;
 import main.main.Globals;
 
 public enum SoundType {// should probably dispose sounds
-	test(1, "ant"),
-
-	;
+	TEST1(1, "ant"),
+	TEST2(2, "footstep"),;
 
 	private int id;
 	private Sound sound;

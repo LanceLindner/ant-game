@@ -26,9 +26,9 @@ public class AudioManager {
 		int panDirection = getPanDirection(distances[0]);
 
 		float volume = volumeBounds(
-				applyZoomModifierToVolume(1 - distances[0] / soundRange / 2 - distances[1] / soundRange / 2));
+				applyZoomModifier(1 - distances[0] / soundRange / 2 - distances[1] / soundRange / 2));
 		float pitch = (float) (Math.random() * .1 + 0.95);
-		float pan = panBounds((soundX - listenerX) / soundRange * panDirection);
+		float pan = panBounds(applyZoomModifier((soundX - listenerX) / soundRange * panDirection));
 		sound.play(volume, pitch, pan);
 	}
 
@@ -76,12 +76,12 @@ public class AudioManager {
 
 			int panDirection = getPanDirection(distances[0]);
 
-			float volume = volumeBounds(applyZoomModifierToVolume(
+			float volume = volumeBounds(applyZoomModifier(
 					1 - correctedDistances[0] / minVolumeDistance / 2 - correctedDistances[1] / minVolumeDistance / 2));
 			if (musicContainer.getMusicType().isRangeInverted() == true)
 				volume = 1 - volume;
 
-			float pan = panBounds(correctedDistances[0] / minVolumeDistance * panDirection);
+			float pan = panBounds(applyZoomModifier(correctedDistances[0] / minVolumeDistance * panDirection));
 
 			musicContainer.getMusic().setPan(pan, volume);
 		}
@@ -125,7 +125,7 @@ public class AudioManager {
 		return (float) pan;
 	}
 
-	private static float applyZoomModifierToVolume(double volume) {
-		return (float) (volume * zoomModifier);
+	private static float applyZoomModifier(double value) {
+		return (float) (value * zoomModifier);
 	}
 }

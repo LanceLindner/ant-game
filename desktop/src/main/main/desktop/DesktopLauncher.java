@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		config.y = 0;
 		config.width = 880;
 		config.height = 880;
-		TexturePacker.process("assets/sprites/sprites", "assets/sprites/atlas", "atlas");
+		TexturePacker.process("assets/sprites", "assets/atlas", "atlas");
 		new LwjglApplication(new Main(), config);
 	}
 }

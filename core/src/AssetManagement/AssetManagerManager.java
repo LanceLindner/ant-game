@@ -46,7 +46,7 @@ public class AssetManagerManager {
 	}
 
 	public Texture getTexture(String name) {
-		return new Texture("assets/sprites/sprites/" + name + ".png");
+		return new Texture("assets/sprites/" + name + ".png");
 	}
 
 	public void dispose() {

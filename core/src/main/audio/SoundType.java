@@ -2,8 +2,9 @@ package main.audio;
 
 import java.util.HashMap;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+
+import main.main.Globals;
 
 public enum SoundType {// should probably dispose sounds
 	test(1, "ant"),
@@ -19,7 +20,7 @@ public enum SoundType {// should probably dispose sounds
 
 	private SoundType(int id, String sound) {
 		this.id = id;
-		this.sound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/" + sound + ".mp3"));
+		this.sound = Globals.assetManagerManager.getSound(sound);
 	}
 
 	private static HashMap<Integer, SoundType> soundMap;

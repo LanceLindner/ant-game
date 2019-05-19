@@ -25,7 +25,7 @@ public class AssetManagerManager {
 	}
 
 	public void load(String directory, Class<?> classType) {
-		FileHandle folder = resolver.resolve("").child(directory);
+		FileHandle folder = resolver.resolve("").child("assets/" + directory);
 		for (FileHandle asset : folder.list()) {
 			assetManager.load(asset.path(), classType);
 		}
@@ -37,7 +37,7 @@ public class AssetManagerManager {
 	 */
 
 	public Sound getSound(String name) {
-		return Gdx.audio.newSound(Gdx.files.internal("assets/sound/" + name + ".mp3"));
+		return assetManager.get("assets/sounds/" + name + ".mp3", Sound.class);
 	}
 
 	public Music getMusic(String name) {

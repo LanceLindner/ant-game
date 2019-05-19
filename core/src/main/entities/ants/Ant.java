@@ -8,7 +8,6 @@ import main.audio.SoundType;
 import main.entities.Entity;
 import main.entities.brain.Brain;
 import main.floors.Floor;
-import main.main.AssetManagerManager;
 import main.main.Globals;
 import main.tiles.Tile;
 
@@ -29,7 +28,7 @@ public class Ant extends Entity {
 
 	public Ant(Floor floor, int x, int y, int direction) {
 		super(floor, x, y);
-		image = AssetManagerManager.getTexture("ant");
+		image = Globals.assetManagerManager.getTexture("ant");
 		isAlive = true;
 		this.direction = direction;
 		health = 10;

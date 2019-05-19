@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import main.floors.Floor;
-import main.main.AssetManagerManager;
 import main.main.Globals;
 
 public abstract class Entity {
@@ -12,7 +11,7 @@ public abstract class Entity {
 	protected double y;
 	protected Floor floor;
 
-	protected Texture image = AssetManagerManager.getTexture("box");
+	protected Texture image = Globals.assetManagerManager.getTexture("box");
 
 	public Entity(Floor floor, int x, int y) {
 		this.x = x;

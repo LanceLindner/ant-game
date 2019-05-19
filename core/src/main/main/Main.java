@@ -57,5 +57,7 @@ public class Main extends ApplicationAdapter {
 		batch.dispose();
 
 		floor.dispose();
+
+		Globals.assetManagerManager.dispose();
 	}
 }

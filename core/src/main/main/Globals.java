@@ -13,4 +13,6 @@ public class Globals {
 
 	public static double globalTime = 0;
 	public static double deltaTime = 1;
+
+	public static AssetManagerManager assetManagerManager = new AssetManagerManager();
 }

@@ -23,6 +23,7 @@ public class AssetManagerManager {
 	public void loadAll() {
 		load("sounds", Sound.class);
 		load("music", Music.class);
+		// load("", Music.class);
 	}
 
 	public void load(String directory, Class<?> classType) {
@@ -32,17 +33,16 @@ public class AssetManagerManager {
 		}
 	}
 
-	/*
-	 * The contents of these methods are scaffolding until we implement the
-	 * AssetManager
-	 */
-
 	public Sound getSound(String name) {
 		return assetManager.get("assets/sounds/" + name + ".mp3", Sound.class);
 	}
 
 	public Music getMusic(String name) {
 		return Gdx.audio.newMusic(Gdx.files.internal("assets/music/" + name + ".mp3"));
+		// note: loading with the asset manager makes playing multiple of the same music
+		// file impossible. For now, we will use the above method for loading because it
+		// does not have that limitation
+		// return assetManager.get("assets/music/" + name + ".mp3", Music.class);
 	}
 
 	public Texture getTexture(String name) {

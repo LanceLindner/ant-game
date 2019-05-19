@@ -27,7 +27,7 @@ public class AudioManager {
 
 		float volume = volumeBounds(
 				applyZoomModifier(1 - distances[0] / soundRange / 2 - distances[1] / soundRange / 2));
-		float pitch = (float) (Math.random() * .1 + 0.95);
+		float pitch = (float) (Math.random() * .2 + 0.9);
 		float pan = panBounds(applyZoomModifier((soundX - listenerX) / soundRange * panDirection));
 		sound.play(volume, pitch, pan);
 	}

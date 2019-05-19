@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.BaseTmxMapLoader.Parameters;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import main.entities.Entity;
 import main.entities.Player;
@@ -28,16 +28,19 @@ public abstract class Floor {
 	private Tile[][] tiles;
 
 	private TiledMap tiledMap;
-	private OrthogonalTiledMapRenderer tiledMapRenderer;
+	private OrthogonalTiledMapRendererWithBleedingFix tiledMapRenderer;
 
 	protected ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	private Player player;
 
 	public Floor(String floorFileName) {
-		tiledMap = new TmxMapLoader().load("assets/floors/" + floorFileName + ".tmx");
+		TmxMapLoader tmxMapLoader = new TmxMapLoader();
+		Parameters paramaters = new TmxMapLoader.Parameters();
+		paramaters.generateMipMaps = true;
+		tiledMap = tmxMapLoader.load("assets/floors/" + floorFileName + ".tmx");
 		tiledMapToTiles();
-		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+		tiledMapRenderer = new OrthogonalTiledMapRendererWithBleedingFix(tiledMap);
 
 		player = new Player(this, tiles.length / 2, tiles[0].length / 2);
 	}

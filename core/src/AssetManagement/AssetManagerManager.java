@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class AssetManagerManager {
 	private AssetManager assetManager;
@@ -23,7 +24,7 @@ public class AssetManagerManager {
 	public void loadAll() {
 		load("sounds", Sound.class);
 		load("music", Music.class);
-		// load("", Music.class);
+		load("atlas", TextureAtlas.class);
 	}
 
 	public void load(String directory, Class<?> classType) {
@@ -47,6 +48,10 @@ public class AssetManagerManager {
 
 	public Texture getTexture(String name) {
 		return new Texture("assets/sprites/" + name + ".png");
+	}
+
+	public TextureAtlas getTextureAtlas() {
+		return assetManager.get("assets/atlas/atlas.atlas", TextureAtlas.class);
 	}
 
 	public void dispose() {

@@ -211,6 +211,6 @@ public class Ant extends Entity {
 		Tile tileAhead = getTileAhead();
 		tileAhead.removeEntity();
 		tileAhead.setCorpse(this);
-		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound());
+		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound(), x, y);
 	}
 }

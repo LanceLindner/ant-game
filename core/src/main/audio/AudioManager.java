@@ -22,20 +22,14 @@ public class AudioManager {
 	}
 
 	public static void playSound(Sound sound, double soundX, double soundY) {
-		double[] position = getDistance(soundX, soundY);
+		double[] distances = getDistance(soundX, soundY);
 
-		int panDirection;
+		int panDirection = getPanDirection(distances[0]);
 
-		if (position[0] < 0)
-			panDirection = -1;
-		else {
-			panDirection = 1;
-		}
-
-		float volume = volumeBounds(1 - position[0] / soundRange / 2 - position[1] / soundRange / 2);
-		float pitch = (float) (Math.random() * .2 + 0.9);
+		float volume = volumeBounds(
+				applyZoomModifierToVolume(1 - distances[0] / soundRange / 2 - distances[1] / soundRange / 2));
+		float pitch = (float) (Math.random() * .1 + 0.95);
 		float pan = panBounds((soundX - listenerX) / soundRange * panDirection);
-
 		sound.play(volume, pitch, pan);
 	}
 
@@ -63,37 +57,35 @@ public class AudioManager {
 	}
 
 	private static void update(MusicContainer musicContainer) {
-		double minVolumeDistance = musicContainer.getMusicType().getMinVolumeDistance();
-		double maxVolumeDistance = musicContainer.getMusicType().getMaxVolumeDistance();
+		if (musicContainer.getMusicType().isGlobal() == true) {
+			musicContainer.getMusic().setPan(0, 1);
+		} else {
+			double minVolumeDistance = musicContainer.getMusicType().getMinVolumeDistance();
+			double maxVolumeDistance = musicContainer.getMusicType().getMaxVolumeDistance();
 
-		double[] position = getDistance(musicContainer.getX(), musicContainer.getY());
+			double[] distances = getDistance(musicContainer.getX(), musicContainer.getY());
 
-		double xDistanceCorrected = Math.abs(position[0]) - maxVolumeDistance;
-		double yDistanceCorrected = Math.abs(position[1]) - maxVolumeDistance;
+			double xDistanceCorrected = Math.abs(distances[0]) - maxVolumeDistance;
+			double yDistanceCorrected = Math.abs(distances[1]) - maxVolumeDistance;
 
-		double[] correctedPosition = new double[] { xDistanceCorrected, yDistanceCorrected };
+			double[] correctedDistances = new double[] { xDistanceCorrected, yDistanceCorrected };
 
-		int panDirection;
+			if (correctedDistances[0] < 0)
+				correctedDistances[0] = 0;
+			if (correctedDistances[1] < 0)
+				correctedDistances[1] = 0;
 
-		if (position[0] < 0)
-			panDirection = -1;
-		else {
-			panDirection = 1;
+			int panDirection = getPanDirection(distances[0]);
+
+			float volume = volumeBounds(applyZoomModifierToVolume(
+					1 - correctedDistances[0] / minVolumeDistance / 2 - correctedDistances[1] / minVolumeDistance / 2));
+			if (musicContainer.getMusicType().isRangeInverted() == true)
+				volume = 1 - volume;
+
+			float pan = panBounds(correctedDistances[0] / minVolumeDistance * panDirection);
+
+			musicContainer.getMusic().setPan(pan, volume);
 		}
-
-		if (correctedPosition[0] < 0)
-			correctedPosition[0] = 0;
-		if (correctedPosition[1] < 0)
-			correctedPosition[1] = 0;
-
-		float volume = volumeBounds(
-				1 - correctedPosition[0] / minVolumeDistance / 2 - correctedPosition[1] / minVolumeDistance / 2);
-		if (musicContainer.getMusicType().isRangeInverted() == true)
-			volume = 1 - volume;
-
-		float pan = panBounds(correctedPosition[0] / minVolumeDistance * panDirection);
-
-		musicContainer.getMusic().setPan(pan, volume);
 	}
 
 	private static double[] getDistance(double soundX, double soundY) {
@@ -102,7 +94,15 @@ public class AudioManager {
 		return new double[] { distanceX, distanceY };
 	}
 
-	public static float volumeBounds(double volume) {
+	private static int getPanDirection(double xDistance) {
+		if (xDistance < 0)
+			return -1;
+		else {
+			return 1;
+		}
+	}
+
+	private static float volumeBounds(double volume) {
 		if (volume < 0)
 			volume = 0;
 		if (volume > 1)
@@ -110,7 +110,7 @@ public class AudioManager {
 		return (float) volume;
 	}
 
-	public static float pitchBounds(double pitch) {
+	private static float pitchBounds(double pitch) {
 		if (pitch < 0.5)
 			pitch = 0.5;
 		if (pitch > 2)
@@ -118,11 +118,15 @@ public class AudioManager {
 		return (float) pitch;
 	}
 
-	public static float panBounds(double pan) {
+	private static float panBounds(double pan) {
 		if (pan < -1)
 			pan = -1;
 		if (pan > 1)
 			pan = 1;
 		return (float) pan;
+	}
+
+	private static float applyZoomModifierToVolume(double volume) {
+		return (float) (volume * zoomModifier);
 	}
 }

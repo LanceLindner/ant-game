@@ -47,9 +47,9 @@ public class Player extends Entity {
 			x += velocityMutliplier * Globals.deltaTime;
 			changed = true;
 		}
-		if (changed == true) {
-			AudioManager.update(x, y);
-		}
+		// if (changed == true) {
+		AudioManager.update(x, y);
+		// }
 	}
 
 	public void updateCamera(OrthographicCamera camera) {

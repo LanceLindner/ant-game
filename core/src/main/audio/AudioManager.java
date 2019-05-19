@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.audio.Sound;
 
+import main.main.Globals;
+
 public class AudioManager {
-	private static final double soundRange = 20;
+	private static double soundRange = Globals.TILES_PER_WIDTH * 2;
 	private static double zoomModifier = 1;
 
 	public static ArrayList<MusicContainer> musicContainers = new ArrayList<MusicContainer>();
@@ -13,12 +15,9 @@ public class AudioManager {
 	private static double listenerX = 0;
 	private static double listenerY = 0;
 
-	public static void setZoomModifier(double zoom, double maxZoom) {
+	public static void cameraZoomed(double zoom, double maxZoom) {
 		zoomModifier = 1 / zoom;
-	}
-
-	public static void playSound(Sound sound) {
-		sound.play();
+		soundRange = Globals.TILES_PER_WIDTH * 2 * zoom;
 	}
 
 	public static void playSound(Sound sound, double soundX, double soundY) {

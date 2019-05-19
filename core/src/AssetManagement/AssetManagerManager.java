@@ -22,6 +22,7 @@ public class AssetManagerManager {
 
 	public void loadAll() {
 		load("sounds", Sound.class);
+		load("music", Music.class);
 	}
 
 	public void load(String directory, Class<?> classType) {

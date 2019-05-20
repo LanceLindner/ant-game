@@ -18,4 +18,8 @@ public class SaveData {
 			}
 		}
 	}
+
+	public void unlockNeuron(int x, int y) {
+		unlockedNeurons.get(y)[x] = true;
+	}
 }

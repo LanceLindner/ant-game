@@ -13,7 +13,7 @@ public class SpriteSheet {
 	private float frameDuration = (float) (1 / 5 + Math.random() / 10 - (1 / 20));
 
 	private Animation<TextureRegion> active;
-	private Animation<TextureRegion> idle, walk;
+	private Animation<TextureRegion> idle, walk, die;
 
 	private float stateBegin = 0;
 	private TextureRegion lastFrame;
@@ -22,17 +22,9 @@ public class SpriteSheet {
 		TextureAtlas atlas = Globals.assetManagerManager.getTextureAtlas();
 		idle = new Animation<TextureRegion>(frameDuration, atlas.findRegions(name + "Idle"), PlayMode.LOOP);
 		walk = new Animation<TextureRegion>(frameDuration, atlas.findRegions(name + "Walk"), PlayMode.LOOP);
+		die = new Animation<TextureRegion>(frameDuration * 5, atlas.findRegions(name + "Die"), PlayMode.NORMAL);
 
 		active = walk;
-	}
-
-	private boolean safeToChange() {
-		if (!(active.isAnimationFinished((float) Globals.globalTime - stateBegin) == true)) {
-			if (active.getPlayMode() == PlayMode.NORMAL) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public void setToIdle() {
@@ -42,13 +34,21 @@ public class SpriteSheet {
 		}
 	}
 
-	public TextureRegion getCurrentFrame(double x, double y) {
-		if (active.getPlayMode() == PlayMode.NORMAL) {
-			if (active.isAnimationFinished((float) Globals.globalTime - stateBegin) == true) {
-				active = idle;
-				stateBegin = (float) Globals.globalTime;
-			}
+	public void setToWalk() {
+		if (active != walk) {
+			active = walk;
+			stateBegin = (float) Globals.globalTime;
 		}
+	}
+
+	public void setToDie() {
+		if (active != die) {
+			active = die;
+			stateBegin = (float) Globals.globalTime;
+		}
+	}
+
+	public TextureRegion getCurrentFrame(double x, double y) {
 		TextureRegion newFrame = active.getKeyFrame((float) Globals.globalTime - stateBegin);
 		if (newFrame != lastFrame) {
 			lastFrame = newFrame;

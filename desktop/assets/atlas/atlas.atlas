@@ -1,6 +1,6 @@
 
 atlas.png
-size: 128,32
+size: 256,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -18,6 +18,13 @@ antWalk
   orig: 16, 16
   offset: 0, 0
   index: 0
+antDie
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
 antIdle
   rotate: false
   xy: 20, 2
@@ -25,16 +32,51 @@ antIdle
   orig: 16, 16
   offset: 0, 0
   index: 0
-antWalk
+antDie
   rotate: false
   xy: 38, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
-box
+antDie
   rotate: false
   xy: 56, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+antDie
+  rotate: false
+  xy: 74, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+antDie
+  rotate: false
+  xy: 92, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+antDie
+  rotate: false
+  xy: 110, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+antWalk
+  rotate: false
+  xy: 128, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+box
+  rotate: false
+  xy: 146, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

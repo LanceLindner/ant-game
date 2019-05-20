@@ -21,9 +21,9 @@ public class Ant extends Entity {
 	private double antSpeed;
 
 	private Tile[][] tilesWithinSight;
-	private int numberOfInputNeurons = 4;
-	private int numberOfHiddenNeurons = 4;
-	private int numberOfOutputNeurons = 4;
+	private int numberOfInputNeurons = 48;
+	private int numberOfHiddenNeurons = 48;
+	private int numberOfOutputNeurons = 6;
 
 	private double cooldown;
 
@@ -43,9 +43,9 @@ public class Ant extends Entity {
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
-		brain.addRandomAxons(25);
+		brain.addRandomAxons(250);
 
-		antSpeed = 3;
+		antSpeed = 1;
 
 		tilesWithinSight = getTilesInSight();
 	}
@@ -80,67 +80,95 @@ public class Ant extends Entity {
 
 	@Override
 	public void update() {
-		if (cooldown <= 0 && isAlive) {
 
+		if (cooldown <= 0 && isAlive) {
 			int[] inputValues = new int[numberOfInputNeurons];
-			inputValues[0] = 0;
-			inputValues[1] = 0;
-			inputValues[2] = 0;
-			inputValues[3] = 0;
 
 			if (isAlive) {
 
 				tilesWithinSight = getTilesInSight();
 
-				// We will need to work a couple things out in the future, this right now is
-				// just for testing
-
 				/*
-				 * Index 0: Whether the tile ahead is a wall
+				 * There are 12 tiles, each with 4 values, which means there are 48 possible
+				 * inputs.
 				 */
 
-				// Will always be equal to 1 because otherwise the if statement wouldn't execute
+				for (int i = 0; i < 4; i++) {
+					for (int j = 0; j < 3; j++) {
 
-				if (tilesWithinSight[2][1].getTileType() == null || !tilesWithinSight[2][1].getTileType().isSolid()) {
-					inputValues[0] = 0;
-				} else {
-					inputValues[0] = 1;
-				}
+						// Index 0 of each tile is whether the tile is solid or not
+						if (tilesWithinSight[i][j].getTileType() == null
+								|| !tilesWithinSight[i][j].getTileType().isSolid()) {
+							inputValues[(i * 12) + (j * 4)] = 0;
+						}
 
-				if (tilesWithinSight[2][1].containsEntity()) {
-					inputValues[1] = 1;
-				} else {
-					inputValues[1] = 0;
+						// Index 1 of each tile is whether it contains an entity or not
+						if (tilesWithinSight[i][j].containsEntity()) {
+							inputValues[(i * 12) + (j * 4) + 1] = 1;
+						}
+
+						// Index 2 of each tile is whether the tile contains residue 1
+						if (tilesWithinSight[i][j].getResidue() == 1) {
+							inputValues[(i * 12) + (j * 4) + 2] = 1;
+						}
+
+						// Index 3 of each tile is whether the tile contains residue 2
+						if (tilesWithinSight[i][j].getResidue() == 2) {
+							inputValues[(i * 12) + (j * 4) + 3] = 1;
+						}
+					}
 				}
 
 				brain.update(inputValues);
 
 				int[] outputValues = brain.getOutput();
 
+				// Output values
+				// ------------------------
+				// Index 0: Remove Residue
+				// Index 1: Set residue 1
+				// Index 2: Set residue 2
+				// Index 3: Do nothing
+				// Index 4: Turn right
+				// Index 5: Turn left
+
+				// Additional information
+				// ------------------------
+				// The above list is in the order of which action is performed first
+				// Removing a residue and setting a residue at the same time is redundant
+				// Set residue 1 will override set residue 2
+				// Do nothing will override turn right, which overrides turn left
+				// You can set one residue and perform one movement option in one action
+
+				// Remove residue
 				if (outputValues[0] == 1) {
-					turnRight();
-				} else if (outputValues[1] == 1) {
-					turnLeft();
+					removeResidue();
 				}
-				if (outputValues[2] == 1) {
+
+				// Set residue tree
+				if (outputValues[1] == 1) {
 					setResidue(1);
-				}
-				if (outputValues[3] == 1) {
+				} else if (outputValues[2] == 1) {
 					setResidue(2);
 				}
-				/*
-				 * if (outputValues[4] == 1) { removeResidue(); }
-				 */
-				moveForward();
-				tilesWithinSight = getTilesInSight();
 
+				// Movement tree
+				if (outputValues[3] == 1) {
+					moveForward();
+					cooldown = 1;
+				} else {
+					if (outputValues[4] == 1) {
+						turnRight();
+					} else if (outputValues[5] == 1) {
+						turnLeft();
+					}
+					moveForward();
+					cooldown = 1;
+				}
 			}
-			if (isAlive) {
-				cooldown = 1;
-				tilesWithinSight = getTilesInSight();
-			}
+			tilesWithinSight = getTilesInSight();
 		}
-		if (isAlive) {
+		if (isAlive && cooldown > 0) {
 			cooldown -= antSpeed * Globals.deltaTime;
 		}
 	}
@@ -237,9 +265,12 @@ public class Ant extends Entity {
 	private void die() {
 		isAlive = false;
 		cooldown = 0;
-		Tile tile = tilesWithinSight[1][1];
-		tile.removeEntity();
+		tilesWithinSight[1][1].removeEntity();
+
+		Tile tile = tilesWithinSight[2][1];
 		tile.setCorpse(this);
+		x = tile.getX();
+		y = tile.getY();
 		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound(), x, y);
 		spriteSheet.setToIdle();
 	}

@@ -26,6 +26,22 @@ public class SpriteSheet {
 		active = walk;
 	}
 
+	private boolean safeToChange() {
+		if (!(active.isAnimationFinished((float) Globals.globalTime - stateBegin) == true)) {
+			if (active.getPlayMode() == PlayMode.NORMAL) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void setToIdle() {
+		if (active != idle) {
+			active = idle;
+			stateBegin = (float) Globals.globalTime;
+		}
+	}
+
 	public TextureRegion getCurrentFrame(double x, double y) {
 		if (active.getPlayMode() == PlayMode.NORMAL) {
 			if (active.isAnimationFinished((float) Globals.globalTime - stateBegin) == true) {
@@ -37,10 +53,10 @@ public class SpriteSheet {
 		if (newFrame != lastFrame) {
 			lastFrame = newFrame;
 			if (active == walk) {
-				// if (Math.random() < 0.1) {
-				int id = 2;
-				AudioManager.playSound(SoundType.getSoundTypeById(id).getSound(), x, y);
-				// }
+				if (Math.random() < 0.1) {
+					int id = 2;
+					AudioManager.playSound(SoundType.getSoundTypeById(id).getSound(), x, y);
+				}
 			}
 		}
 		return lastFrame;

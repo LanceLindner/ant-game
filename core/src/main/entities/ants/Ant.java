@@ -238,5 +238,6 @@ public class Ant extends Entity {
 		tile.removeEntity();
 		tile.setCorpse(this);
 		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound(), x, y);
+		spriteSheet.setToIdle();
 	}
 }

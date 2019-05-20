@@ -10,7 +10,9 @@ import main.audio.SoundType;
 import main.main.Globals;
 
 public class SpriteSheet {
-	private float frameDuration = (float) (1 / 5 + Math.random() / 10 - (1 / 20));
+	private static final float STANDARD_FRAME_DURATION = 1 / 2f;
+	private float frameDuration = (float) (STANDARD_FRAME_DURATION + Math.random() * STANDARD_FRAME_DURATION / 2
+			- (STANDARD_FRAME_DURATION / 4));
 
 	private Animation<TextureRegion> active;
 	private Animation<TextureRegion> idle, walk, die;
@@ -53,10 +55,10 @@ public class SpriteSheet {
 		if (newFrame != lastFrame) {
 			lastFrame = newFrame;
 			if (active == walk) {
-				if (Math.random() < 0.1) {
-					int id = 2;
-					AudioManager.playSound(SoundType.getSoundTypeById(id).getSound(), x, y);
-				}
+				// if (Math.random() < 0.1) {
+				int id = 2;
+				AudioManager.playSound(SoundType.getSoundTypeById(id).getSound(), x, y);
+				// }
 			}
 		}
 		return lastFrame;

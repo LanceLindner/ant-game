@@ -134,8 +134,10 @@ public class Ant extends Entity {
 				moveForward();
 
 			}
-			cooldown = 1;
-			tilesWithinSight = getTilesInSight();
+			if (isAlive) {
+				cooldown = 1;
+				tilesWithinSight = getTilesInSight();
+			}
 		}
 		if (isAlive) {
 			cooldown -= antSpeed * Globals.deltaTime;
@@ -193,29 +195,14 @@ public class Ant extends Entity {
 
 	// The tile ahead is tilesWithinSight[2][1]
 	private void moveForward() {
-		System.out.println(tilesWithinSight[2][1].getX());
 		if (tilesWithinSight[2][1].getTileType() != null) {
 			if (tilesWithinSight[2][1].getTileType().isSolid()) {
-				isAlive = false;
-				cooldown = 0;
-				floor.getTile((int) x, (int) y).removeEntity();
-
-				x = tilesWithinSight[2][1].getX();
-				y = tilesWithinSight[2][1].getY();
-
 				die();
 				return;
 			}
 		}
 
 		if (tilesWithinSight[2][1].containsEntity()) {
-			isAlive = false;
-			cooldown = 0;
-			floor.getTile((int) x, (int) y).removeEntity();
-
-			x = tilesWithinSight[2][1].getX();
-			y = tilesWithinSight[2][1].getY();
-
 			die();
 			return;
 		}
@@ -245,9 +232,11 @@ public class Ant extends Entity {
 	}
 
 	private void die() {
-		Tile tileAhead = tilesWithinSight[2][1];
-		tileAhead.removeEntity();
-		tileAhead.setCorpse(this);
+		isAlive = false;
+		cooldown = 0;
+		Tile tile = tilesWithinSight[1][1];
+		tile.removeEntity();
+		tile.setCorpse(this);
 		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound(), x, y);
 	}
 }

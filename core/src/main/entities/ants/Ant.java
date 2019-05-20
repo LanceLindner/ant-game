@@ -132,6 +132,7 @@ public class Ant extends Entity {
 				 * if (outputValues[4] == 1) { removeResidue(); }
 				 */
 				moveForward();
+				tilesWithinSight = getTilesInSight();
 
 			}
 			if (isAlive) {
@@ -215,11 +216,13 @@ public class Ant extends Entity {
 
 	private void turnLeft() {
 		direction = ((direction + 3) % 4);
+		tilesWithinSight = getTilesInSight();
 		// moveForward();
 	}
 
 	private void turnRight() {
 		direction = (direction + 1) % 4;
+		tilesWithinSight = getTilesInSight();
 		// moveForward();
 	}
 

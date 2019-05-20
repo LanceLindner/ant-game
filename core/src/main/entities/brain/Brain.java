@@ -2,6 +2,8 @@ package main.entities.brain;
 
 import java.util.ArrayList;
 
+import main.main.Globals;
+
 public class Brain {
 	/**
 	 * An arrayList of arrays containing all of the neurons in this brain. Note that
@@ -20,10 +22,10 @@ public class Brain {
 	 * @param numberOfOutputNeurons the number of output neurons that should be
 	 *                              created
 	 */
-	public Brain(int numberOfInputNeurons, int numberOfHiddenNeurons, int numberOfOutputNeurons) {
-		neurons.add(new Neuron[numberOfInputNeurons]);
-		neurons.add(new Neuron[numberOfHiddenNeurons]);
-		neurons.add(new Neuron[numberOfOutputNeurons]);
+	public Brain() {
+		neurons.add(new Neuron[Globals.NUMBER_OF_INPUT_NEURONS]);
+		neurons.add(new Neuron[Globals.NUMBER_OF_HIDDEN_NEURONS]);
+		neurons.add(new Neuron[Globals.NUMBER_OF_OUTPUT_NEURONS]);
 
 		for (int i = 0; i < neurons.size(); ++i) {
 			for (int j = 0; j < neurons.get(i).length; ++j) {

@@ -8,6 +8,10 @@ public class Globals {
 	public static final int TILES_PER_HEIGHT = 11;
 	public static final float DEFAULT_FONT_SCALE = 0.2f;
 
+	public static final int NUMBER_OF_INPUT_NEURONS = 48;
+	public static final int NUMBER_OF_HIDDEN_NEURONS = 48;
+	public static final int NUMBER_OF_OUTPUT_NEURONS = 6;
+
 	public static int windowWidth;
 	public static int windowHeight;
 	public static int windowWidthInTilePixels;

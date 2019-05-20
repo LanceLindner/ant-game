@@ -21,10 +21,6 @@ public class Ant extends Entity {
 	private double antSpeed;
 
 	private Tile[][] tilesWithinSight;
-	private int numberOfInputNeurons = 48;
-	private int numberOfHiddenNeurons = 48;
-	private int numberOfOutputNeurons = 6;
-
 	private double cooldown;
 
 	public Ant(Floor floor, int x, int y, int direction) {
@@ -36,16 +32,16 @@ public class Ant extends Entity {
 
 		isAlive = true;
 		health = 10;
-		antSpeed = 1;
+		antSpeed = 5;
 		cooldown = 0;
 
 		floor.brightenArea(x, y);
 
-		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
+		brain = new Brain();
 
-		brain.addRandomAxons(250);
+		brain.addRandomAxons(50);
 
-		antSpeed = 1;
+		// antSpeed = 1;
 
 		tilesWithinSight = getTilesInSight();
 	}
@@ -82,7 +78,7 @@ public class Ant extends Entity {
 	public void update() {
 
 		if (cooldown <= 0 && isAlive) {
-			int[] inputValues = new int[numberOfInputNeurons];
+			int[] inputValues = new int[Globals.NUMBER_OF_INPUT_NEURONS];
 
 			if (isAlive) {
 

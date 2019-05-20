@@ -20,6 +20,7 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+
 		Persistance.load();
 
 		batch = new SpriteBatch();

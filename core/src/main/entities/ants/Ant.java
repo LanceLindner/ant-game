@@ -11,7 +11,6 @@ import main.floors.Floor;
 import main.main.Globals;
 import main.tiles.Tile;
 
-//will probably be made abstract soon
 public class Ant extends Entity {
 
 	private Brain brain;

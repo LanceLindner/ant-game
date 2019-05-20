@@ -20,6 +20,7 @@ public class Ant extends Entity {
 	private boolean isAlive;
 	private double antSpeed;
 
+	private Tile[][] tilesWithinSight;
 	private int numberOfInputNeurons = 4;
 	private int numberOfHiddenNeurons = 4;
 	private int numberOfOutputNeurons = 4;
@@ -29,18 +30,21 @@ public class Ant extends Entity {
 	public Ant(Floor floor, int x, int y, int direction) {
 		super(floor, x, y);
 		image = Globals.assetManagerManager.getTexture("ant");
-		isAlive = true;
+
 		this.direction = direction;
+
+		isAlive = true;
 		health = 10;
+		antSpeed = 1;
+		cooldown = 0;
 
 		floor.brightenArea(x, y);
 
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
 		brain.addRandomAxons(25);
-		antSpeed = 10;
 
-		cooldown = 0;
+		tilesWithinSight = getTilesInSight();
 	}
 
 	@Override
@@ -76,7 +80,6 @@ public class Ant extends Entity {
 	@Override
 	public void update() {
 		if (cooldown <= 0 && isAlive) {
-			Tile tileAhead = getTileAhead();
 
 			int[] inputValues = new int[numberOfInputNeurons];
 			inputValues[0] = 0;
@@ -85,6 +88,8 @@ public class Ant extends Entity {
 			inputValues[3] = 0;
 
 			if (isAlive) {
+
+				tilesWithinSight = getTilesInSight();
 
 				// We will need to work a couple things out in the future, this right now is
 				// just for testing
@@ -95,13 +100,13 @@ public class Ant extends Entity {
 
 				// Will always be equal to 1 because otherwise the if statement wouldn't execute
 
-				if (tileAhead.getTileType() == null || !tileAhead.getTileType().isSolid()) {
+				if (tilesWithinSight[2][1].getTileType() == null || !tilesWithinSight[2][1].getTileType().isSolid()) {
 					inputValues[0] = 0;
 				} else {
 					inputValues[0] = 1;
 				}
 
-				if (tileAhead.containsEntity()) {
+				if (tilesWithinSight[2][1].containsEntity()) {
 					inputValues[1] = 1;
 				} else {
 					inputValues[1] = 0;
@@ -113,8 +118,7 @@ public class Ant extends Entity {
 
 				if (outputValues[0] == 1) {
 					turnRight();
-				}
-				if (outputValues[1] == 1) {
+				} else if (outputValues[1] == 1) {
 					turnLeft();
 				}
 				if (outputValues[2] == 1) {
@@ -130,60 +134,93 @@ public class Ant extends Entity {
 
 			}
 			cooldown = 1;
+			tilesWithinSight = getTilesInSight();
 		}
 		if (isAlive) {
 			cooldown -= antSpeed * Globals.deltaTime;
 		}
 	}
 
-	// Will return the tile ahead of the direction the ant is facing, defaults to
-	// the tile it is on
-	private Tile getTileAhead() {
+	// Will return 2d array of tiles within the ant's sight depending on the
+	// direction.
+	private Tile[][] getTilesInSight() {
+
+		Tile[][] tilesToReturn = new Tile[4][4];
+
 		switch (direction) {
 		case 0:
-			return floor.getTile((int) x, (int) (y + 1));
+			for (int i = 0; i < 4; i++) {
+				for (int j = 0; j < 3; j++) {
+					tilesToReturn[i][j] = floor.getTile((int) (x + (j - 1)), (int) (y + (i - 1)));
+					// System.out.println(j - 1);
+				}
+			}
+			return tilesToReturn;
 		case 1:
-			return floor.getTile((int) (x + 1), (int) y);
+			for (int i = 0; i < 4; i++) {
+				for (int j = 0; j < 4; j++) {
+					tilesToReturn[i][j] = floor.getTile((int) (x + (i - 1)), (int) (y + (j - 1)));
+					// System.out.println(i - 1);
+				}
+			}
+			return tilesToReturn;
 		case 2:
-			return floor.getTile((int) x, (int) (y - 1));
+			for (int i = 0; i < 4; i++) {
+				for (int j = 0; j < 4; j++) {
+					tilesToReturn[i][j] = floor.getTile((int) (x + (-j + 1)), (int) (y + (-i + 1)));
+					// System.out.println(j + 1);
+				}
+			}
+			return tilesToReturn;
 		case 3:
-			return floor.getTile((int) (x - 1), (int) y);
+			for (int i = 0; i < 4; i++) {
+				for (int j = 0; j < 4; j++) {
+					tilesToReturn[i][j] = floor.getTile((int) (x + (-i + 1)), (int) (y + (-j + 1)));
+					// System.out.println(i + 1);
+				}
+			}
+			return tilesToReturn;
 		default:
-			return floor.getTile((int) x, (int) y);
+			for (int i = 0; i < 4; i++) {
+				for (int j = 0; j < 4; j++) {
+					tilesToReturn[i][j] = floor.getTile((int) (x + (i - 1)), (int) (y + (j - 1)));
+				}
+			}
+			return tilesToReturn;
 		}
 	}
 
+	// The tile ahead is tilesWithinSight[2][1]
 	private void moveForward() {
-		Tile tileAhead = getTileAhead();
-
-		if (tileAhead.getTileType() != null) {
-			if (tileAhead.getTileType().isSolid()) {
+		System.out.println(tilesWithinSight[2][1].getX());
+		if (tilesWithinSight[2][1].getTileType() != null) {
+			if (tilesWithinSight[2][1].getTileType().isSolid()) {
 				isAlive = false;
 				cooldown = 0;
 				floor.getTile((int) x, (int) y).removeEntity();
 
-				x = tileAhead.getX();
-				y = tileAhead.getY();
+				x = tilesWithinSight[2][1].getX();
+				y = tilesWithinSight[2][1].getY();
 
 				die();
 				return;
 			}
 		}
 
-		if (tileAhead.containsEntity()) {
+		if (tilesWithinSight[2][1].containsEntity()) {
 			isAlive = false;
 			cooldown = 0;
 			floor.getTile((int) x, (int) y).removeEntity();
 
-			x = tileAhead.getX();
-			y = tileAhead.getY();
+			x = tilesWithinSight[2][1].getX();
+			y = tilesWithinSight[2][1].getY();
 
 			die();
 			return;
 		}
 		floor.getTile((int) x, (int) y).removeEntity();
-		x = tileAhead.getX();
-		y = tileAhead.getY();
+		x = tilesWithinSight[2][1].getX();
+		y = tilesWithinSight[2][1].getY();
 		floor.getTile((int) x, (int) y).addEntity(this);
 		floor.brightenArea((int) x, (int) y);
 	}
@@ -207,7 +244,7 @@ public class Ant extends Entity {
 	}
 
 	private void die() {
-		Tile tileAhead = getTileAhead();
+		Tile tileAhead = tilesWithinSight[2][1];
 		tileAhead.removeEntity();
 		tileAhead.setCorpse(this);
 		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound(), x, y);

@@ -62,7 +62,7 @@ public class Tile {
 			id = (int) (Math.random() * 4 + 65);
 			break;
 		case (2):
-			id = (int) (Math.random() * 4 + 71);
+			id = (int) (Math.random() * 4 + 81);
 			break;
 		default:
 			id = 112;

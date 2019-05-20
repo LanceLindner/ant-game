@@ -1,8 +1,8 @@
 package main.entities.ants;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import main.SpriteSheets.SpriteSheet;
 import main.audio.AudioManager;
 import main.audio.SoundType;
 import main.entities.Entity;
@@ -29,6 +29,7 @@ public class Ant extends Entity {
 	public Ant(Floor floor, int x, int y, int direction) {
 		super(floor, x, y);
 		image = Globals.assetManagerManager.getTexture("ant");
+		spriteSheet = new SpriteSheet("ant");
 		isAlive = true;
 		this.direction = direction;
 		health = 10;
@@ -38,7 +39,7 @@ public class Ant extends Entity {
 		brain = new Brain(numberOfInputNeurons, numberOfHiddenNeurons, numberOfOutputNeurons);
 
 		brain.addRandomAxons(25);
-		antSpeed = 10;
+		antSpeed = 3;
 
 		cooldown = 0;
 	}
@@ -68,9 +69,7 @@ public class Ant extends Entity {
 			break;
 
 		}
-
-		batch.draw(new TextureRegion(image, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
-				(float) Globals.TILE_SIZE / 2, Globals.TILE_SIZE, Globals.TILE_SIZE, 1, 1, -(direction + 3) * 90, true);
+		super.draw(batch, drawX, drawY, direction);
 	}
 
 	@Override

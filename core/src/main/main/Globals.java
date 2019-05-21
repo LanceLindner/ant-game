@@ -8,7 +8,9 @@ public class Globals {
 	public static final int TILES_PER_HEIGHT = 11;
 	public static final float DEFAULT_FONT_SCALE = 0.2f;
 
-	public static final int NUMBER_OF_INPUT_NEURONS = 48;
+	public static final int NUMBER_OF_NEURONS_PER_TILE = 4;
+	public static final int NUMBER_OF_VISIBLE_TILES = 12;
+	public static final int NUMBER_OF_INPUT_NEURONS = NUMBER_OF_NEURONS_PER_TILE * NUMBER_OF_VISIBLE_TILES;
 	public static final int NUMBER_OF_HIDDEN_NEURONS = 48;
 	public static final int NUMBER_OF_OUTPUT_NEURONS = 6;
 

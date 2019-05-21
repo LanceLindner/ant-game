@@ -10,7 +10,7 @@ import main.audio.SoundType;
 import main.main.Globals;
 
 public class SpriteSheet {
-	private static final float STANDARD_FRAME_DURATION = 1 / 2f;
+	private static final float STANDARD_FRAME_DURATION = 1 / 4f;
 	private float frameDuration = (float) (STANDARD_FRAME_DURATION + Math.random() * STANDARD_FRAME_DURATION / 2
 			- (STANDARD_FRAME_DURATION / 4));
 

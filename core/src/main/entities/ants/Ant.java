@@ -23,6 +23,10 @@ public class Ant extends Entity {
 	private double cooldown;
 
 	public Ant(Floor floor, int x, int y, int direction) {
+		this(floor, x, y, direction, null);
+	}
+
+	public Ant(Floor floor, int x, int y, int direction, Brain brain) {
 		super(floor, x, y);
 		image = Globals.assetManagerManager.getTexture("ant");
 		spriteSheet = new SpriteSheet("ant");
@@ -36,13 +40,14 @@ public class Ant extends Entity {
 
 		floor.brightenArea(x, y);
 
-		brain = new Brain();
-
-		brain.addRandomAxons(50);
-
-		// antSpeed = 1;
-
 		tilesWithinSight = getTilesInSight();
+
+		if (brain == null) {
+			this.brain = new Brain();
+			this.brain.addRandomAxons(50);
+		} else {
+			this.brain = brain;
+		}
 	}
 
 	@Override

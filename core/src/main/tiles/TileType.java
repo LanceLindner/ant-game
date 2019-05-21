@@ -218,8 +218,6 @@ public enum TileType {
 	}
 
 	public static TileType getTileTypeById(int id) {
-		if (id > 256)
-			id = id % 16 + 256;
 		return tileMap.get(id);
 	}
 }

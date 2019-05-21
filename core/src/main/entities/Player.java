@@ -30,26 +30,19 @@ public class Player extends Entity {
 
 	@Override
 	public void update() {
-		boolean changed = false;
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			y += velocityMutliplier * Globals.deltaTime;
-			changed = true;
 		}
 		if (Gdx.input.isKeyPressed(Keys.A)) {
 			x -= velocityMutliplier * Globals.deltaTime;
-			changed = true;
 		}
 		if (Gdx.input.isKeyPressed(Keys.S)) {
 			y -= velocityMutliplier * Globals.deltaTime;
-			changed = true;
 		}
 		if (Gdx.input.isKeyPressed(Keys.D)) {
 			x += velocityMutliplier * Globals.deltaTime;
-			changed = true;
 		}
-		// if (changed == true) {
 		AudioManager.update(x, y);
-		// }
 	}
 
 	public void updateCameraForPadding(OrthographicCamera camera) {

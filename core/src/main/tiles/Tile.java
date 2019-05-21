@@ -21,8 +21,6 @@ public class Tile {
 
 	private MusicContainer musicContainer;
 
-	private double visibility;
-
 	public Tile(Floor floor, int x, int y, TileType tileType) {
 		this.floor = floor;
 		this.x = x;

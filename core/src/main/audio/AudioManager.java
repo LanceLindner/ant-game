@@ -46,11 +46,13 @@ public class AudioManager {
 	}
 
 	public static void update(double newListenerX, double newListenerY) {
-		listenerX = newListenerX;
-		listenerY = newListenerY;
-		for (MusicContainer musicContainer : musicContainers) {
-			if (musicContainer.getMusicType().isGlobal() == false) {
-				update(musicContainer);
+		if (newListenerX != listenerX || newListenerY != listenerY) {
+			listenerX = newListenerX;
+			listenerY = newListenerY;
+			for (MusicContainer musicContainer : musicContainers) {
+				if (musicContainer.getMusicType().isGlobal() == false) {
+					update(musicContainer);
+				}
 			}
 		}
 	}

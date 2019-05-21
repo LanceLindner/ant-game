@@ -2,12 +2,12 @@ package main.persistance;
 
 import java.util.ArrayList;
 
-import main.entities.ants.Ant;
+import main.entities.brain.Brain;
 import main.main.Globals;
 
 public class SaveData {
 	private ArrayList<boolean[]> unlockedNeurons = new ArrayList<boolean[]>();
-	private ArrayList<Ant> savedAnts = new ArrayList<Ant>();
+	private ArrayList<Brain> savedBrains = new ArrayList<Brain>();
 
 	public SaveData() {
 		unlockedNeurons.add(new boolean[Globals.NUMBER_OF_INPUT_NEURONS]);
@@ -19,19 +19,18 @@ public class SaveData {
 				unlockedNeurons.get(i)[j] = false;
 			}
 		}
-
-		savedAnts = new ArrayList<Ant>();
+		savedBrains = new ArrayList<Brain>();
 	}
 
 	public void unlockNeuron(int x, int y) {
 		unlockedNeurons.get(y)[x] = true;
 	}
 
-	public void saveAnt(Ant ant) {
-		savedAnts.add(ant);
+	public void saveBrain(Brain Brain) {
+		savedBrains.add(Brain);
 	}
 
-	public void deleteAnt(Ant ant) {
-		savedAnts.remove(ant);
+	public void deleteBrain(Brain Brain) {
+		savedBrains.remove(Brain);
 	}
 }

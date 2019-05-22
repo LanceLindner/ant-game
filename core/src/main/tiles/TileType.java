@@ -209,6 +209,10 @@ public enum TileType {
 		return solid;
 	}
 
+	public boolean isHive() {
+		return hive;
+	}
+
 	public String getMusicName() {
 		return musicName;
 	}

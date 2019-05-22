@@ -2,13 +2,13 @@ package main.entities.ants;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import main.SpriteSheets.SpriteSheet;
 import main.audio.AudioManager;
 import main.audio.SoundType;
 import main.entities.Entity;
 import main.entities.brain.Brain;
 import main.floors.Floor;
 import main.main.Globals;
+import main.spriteSheets.SpriteSheet;
 import main.tiles.Tile;
 
 public class Ant extends Entity {

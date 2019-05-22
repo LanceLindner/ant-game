@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import main.SpriteSheets.SpriteSheet;
 import main.floors.Floor;
 import main.main.Globals;
+import main.spriteSheets.SpriteSheet;
 
 public abstract class Entity {
 	protected double x;

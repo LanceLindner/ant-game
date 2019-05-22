@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import main.audio.AudioManager;
 import main.floors.Floor;
 import main.main.Globals;
+import main.main.InputManager;
 
 public class Player extends Entity {
 	private static final double INITIAL_VELOCITY = 7.5;
@@ -42,6 +43,15 @@ public class Player extends Entity {
 		if (Gdx.input.isKeyPressed(Keys.D)) {
 			x += velocityMutliplier * Globals.deltaTime;
 		}
+		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)) {
+			if (Gdx.input.isKeyPressed(Keys.EQUALS)) {
+				InputManager.zoom(-0.25);
+			}
+			if (Gdx.input.isKeyPressed(Keys.MINUS)) {
+				InputManager.zoom(0.25);
+			}
+		}
+
 		AudioManager.update(x, y);
 	}
 

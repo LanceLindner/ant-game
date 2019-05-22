@@ -1,4 +1,4 @@
-package main.spriteSheets;
+package main.spritesheets;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;

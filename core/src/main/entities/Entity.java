@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import main.floors.Floor;
 import main.main.Globals;
-import main.spriteSheets.SpriteSheet;
+import main.spritesheets.SpriteSheet;
 
 public abstract class Entity {
 	protected double x;

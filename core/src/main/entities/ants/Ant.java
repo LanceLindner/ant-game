@@ -8,7 +8,6 @@ import main.entities.Entity;
 import main.entities.brain.Brain;
 import main.floors.Floor;
 import main.main.Globals;
-import main.spriteSheets.SpriteSheet;
 import main.tiles.Tile;
 
 public class Ant extends Entity {
@@ -29,7 +28,7 @@ public class Ant extends Entity {
 	public Ant(Floor floor, int x, int y, int direction, Brain brain) {
 		super(floor, x, y);
 		image = Globals.assetManagerManager.getTexture("ant");
-		spriteSheet = new SpriteSheet("ant");
+		spriteSheet = new main.spritesheets.SpriteSheet("ant");
 
 		this.direction = direction;
 

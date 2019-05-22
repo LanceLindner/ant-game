@@ -10,9 +10,10 @@ import main.audio.SoundType;
 import main.main.Globals;
 
 public class SpriteSheet {
-	private static final float STANDARD_FRAME_DURATION = 1 / 4f;
-	private float frameDuration = (float) (STANDARD_FRAME_DURATION + Math.random() * STANDARD_FRAME_DURATION / 2
-			- (STANDARD_FRAME_DURATION / 4));
+	private static final float DEFAULT_FRAME_DURATION = 1 / 4f;
+	private static final float DEFAULT_DEATH_FRAME_DURATION = 1 / 16f;
+	private float frameDuration = (float) (DEFAULT_FRAME_DURATION + Math.random() * DEFAULT_FRAME_DURATION / 2
+			- (DEFAULT_FRAME_DURATION / 4));
 
 	private Animation<TextureRegion> active;
 	private Animation<TextureRegion> idle, walk, die;
@@ -24,7 +25,8 @@ public class SpriteSheet {
 		TextureAtlas atlas = Globals.assetManagerManager.getTextureAtlas();
 		idle = new Animation<TextureRegion>(frameDuration, atlas.findRegions(name + "Idle"), PlayMode.LOOP);
 		walk = new Animation<TextureRegion>(frameDuration, atlas.findRegions(name + "Walk"), PlayMode.LOOP);
-		die = new Animation<TextureRegion>(frameDuration * 5, atlas.findRegions(name + "Die"), PlayMode.NORMAL);
+		die = new Animation<TextureRegion>(DEFAULT_DEATH_FRAME_DURATION, atlas.findRegions(name + "Die"),
+				PlayMode.NORMAL);
 
 		active = walk;
 	}

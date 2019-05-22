@@ -16,6 +16,7 @@ public class Player extends Entity {
 
 	public Player(Floor floor, int x, int y) {
 		super(floor, x, y);
+		spriteSheet = new main.spritesheets.SpriteSheet("player");
 		AudioManager.update(x, y);
 		floor.getTile(x, y).removeEntity();
 	}
@@ -33,15 +34,19 @@ public class Player extends Entity {
 	public void update() {
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			y += velocityMutliplier * Globals.deltaTime;
+			direction = 0;
 		}
 		if (Gdx.input.isKeyPressed(Keys.A)) {
 			x -= velocityMutliplier * Globals.deltaTime;
+			direction = 3;
 		}
 		if (Gdx.input.isKeyPressed(Keys.S)) {
 			y -= velocityMutliplier * Globals.deltaTime;
+			direction = 2;
 		}
 		if (Gdx.input.isKeyPressed(Keys.D)) {
 			x += velocityMutliplier * Globals.deltaTime;
+			direction = 1;
 		}
 		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)) {
 			if (Gdx.input.isKeyPressed(Keys.EQUALS)) {

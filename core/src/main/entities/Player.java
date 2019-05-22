@@ -50,6 +50,9 @@ public class Player extends Entity {
 			if (Gdx.input.isKeyPressed(Keys.MINUS)) {
 				InputManager.zoom(0.25);
 			}
+			if (Gdx.input.isKeyPressed(Keys.NUM_0)) {
+				InputManager.setZoom(1);
+			}
 		}
 
 		AudioManager.update(x, y);

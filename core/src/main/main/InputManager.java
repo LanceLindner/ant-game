@@ -72,4 +72,8 @@ public class InputManager implements InputProcessor {
 			AudioManager.cameraZoomed(camera.zoom, maxZoom);
 		}
 	}
+
+	public static void setZoom(int zoom) {
+		camera.zoom = zoom;
+	}
 }

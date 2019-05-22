@@ -27,6 +27,10 @@ public class SaveData {
 		savedBrains = new ArrayList<Brain>();
 	}
 
+	public Brain getBrain(int index) {
+		return savedBrains.get(index);
+	}
+
 	public void unlockInputNeuronByTileAndQuality(int x, int y, int quality) {
 		unlockNeuron((y * Globals.NUMBER_OF_VISIBLE_TILES_X + x) * Globals.NUMBER_OF_QUALITIES_PER_TILE + quality, 0);
 	}

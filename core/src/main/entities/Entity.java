@@ -33,7 +33,6 @@ public abstract class Entity {
 	}
 
 	public void draw(SpriteBatch batch, float drawX, float drawY, int direction) {
-
 		TextureRegion textureRegion;
 
 		if (spriteSheet != null) {

@@ -62,6 +62,7 @@ public abstract class Floor {
 				setTiledMapTile(i, j, SHADOW_LAYER, id);
 			}
 		}
+		brightenArea(tiles.length / 2, tiles[0].length / 2);
 	}
 
 	public Tile getTile(int x, int y) {
@@ -97,7 +98,7 @@ public abstract class Floor {
 				int radiusSquared = radius * radius;
 
 				if (sumOfLegsSquared < radiusSquared) {
-					int id = (int) (((1 - (double) sumOfLegsSquared / (double) radiusSquared)) * 4 + 50);
+					int id = (int) (((1 - (double) sumOfLegsSquared / (double) radiusSquared)) * 6 + 50);
 					if (isTileSafe(x + i, y + j) == true) {
 						TileType tileType = getTileType(x + i, y + j, SHADOW_LAYER);
 						if (tileType.getID() < id)

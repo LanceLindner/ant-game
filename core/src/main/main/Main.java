@@ -27,7 +27,6 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create() {
-
 		Persistance.load();
 
 		batch = new SpriteBatch();
@@ -46,7 +45,7 @@ public class Main extends ApplicationAdapter {
 		floor = new Overworld();
 		new InputManager(camera);
 
-		Viewport viewport = new FitViewport(Globals.windowWidth, Globals.windowHeight, camera);
+		Viewport viewport = new FitViewport(Globals.windowWidthInTilePixels, Globals.windowHeightInTilePixels, camera);
 		viewport.setCamera(camera);
 
 		stage = new Stage(viewport);

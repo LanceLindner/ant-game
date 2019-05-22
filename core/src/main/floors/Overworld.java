@@ -13,5 +13,4 @@ public class Overworld extends Floor {
 				entities.add(new Ant(this, 495 + i, 495 + j, (int) (Math.random() * 4)));
 			}
 	}
-
 }

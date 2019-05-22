@@ -1,6 +1,6 @@
 package main.main;
 
-import AssetManagement.AssetManagerManager;
+import main.AssetManagement.AssetManagerManager;
 
 public class Globals {
 	public static final int TILE_SIZE = 16;

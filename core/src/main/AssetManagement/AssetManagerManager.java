@@ -1,4 +1,4 @@
-package AssetManagement;
+package main.AssetManagement;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;

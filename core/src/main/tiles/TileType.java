@@ -41,7 +41,7 @@ public enum TileType {
 	GRASS7(135),
 	GRASS8(136),
 
-	HIVE1(145),
+	HIVE1(145, true, true),
 
 	CHEST1(257, true),
 	CHEST2(258, true),
@@ -174,6 +174,7 @@ public enum TileType {
 
 	private final int id;
 	private boolean solid = false;
+	private boolean hive = false;
 
 	private String musicName;
 
@@ -186,6 +187,12 @@ public enum TileType {
 	private TileType(int id, boolean solid) {
 		this.id = id;
 		this.solid = solid;
+	}
+
+	private TileType(int id, boolean solid, boolean hive) {
+		this.id = id;
+		this.solid = solid;
+		this.hive = hive;
 	}
 
 	private TileType(int id, String musicName, int musicTypeId) {

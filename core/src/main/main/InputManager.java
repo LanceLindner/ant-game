@@ -62,7 +62,8 @@ public class InputManager implements InputProcessor {
 	@Override
 	public boolean scrolled(int amount) {
 		if (!(camera.zoom >= maxZoom && amount > 0) && !(camera.zoom <= minZoom && amount < 0)) {
-			camera.zoom *= Math.pow(2, amount);
+			camera.zoom += amount * 0.3;
+			// camera.zoom *= Math.pow(2, amount);
 			AudioManager.cameraZoomed(camera.zoom, maxZoom);
 		}
 		return false;

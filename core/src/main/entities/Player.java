@@ -10,8 +10,8 @@ import main.floors.Floor;
 import main.main.Globals;
 
 public class Player extends Entity {
-	private static final double INITIAL_VELOCITY = 5;
-	private double velocityMutliplier = 5;
+	private static final double INITIAL_VELOCITY = 7.5;
+	private double velocityMutliplier;
 
 	public Player(Floor floor, int x, int y) {
 		super(floor, x, y);

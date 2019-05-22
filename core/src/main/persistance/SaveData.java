@@ -6,8 +6,11 @@ import main.entities.brain.Brain;
 import main.main.Globals;
 
 public class SaveData {
-	private boolean[] unlockedInputTiles = new boolean[Globals.NUMBER_OF_VISIBLE_TILES];
-	private boolean[] unlockedInputQualities = new boolean[Globals.NUMBER_OF_VISIBLE_TILES];
+	// private boolean[] unlockedInputTiles = new
+	// boolean[Globals.NUMBER_OF_VISIBLE_TILES];
+	// private boolean[] unlockedInputQualities = new
+	// boolean[Globals.NUMBER_OF_VISIBLE_TILES];
+
 	private ArrayList<boolean[]> unlockedNeurons = new ArrayList<boolean[]>();
 	private ArrayList<Brain> savedBrains = new ArrayList<Brain>();
 
@@ -24,12 +27,8 @@ public class SaveData {
 		savedBrains = new ArrayList<Brain>();
 	}
 
-	public void unlockInputTile(int x, int y) {
-
-	}
-
-	public void unlockInputQuality(int id) {
-
+	public void unlockInputNeuronByTileAndQuality(int x, int y, int quality) {
+		unlockNeuron((y * Globals.NUMBER_OF_VISIBLE_TILES_X + x) * Globals.NUMBER_OF_QUALITIES_PER_TILE + quality, 0);
 	}
 
 	public void unlockNeuron(int x, int y) {

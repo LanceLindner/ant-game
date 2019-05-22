@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import main.floors.Floor;
 import main.floors.Overworld;
@@ -15,6 +19,9 @@ public class Main extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private static BitmapFont font;
+
+	private Stage stage;
+	private Stack stack;
 
 	private Floor floor;
 
@@ -38,6 +45,12 @@ public class Main extends ApplicationAdapter {
 
 		floor = new Overworld();
 		new InputManager(camera);
+
+		Viewport viewport = new FitViewport(Globals.windowWidth, Globals.windowHeight, camera);
+		viewport.setCamera(camera);
+
+		stage = new Stage(viewport);
+		stack = new Stack();
 	}
 
 	@Override
@@ -54,6 +67,8 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		Persistance.save();
+
+		stage.dispose();
 
 		batch.dispose();
 

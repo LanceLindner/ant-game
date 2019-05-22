@@ -9,9 +9,11 @@ import main.main.Globals;
 import main.spritesheets.SpriteSheet;
 
 public abstract class Entity {
+	protected Floor floor;
 	protected double x;
 	protected double y;
-	protected Floor floor;
+
+	protected int direction;
 
 	protected Texture image = Globals.assetManagerManager.getTexture("box");
 	protected SpriteSheet spriteSheet;
@@ -29,10 +31,10 @@ public abstract class Entity {
 	public void draw(SpriteBatch batch) {
 		int drawX = (int) (x * Globals.TILE_SIZE);
 		int drawY = (int) (y * Globals.TILE_SIZE);
-		draw(batch, drawX, drawY, 0);
+		draw(batch, drawX, drawY);
 	}
 
-	public void draw(SpriteBatch batch, float drawX, float drawY, int direction) {
+	public void draw(SpriteBatch batch, float drawX, float drawY) {
 		TextureRegion textureRegion;
 
 		if (spriteSheet != null) {

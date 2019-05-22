@@ -8,13 +8,13 @@ import main.entities.Entity;
 import main.entities.brain.Brain;
 import main.floors.Floor;
 import main.main.Globals;
+import main.spritesheets.SpriteSheet;
 import main.tiles.Tile;
 
 public class Ant extends Entity {
 
 	private Brain brain;
 	private int health;
-	private int direction;
 	private boolean isAlive;
 	private double antSpeed;
 
@@ -27,7 +27,7 @@ public class Ant extends Entity {
 
 	public Ant(Floor floor, int x, int y, int direction, Brain brain) {
 		super(floor, x, y);
-		spriteSheet = new main.spritesheets.SpriteSheet("ant");
+		spriteSheet = new SpriteSheet("ant");
 
 		this.direction = direction;
 
@@ -73,7 +73,7 @@ public class Ant extends Entity {
 			break;
 
 		}
-		super.draw(batch, drawX, drawY, direction);
+		super.draw(batch, drawX, drawY);
 	}
 
 	@Override

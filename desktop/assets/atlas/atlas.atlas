@@ -4,14 +4,7 @@ size: 256,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ant
-  rotate: false
-  xy: 2, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-antWalk
+antDie
   rotate: false
   xy: 2, 2
   size: 16, 16
@@ -24,59 +17,59 @@ antDie
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 0
-antIdle
-  rotate: false
-  xy: 20, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: 0
+  index: 1
 antDie
   rotate: false
   xy: 38, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 1
+  index: 2
 antDie
   rotate: false
   xy: 56, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 2
+  index: 3
 antDie
   rotate: false
   xy: 74, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 3
+  index: 4
 antDie
   rotate: false
   xy: 92, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 4
-antDie
+  index: 5
+antIdle
   rotate: false
   xy: 110, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 5
+  index: 0
 antWalk
   rotate: false
   xy: 128, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
+  index: 0
+antWalk
+  rotate: false
+  xy: 146, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
   index: 1
 box
   rotate: false
-  xy: 146, 2
+  xy: 164, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

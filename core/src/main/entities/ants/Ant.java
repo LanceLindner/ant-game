@@ -27,7 +27,6 @@ public class Ant extends Entity {
 
 	public Ant(Floor floor, int x, int y, int direction, Brain brain) {
 		super(floor, x, y);
-		image = Globals.assetManagerManager.getTexture("ant");
 		spriteSheet = new main.spritesheets.SpriteSheet("ant");
 
 		this.direction = direction;

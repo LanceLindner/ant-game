@@ -109,6 +109,14 @@ public abstract class Floor {
 		}
 	}
 
+	public void clearAllResidue() {
+		for (int i = 0; i < tiles.length; ++i) {
+			for (int j = 0; j < tiles[0].length; ++j) {
+				tiles[i][j].removeResidue();
+			}
+		}
+	}
+
 	public void render(OrthographicCamera camera, SpriteBatch batch) {
 		update();
 		player.updateCamera(camera);

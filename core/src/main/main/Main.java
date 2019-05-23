@@ -61,6 +61,9 @@ public class Main extends ApplicationAdapter {
 		Globals.deltaTime = Gdx.graphics.getDeltaTime();
 		Globals.globalTime += Globals.deltaTime;
 
+		stage.act(Gdx.graphics.getDeltaTime());
+		stage.draw();
+
 		floor.render(camera, batch);
 	}
 

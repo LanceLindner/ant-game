@@ -9,6 +9,7 @@ import main.audio.AudioManager;
 import main.floors.Floor;
 import main.main.Globals;
 import main.main.InputManager;
+import main.tiles.Tile;
 
 public class Player extends Entity {
 	private static final double INITIAL_VELOCITY = 7.5;
@@ -33,19 +34,19 @@ public class Player extends Entity {
 	@Override
 	public void update() {
 		if (Gdx.input.isKeyPressed(Keys.W)) {
-			y += velocityMutliplier * Globals.deltaTime;
+			moveY(velocityMutliplier * Globals.deltaTime);
 			direction = 0;
 		}
 		if (Gdx.input.isKeyPressed(Keys.A)) {
-			x -= velocityMutliplier * Globals.deltaTime;
+			moveX(-velocityMutliplier * Globals.deltaTime);
 			direction = 3;
 		}
 		if (Gdx.input.isKeyPressed(Keys.S)) {
-			y -= velocityMutliplier * Globals.deltaTime;
+			moveY(-velocityMutliplier * Globals.deltaTime);
 			direction = 2;
 		}
 		if (Gdx.input.isKeyPressed(Keys.D)) {
-			x += velocityMutliplier * Globals.deltaTime;
+			moveX(velocityMutliplier * Globals.deltaTime);
 			direction = 1;
 		}
 		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)) {
@@ -61,6 +62,82 @@ public class Player extends Entity {
 		}
 
 		AudioManager.update(x, y);
+	}
+
+	public void moveX(double deltaX) {
+		double newX = x + deltaX;
+		if (deltaX > 0) {// right
+			int edge = (int) Math.round(newX + 0.5);
+			if (edge != Math.round(x)) {
+				for (int i = (int) Math.round(y - 0.5); i < (Math.round(y + 0.5) + 0.01); ++i) {
+					if (floor.isTileValid(edge, i)) {
+						Tile newTile = floor.getTile(edge, i);
+						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
+							x = newTile.getX() - 0.5 - 00.501;
+							return;
+						}
+					} else {
+						x = edge - 0.5 - 00.501;
+						return;
+					}
+				}
+			}
+		} else {// left
+			int edge = (int) Math.round(newX - 0.5);
+			if (edge != Math.round(x)) {
+				for (int i = (int) Math.round(y - 0.5); i < (Math.round(y + 0.5) + 0.01); ++i) {
+					if (floor.isTileValid(edge, i)) {
+						Tile newTile = floor.getTile(edge, i);
+						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
+							x = newTile.getX() + 0.5 + 00.501;
+							return;
+						}
+					} else {
+						x = edge + 0.5 + 00.501;
+						return;
+					}
+				}
+			}
+		}
+		x = newX;
+	}
+
+	public void moveY(double deltaY) {
+		double newY = y + deltaY;
+		if (deltaY > 0) {// up
+			int edge = (int) Math.round(newY + 0.5);
+			if (edge != Math.round(y)) {
+				for (int i = (int) Math.round(x - 0.5); i < (Math.round(x + 0.5) + 0.01); ++i) {
+					if (floor.isTileValid(i, edge)) {
+						Tile newTile = floor.getTile(i, edge);
+						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
+							y = newTile.getY() - 0.5 - 00.501;
+							return;
+						}
+					} else {
+						y = edge - 0.5 - 00.501;
+						return;
+					}
+				}
+			}
+		} else {// down
+			int edge = (int) Math.round(newY - 0.5);
+			if (edge != Math.round(y)) {
+				for (int i = (int) Math.round(x - 0.5); i < (Math.round(x + 0.5) + 0.01); ++i) {
+					if (floor.isTileValid(i, edge)) {
+						Tile newTile = floor.getTile(i, edge);
+						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
+							y = newTile.getY() + 0.5 + 00.501;
+							return;
+						}
+					} else {
+						y = edge + 0.5 + 00.501;
+						return;
+					}
+				}
+			}
+		}
+		y = newY;
 	}
 
 	public void updateCameraForPadding(OrthographicCamera camera) {

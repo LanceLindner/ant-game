@@ -99,7 +99,7 @@ public abstract class Floor {
 
 				if (sumOfLegsSquared < radiusSquared) {
 					int id = (int) (((1 - (double) sumOfLegsSquared / (double) radiusSquared)) * 6 + 50);
-					if (isTileSafe(x + i, y + j) == true) {
+					if (isTileValid(x + i, y + j) == true) {
 						TileType tileType = getTileType(x + i, y + j, SHADOW_LAYER);
 						if (tileType.getID() < id)
 							setTiledMapTile(x + i, y + j, SHADOW_LAYER, id);
@@ -158,7 +158,7 @@ public abstract class Floor {
 		tiledMapRenderer.render(new int[] { SHADOW_LAYER });
 	}
 
-	private boolean isTileSafe(int x, int y) {
+	public boolean isTileValid(int x, int y) {
 		if (x < 0 || x > tiles.length - 1 || y < 0 || y > tiles.length - 1)
 			return false;
 		return true;

@@ -7,13 +7,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import main.floors.Floor;
 import main.floors.Overworld;
 import main.persistance.Persistance;
+import main.scenemanager.SceneManager;
 
 public class Main extends ApplicationAdapter {
 	private OrthographicCamera camera;
@@ -21,7 +21,7 @@ public class Main extends ApplicationAdapter {
 	private static BitmapFont font;
 
 	private Stage stage;
-	private Stack stack;
+	private SceneManager sceneManager;
 
 	private Floor floor;
 
@@ -49,7 +49,7 @@ public class Main extends ApplicationAdapter {
 		viewport.setCamera(camera);
 
 		stage = new Stage(viewport);
-		stack = new Stack();
+		sceneManager = new SceneManager(stage);
 	}
 
 	@Override
@@ -60,9 +60,7 @@ public class Main extends ApplicationAdapter {
 		Globals.deltaTime = Gdx.graphics.getDeltaTime();
 		Globals.globalTime += Globals.deltaTime;
 
-		stage.act(Gdx.graphics.getDeltaTime());
-		stage.draw();
-
+		sceneManager.render();
 		floor.render(camera, batch);
 	}
 

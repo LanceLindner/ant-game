@@ -45,8 +45,7 @@ public class Main extends ApplicationAdapter {
 		floor = new Overworld();
 		new InputManager(camera);
 
-		Viewport viewport = new FitViewport(Globals.windowWidthInTilePixels, Globals.windowHeightInTilePixels, camera);
-		viewport.setCamera(camera);
+		Viewport viewport = new FitViewport(Globals.windowWidth, Globals.windowHeight);
 
 		stage = new Stage(viewport);
 		sceneManager = new SceneManager(stage);
@@ -60,8 +59,8 @@ public class Main extends ApplicationAdapter {
 		Globals.deltaTime = Gdx.graphics.getDeltaTime();
 		Globals.globalTime += Globals.deltaTime;
 
-		sceneManager.render();
 		floor.render(camera, batch);
+		sceneManager.render();
 	}
 
 	@Override

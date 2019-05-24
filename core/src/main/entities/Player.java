@@ -153,6 +153,6 @@ public class Player extends Entity {
 		camera.position.set(new Vector2(cameraX, cameraY), 0);
 		camera.update();
 
-		velocityMutliplier = INITIAL_VELOCITY * camera.zoom;
+		velocityMutliplier = INITIAL_VELOCITY * camera.zoom + 1;
 	}
 }

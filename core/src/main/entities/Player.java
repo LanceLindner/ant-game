@@ -73,11 +73,11 @@ public class Player extends Entity {
 					if (floor.isTileValid(edge, i)) {
 						Tile newTile = floor.getTile(edge, i);
 						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
-							x = newTile.getX() - 0.5 - 00.501;
+							x = newTile.getX() - 0.5 - 0.51;
 							return;
 						}
 					} else {
-						x = edge - 0.5 - 00.501;
+						x = edge - 0.5 - 0.51;
 						return;
 					}
 				}
@@ -89,11 +89,11 @@ public class Player extends Entity {
 					if (floor.isTileValid(edge, i)) {
 						Tile newTile = floor.getTile(edge, i);
 						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
-							x = newTile.getX() + 0.5 + 00.501;
+							x = newTile.getX() + 0.5 + 0.51;
 							return;
 						}
 					} else {
-						x = edge + 0.5 + 00.501;
+						x = edge + 0.5 + 0.51;
 						return;
 					}
 				}
@@ -111,11 +111,11 @@ public class Player extends Entity {
 					if (floor.isTileValid(i, edge)) {
 						Tile newTile = floor.getTile(i, edge);
 						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
-							y = newTile.getY() - 0.5 - 00.501;
+							y = newTile.getY() - 0.5 - 0.51;
 							return;
 						}
 					} else {
-						y = edge - 0.5 - 00.501;
+						y = edge - 0.5 - 0.51;
 						return;
 					}
 				}
@@ -127,11 +127,11 @@ public class Player extends Entity {
 					if (floor.isTileValid(i, edge)) {
 						Tile newTile = floor.getTile(i, edge);
 						if (newTile.getTileType() != null && newTile.getTileType().isSolid() == true) {
-							y = newTile.getY() + 0.5 + 00.501;
+							y = newTile.getY() + 0.5 + 0.51;
 							return;
 						}
 					} else {
-						y = edge + 0.5 + 00.501;
+						y = edge + 0.5 + 0.51;
 						return;
 					}
 				}

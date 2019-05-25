@@ -8,7 +8,7 @@ import main.audio.AudioManager;
 
 public class InputManager implements InputProcessor {
 	private final static double maxZoom = 8.0;
-	private final static double minZoom = 0.25;
+	private final static double minZoom = 0.5;
 
 	private int[] mousePositionByPixel = new int[] { 0, 0 };
 	private int[] mousePositionByScreenSize = new int[] { 0, 0 };

@@ -65,6 +65,12 @@ public class Player extends Entity {
 	}
 
 	public void moveX(double deltaX) {
+		if (Math.abs(deltaX) > 0.5) {
+			for (int i = 0; i < 2; ++i) {
+				moveX(deltaX / 2);
+			}
+			return;
+		}
 		double newX = x + deltaX;
 		if (deltaX > 0) {// right
 			int edge = (int) Math.round(newX + 0.5);
@@ -103,6 +109,12 @@ public class Player extends Entity {
 	}
 
 	public void moveY(double deltaY) {
+		if (Math.abs(deltaY) > 0.5) {
+			for (int i = 0; i < 2; ++i) {
+				moveY(deltaY / 2);
+			}
+			return;
+		}
 		double newY = y + deltaY;
 		if (deltaY > 0) {// up
 			int edge = (int) Math.round(newY + 0.5);

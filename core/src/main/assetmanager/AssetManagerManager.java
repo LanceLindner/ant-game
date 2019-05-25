@@ -47,7 +47,7 @@ public class AssetManagerManager {
 	}
 
 	public Texture getTexture(String name) {
-		return new Texture("assets/sprites/" + name + ".png");
+		return new Texture("assets/textures/" + name + ".png");
 	}
 
 	public TextureAtlas getTextureAtlas() {

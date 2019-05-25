@@ -1,6 +1,7 @@
 package main.tiles;
 
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import main.audio.AudioManager;
@@ -21,6 +22,8 @@ public class Tile {
 	private Entity corpse;
 
 	private MusicContainer musicContainer;
+
+	private static Texture selectedTileTexture = Globals.assetManagerManager.getTexture("selectedTile");
 
 	public Tile(Floor floor, int x, int y, TileType tileType) {
 		this.floor = floor;
@@ -114,6 +117,11 @@ public class Tile {
 	}
 
 	public void draw(SpriteBatch batch) {
+		if (selected == true) {
+			batch.draw(selectedTileTexture, x * Globals.TILE_SIZE, x * Globals.TILE_SIZE, Globals.TILE_SIZE,
+					Globals.TILE_SIZE);
+		}
+
 		if (corpse != null) {
 			corpse.draw(batch);
 		}

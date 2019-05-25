@@ -15,8 +15,9 @@ public class Tile {
 	private int y;
 	private TileType tileType;
 
-	private Entity entity;
+	private boolean selected = false;
 
+	private Entity entity;
 	private Entity corpse;
 
 	private MusicContainer musicContainer;
@@ -41,6 +42,14 @@ public class Tile {
 
 	public double getY() {
 		return y;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 
 	public int getResidue() {
@@ -112,5 +121,4 @@ public class Tile {
 			entity.draw(batch);
 		}
 	}
-
 }

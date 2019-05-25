@@ -1,0 +1,234 @@
+{
+BitmapFont: {
+	font: {
+		file: font-export.fnt
+	}
+	title: {
+		file: font-title-export.fnt
+	}
+}
+Color: {
+	black: {
+		hex: 000000ff
+	}
+	gray: {
+		hex: aeaeaeff
+	}
+	white: {
+		hex: ffffffff
+	}
+}
+TintedDrawable: {
+	round-dark-gray: {
+		name: round-white
+		color: {
+			hex: 383838ff
+		}
+	}
+	round-light-gray: {
+		name: round-white
+		color: {
+			hex: dcdcdcff
+		}
+	}
+	round-gray-small: {
+		name: round-white-small
+		color: {
+			hex: 767676ff
+		}
+	}
+	round-black-small: {
+		name: round-white-small
+		color: {
+			hex: 000000ff
+		}
+	}
+	gray: {
+		name: white
+		color: {
+			hex: 969696ff
+		}
+	}
+}
+ButtonStyle: {
+	default: {
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+	}
+	toggle: {
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+		checked: round-dark-gray
+		checkedOver: round-light-gray
+	}
+}
+CheckBoxStyle: {
+	default: {
+		checkboxOn: checkbox-on
+		checkboxOff: checkbox
+		font: font
+		fontColor: black
+	}
+}
+ImageButtonStyle: {
+	default: {
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+	}
+	toggle: {
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+		checked: round-dark-gray
+		checkedOver: round-light-gray
+	}
+}
+ImageTextButtonStyle: {
+	default: {
+		font: font
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+	}
+	toggle: {
+		font: font
+		fontColor: black
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+		checked: round-dark-gray
+		checkedOver: round-light-gray
+	}
+}
+LabelStyle: {
+	default: {
+		font: font
+		fontColor: black
+	}
+	title: {
+		font: title
+		fontColor: black
+	}
+}
+ListStyle: {
+	default: {
+		font: font
+		fontColorSelected: white
+		fontColorUnselected: black
+		selection: selection
+	}
+}
+ProgressBarStyle: {
+	default-horizontal: {
+		background: progress-bar
+		knobBefore: progress-bar-fill
+	}
+	default-vertical: {
+		background: progress-bar
+		knobBefore: progress-bar-fill-vert
+	}
+}
+ScrollPaneStyle: {
+	default: {
+		background: list
+		hScroll: round-black-small
+		hScrollKnob: round-gray-small
+		vScroll: round-black-small
+		vScrollKnob: round-gray-small
+	}
+}
+SelectBoxStyle: {
+	default: {
+		font: font
+		fontColor: black
+		scrollStyle: default
+		listStyle: default
+	}
+}
+SliderStyle: {
+	default-horizontal: {
+		background: slider-horizontal
+		knob: slider-knob
+	}
+	default-vertical: {
+		background: slider-vertical
+		knob: slider-knob
+	}
+}
+SplitPaneStyle: {
+	default-horizontal: {
+		handle: horizontal-split-pane
+	}
+	default-vertical: {
+		handle: vertical-split-pane
+	}
+}
+TextButtonStyle: {
+	default: {
+		font: font
+		fontColor: black
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+	}
+	toggle: {
+		font: font
+		fontColor: black
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+		checked: round-dark-gray
+		checkedOver: round-light-gray
+	}
+	special: {
+		font: title
+		fontColor: black
+		up: round-gray
+		down: round-dark-gray
+		over: round-light-gray
+	}
+}
+TextFieldStyle: {
+	default: {
+		font: font
+		fontColor: black
+		background: textfield
+		cursor: cursor
+		selection: gray
+	}
+}
+TextTooltipStyle: {
+	default: {
+		label: default
+		background: round-white
+	}
+}
+TouchpadStyle: {
+	default: {
+		background: touchpad
+		knob: touchpad-knob
+	}
+}
+TreeStyle: {
+	default: {
+		plus: plus
+		minus: minus
+	}
+}
+WindowStyle: {
+	default: {
+		background: window
+		titleFont: font
+		titleFontColor: black
+	}
+	dialog: {
+		background: window
+		titleFont: font
+		titleFontColor: black
+		stageBackground: white
+	}
+}
+}

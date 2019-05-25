@@ -2,6 +2,7 @@ package main.main;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -43,12 +44,15 @@ public class Main extends ApplicationAdapter {
 		camera.update();
 
 		floor = new Overworld();
-		new InputManager(camera);
 
 		Viewport viewport = new FitViewport(Globals.windowWidth, Globals.windowHeight);
-
 		stage = new Stage(viewport);
 		sceneManager = new SceneManager(stage);
+
+		InputMultiplexer multiplexer = new InputMultiplexer();
+		multiplexer.addProcessor(new InputManager(camera));
+		multiplexer.addProcessor(stage);
+		Gdx.input.setInputProcessor(multiplexer);
 	}
 
 	@Override

@@ -20,6 +20,14 @@ public class InputManager implements InputProcessor {
 		Gdx.input.setInputProcessor(this);
 	}
 
+	public int[] getMousePositionByPixel() {
+		return mousePositionByPixel;
+	}
+
+	public int[] getMousePositionByScreenSize() {
+		return mousePositionByScreenSize;
+	}
+
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
@@ -58,7 +66,8 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
+		mousePositionByPixel = new int[] { screenX, screenY };
+		mousePositionByScreenSize = new int[] { screenX / Globals.windowWidth, screenY / Globals.windowHeight };
 		return false;
 	}
 

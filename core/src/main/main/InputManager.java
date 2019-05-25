@@ -10,8 +10,8 @@ public class InputManager implements InputProcessor {
 	private final static double maxZoom = 8.0;
 	private final static double minZoom = 0.5;
 
-	private int[] mousePositionByPixel = new int[] { 0, 0 };
-	private int[] mousePositionByScreenSize = new int[] { 0, 0 };
+	private static int[] mousePositionByPixel = new int[] { 0, 0 };
+	private static int[] mousePositionByScreenSize = new int[] { 0, 0 };
 
 	private static OrthographicCamera camera;
 
@@ -66,8 +66,7 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		mousePositionByPixel = new int[] { screenX, screenY };
-		mousePositionByScreenSize = new int[] { screenX / Globals.windowWidth, screenY / Globals.windowHeight };
+		setMousePosition(screenX, screenY);
 		return false;
 	}
 
@@ -75,6 +74,11 @@ public class InputManager implements InputProcessor {
 	public boolean scrolled(int amount) {
 		zoom(amount);
 		return false;
+	}
+
+	public static void setMousePosition(int screenX, int screenY) {
+		mousePositionByPixel = new int[] { screenX, screenY };
+		mousePositionByScreenSize = new int[] { screenX / Globals.windowWidth, screenY / Globals.windowHeight };
 	}
 
 	public static void zoom(double amount) {

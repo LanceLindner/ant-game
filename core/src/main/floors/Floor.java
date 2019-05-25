@@ -26,6 +26,7 @@ public abstract class Floor {
 	public static final int FLOOR_LAYER = 0;
 
 	private Tile[][] tiles;
+	private Tile selectedTile = new Tile(this, 0, 0, null);
 
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRendererWithBleedingFix tiledMapRenderer;
@@ -89,6 +90,20 @@ public abstract class Floor {
 		return null;
 	}
 
+	public void selectTile(int x, int y) {
+		selectedTile.setSelected(false);
+		selectedTile = tiles[x][y];
+		selectedTile.setSelected(true);
+	}
+
+	public void clearAllResidue() {
+		for (int i = 0; i < tiles.length; ++i) {
+			for (int j = 0; j < tiles[0].length; ++j) {
+				tiles[i][j].removeResidue();
+			}
+		}
+	}
+
 	public void brightenArea(int x, int y) {
 		int radius = 10;
 
@@ -105,14 +120,6 @@ public abstract class Floor {
 							setTiledMapTile(x + i, y + j, SHADOW_LAYER, id);
 					}
 				}
-			}
-		}
-	}
-
-	public void clearAllResidue() {
-		for (int i = 0; i < tiles.length; ++i) {
-			for (int j = 0; j < tiles[0].length; ++j) {
-				tiles[i][j].removeResidue();
 			}
 		}
 	}

@@ -22,13 +22,13 @@ public abstract class Entity {
 		this.x = x;
 		this.y = y;
 		this.floor = floor;
+
 		floor.getTile(x, y).addEntity(this);
 	}
 
 	public abstract void update();
 
 	public void draw(SpriteBatch batch) {
-		System.out.println(x + " " + y);
 		int drawX = (int) (x * Globals.TILE_SIZE);
 		int drawY = (int) (y * Globals.TILE_SIZE);
 		draw(batch, drawX, drawY);

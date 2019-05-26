@@ -118,7 +118,7 @@ public class Tile {
 
 	public void draw(SpriteBatch batch) {
 		if (selected == true) {
-			batch.draw(selectedTileTexture, x * Globals.TILE_SIZE, x * Globals.TILE_SIZE, Globals.TILE_SIZE,
+			batch.draw(selectedTileTexture, x * Globals.TILE_SIZE, y * Globals.TILE_SIZE, Globals.TILE_SIZE,
 					Globals.TILE_SIZE);
 		}
 

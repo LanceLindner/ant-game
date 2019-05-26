@@ -50,7 +50,7 @@ public class Main extends ApplicationAdapter {
 		sceneManager = new SceneManager(stage);
 
 		InputMultiplexer multiplexer = new InputMultiplexer();
-		multiplexer.addProcessor(new InputManager(camera));
+		multiplexer.addProcessor(new InputManager(camera, floor));
 		multiplexer.addProcessor(stage);
 		Gdx.input.setInputProcessor(multiplexer);
 	}

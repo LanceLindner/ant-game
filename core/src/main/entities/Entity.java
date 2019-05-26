@@ -26,6 +26,14 @@ public abstract class Entity {
 		floor.getTile(x, y).addEntity(this);
 	}
 
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
 	public abstract void update();
 
 	public void draw(SpriteBatch batch) {

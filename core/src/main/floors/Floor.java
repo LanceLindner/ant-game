@@ -66,6 +66,10 @@ public abstract class Floor {
 		brightenArea(tiles.length / 2, tiles[0].length / 2);
 	}
 
+	public Player getPlayer() {
+		return player;
+	}
+
 	public Tile getTile(int x, int y) {
 		return tiles[x][y];
 	}

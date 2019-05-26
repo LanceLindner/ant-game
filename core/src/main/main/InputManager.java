@@ -4,25 +4,28 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import main.audio.AudioManager;
+import main.floors.Floor;
 
 public class InputManager implements InputProcessor {
 	private final static double maxZoom = 8.0;
 	private final static double minZoom = 0.5;
 
 	private static int[] mousePositionByPixel = new int[] { 0, 0 };
-	private static int[] mousePositionByScreenSize = new int[] { 0, 0 };
+	private static double[] mousePositionByScreenSize = new double[] { 0, 0 };
 
 	private static OrthographicCamera camera;
+	private static Floor floor;
 
-	public InputManager(OrthographicCamera theCamera) {
+	public InputManager(OrthographicCamera theCamera, Floor theFloor) {
 		camera = theCamera;
+		floor = theFloor;
 	}
 
 	public int[] getMousePositionByPixel() {
 		return mousePositionByPixel;
 	}
 
-	public int[] getMousePositionByScreenSize() {
+	public double[] getMousePositionByScreenSize() {
 		return mousePositionByScreenSize;
 	}
 
@@ -46,7 +49,15 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
+		setMousePosition(screenX, screenY);
+		int x = (int) (mousePositionByScreenSize[0] * Globals.TILES_PER_WIDTH / 2 * Globals.TILE_SIZE
+				+ floor.getPlayer().getX());
+		int y = (int) (mousePositionByScreenSize[1] * Globals.TILES_PER_HEIGHT / 2 * Globals.TILE_SIZE
+				+ floor.getPlayer().getY());
+		System.out.println(mousePositionByScreenSize[0] + "*" + Globals.TILES_PER_WIDTH + "*" + Globals.TILE_SIZE + "+"
+				+ floor.getPlayer().getX());
+		System.out.println(x + " " + y);
+		floor.selectTile(x, y);
 		return false;
 	}
 
@@ -76,7 +87,8 @@ public class InputManager implements InputProcessor {
 
 	public static void setMousePosition(int screenX, int screenY) {
 		mousePositionByPixel = new int[] { screenX, screenY };
-		mousePositionByScreenSize = new int[] { screenX / Globals.windowWidth, screenY / Globals.windowHeight };
+		mousePositionByScreenSize = new double[] { (double) screenX / Globals.windowWidth,
+				(double) screenY / Globals.windowHeight };
 	}
 
 	public static void zoom(double amount) {

@@ -3,11 +3,13 @@ package main.scenemanager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import main.main.Globals;
 
@@ -56,14 +58,42 @@ public class SceneManager {
 	}
 
 	private void initializeGameplayButtonTable() {
-
 		Button settingsButton = new Button(skin);
 		Button designViewButton = new Button(skin);
 
+		settingsButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				stack.add(settingsTable);
+			};
+		});
+
+		designViewButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				stack.add(designViewTable);
+			};
+		});
+
+		Table antTable = new Table();
+
+		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.row();
+		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.row();
+		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.row();
+		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.row();
+		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.row();
+		antTable.add(new Button(skin)).width(100).height(100);
+
+		gameplayButtonTable.debugCell();
 		gameplayButtonTable.add(settingsButton).left().top().width(100).height(100);
 
-		gameplayButtonTable.row();
-		gameplayButtonTable.add().width(Globals.windowWidth).height(Globals.windowHeight - 200);
+		gameplayButtonTable.row().expandX().height(Globals.windowHeight - 200);
+		gameplayButtonTable.add(antTable).right();
 		gameplayButtonTable.row();
 
 		gameplayButtonTable.add(designViewButton).bottom().right().width(100).height(100);
@@ -72,10 +102,56 @@ public class SceneManager {
 	}
 
 	private void initializeSettingsTable() {
-		// Not implemented yet
+
+		// Right now this is way more complex than would normally be.
+		// Normally we would use setBackground
+		Stack st = new Stack();
+
+		Button background = new Button(skin);
+		st.add(background);
+		settingsTable.add(st).width(Globals.windowHeight).height(Globals.windowWidth);
+
+		Table layer = new Table();
+		Button backButton = new Button(skin);
+
+		backButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				stack.removeActor(settingsTable);
+			};
+		});
+
+		layer.add(backButton).top().right();
+
+		st.add(layer);
+
+		settingsTable.setFillParent(true);
+		// stack.add(settingsTable);
 	}
 
 	private void initializeDesignViewTable() {
-		// Not implemented yet
+
+		// This is literally the same as settings right now
+		Stack st = new Stack();
+
+		Button background = new Button(skin);
+		st.add(background);
+		designViewTable.add(st).width(Globals.windowHeight).height(Globals.windowWidth);
+
+		Table layer = new Table();
+		Button backButton = new Button(skin);
+
+		backButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				stack.removeActor(designViewTable);
+			};
+		});
+
+		layer.add(backButton).top().right();
+
+		st.add(layer);
+
+		designViewTable.setFillParent(true);
 	}
 }

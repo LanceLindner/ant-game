@@ -50,14 +50,8 @@ public class InputManager implements InputProcessor {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		setMousePosition(screenX, screenY);
-		int x = (int) (mousePositionByScreenSize[0] * Globals.TILES_PER_WIDTH / 2 * Globals.TILE_SIZE
-				+ floor.getPlayer().getX());
-		int y = (int) (mousePositionByScreenSize[1] * Globals.TILES_PER_HEIGHT / 2 * Globals.TILE_SIZE
-				+ floor.getPlayer().getY());
-		System.out.println(mousePositionByScreenSize[0] + "*" + Globals.TILES_PER_WIDTH + "*" + Globals.TILE_SIZE + "+"
-				+ floor.getPlayer().getX());
-		System.out.println(x + " " + y);
-		floor.selectTile(x, y);
+		// make math accurate later
+		selectTile();
 		return false;
 	}
 
@@ -86,9 +80,17 @@ public class InputManager implements InputProcessor {
 	}
 
 	public static void setMousePosition(int screenX, int screenY) {
-		mousePositionByPixel = new int[] { screenX, screenY };
+		mousePositionByPixel = new int[] { screenX, Globals.windowHeight - screenY };
 		mousePositionByScreenSize = new double[] { (double) screenX / Globals.windowWidth,
-				(double) screenY / Globals.windowHeight };
+				(double) (Globals.windowHeight - screenY) / Globals.windowHeight };
+	}
+
+	public static void selectTile() {
+		int x = (int) (mousePositionByScreenSize[0] * Globals.TILES_PER_WIDTH * camera.zoom + floor.getPlayer().getX()
+				- Globals.TILES_PER_WIDTH * camera.zoom / 2 + 0.5);
+		int y = (int) (mousePositionByScreenSize[1] * Globals.TILES_PER_HEIGHT * camera.zoom + floor.getPlayer().getY()
+				- Globals.TILES_PER_HEIGHT * camera.zoom / 2 + 0.5);
+		floor.selectTile(x, y);
 	}
 
 	public static void zoom(double amount) {

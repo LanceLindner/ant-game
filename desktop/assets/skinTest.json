@@ -73,6 +73,20 @@ com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
 			a: 1
 		}
 	}
+	transparentBackground: {
+		name: blackPixel
+		color: {
+			r: 1
+			g: 1
+			b: 1
+			a: 0.25
+		}
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Table: {
+	default: {
+		background: transparentBackground
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 	default: {

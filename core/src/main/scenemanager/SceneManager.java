@@ -39,8 +39,8 @@ public class SceneManager {
 
 		rootTable = new Table();
 		gameplayButtonTable = new Table();
-		settingsTable = new Table();
-		designViewTable = new Table();
+		settingsTable = new Table(skin);
+		designViewTable = new Table(skin);
 
 		initializeGameplayButtonTable();
 		initializeSettingsTable();
@@ -114,7 +114,7 @@ public class SceneManager {
 			};
 		});
 
-		// settingsTable.setBackground("blackPixel");
+		settingsTable.setBackground("transparentBackground");
 		settingsTable.add(backButton).top().left();
 
 		settingsTable.setFillParent(true);
@@ -123,14 +123,7 @@ public class SceneManager {
 
 	private void initializeDesignViewTable() {
 
-		// This is literally the same as settings right now
-		Stack st = new Stack();
-
-		Button background = new Button(skin);
-		st.add(background);
-		designViewTable.add(st).width(Globals.windowHeight).height(Globals.windowWidth);
-
-		Table layer = new Table();
+		// This is literally the same as settings right no
 		Button backButton = new Button(skin);
 
 		backButton.addListener(new ClickListener() {
@@ -140,9 +133,8 @@ public class SceneManager {
 			};
 		});
 
-		layer.add(backButton).top().right();
-
-		st.add(layer);
+		designViewTable.setBackground("transparentBackground");
+		designViewTable.add(backButton).top().right();
 
 		designViewTable.setFillParent(true);
 	}

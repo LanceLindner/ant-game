@@ -65,9 +65,17 @@ public class Player extends Entity {
 	}
 
 	public void moveX(double deltaX) {
+		x += deltaX;
+	}
+
+	public void moveY(double deltaY) {
+		y += deltaY;
+	}
+
+	public void moveWithCollisionX(double deltaX) {
 		if (Math.abs(deltaX) > 0.5) {
 			for (int i = 0; i < 2; ++i) {
-				moveX(deltaX / 2);
+				moveWithCollisionX(deltaX / 2);
 			}
 			return;
 		}
@@ -108,10 +116,10 @@ public class Player extends Entity {
 		x = newX;
 	}
 
-	public void moveY(double deltaY) {
+	public void moveWithCollisionY(double deltaY) {
 		if (Math.abs(deltaY) > 0.5) {
 			for (int i = 0; i < 2; ++i) {
-				moveY(deltaY / 2);
+				moveWithCollisionY(deltaY / 2);
 			}
 			return;
 		}

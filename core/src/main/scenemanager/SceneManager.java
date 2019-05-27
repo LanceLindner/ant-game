@@ -58,8 +58,8 @@ public class SceneManager {
 	}
 
 	private void initializeGameplayButtonTable() {
-		Button settingsButton = new Button(skin);
-		Button designViewButton = new Button(skin);
+		Button settingsButton = new Button(skin, "optionsButton");
+		Button designViewButton = new Button(skin, "designViewButton");
 
 		settingsButton.addListener(new ClickListener() {
 			@Override
@@ -105,13 +105,6 @@ public class SceneManager {
 
 		// Right now this is way more complex than would normally be.
 		// Normally we would use setBackground
-		Stack st = new Stack();
-
-		Button background = new Button(skin);
-		st.add(background);
-		settingsTable.add(st).width(Globals.windowHeight).height(Globals.windowWidth);
-
-		Table layer = new Table();
 		Button backButton = new Button(skin);
 
 		backButton.addListener(new ClickListener() {
@@ -121,9 +114,8 @@ public class SceneManager {
 			};
 		});
 
-		layer.add(backButton).top().right();
-
-		st.add(layer);
+		// settingsTable.setBackground("blackPixel");
+		settingsTable.add(backButton).top().left();
 
 		settingsTable.setFillParent(true);
 		// stack.add(settingsTable);

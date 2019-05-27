@@ -51,10 +51,10 @@ public class InputManager implements InputProcessor {
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		setMousePosition(screenX, screenY);
 		// make math accurate later
-		int x = (int) (mousePositionByScreenSize[0] * Globals.TILES_PER_WIDTH + floor.getPlayer().getX()
-				- Globals.TILES_PER_WIDTH / 2);
-		int y = (int) (mousePositionByScreenSize[1] * Globals.TILES_PER_HEIGHT + floor.getPlayer().getY()
-				- Globals.TILES_PER_HEIGHT / 2);
+		int x = (int) (mousePositionByScreenSize[0] * Globals.TILES_PER_WIDTH * camera.zoom + floor.getPlayer().getX()
+				- Globals.TILES_PER_WIDTH * camera.zoom / 2 + 0.5);
+		int y = (int) (mousePositionByScreenSize[1] * Globals.TILES_PER_HEIGHT * camera.zoom + floor.getPlayer().getY()
+				- Globals.TILES_PER_HEIGHT * camera.zoom / 2 + 0.5);
 		floor.selectTile(x, y);
 		return false;
 	}

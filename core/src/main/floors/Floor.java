@@ -25,6 +25,7 @@ public abstract class Floor {
 	public static final int INTERACTABLE_LAYER = 1;
 	public static final int FLOOR_LAYER = 0;
 
+	private String name;
 	private Tile[][] tiles;
 	private Tile selectedTile = new Tile(this, 0, 0, null);
 
@@ -36,6 +37,7 @@ public abstract class Floor {
 	private Player player;
 
 	public Floor(String floorFileName) {
+		name = floorFileName;
 		TmxMapLoader tmxMapLoader = new TmxMapLoader();
 		Parameters paramaters = new TmxMapLoader.Parameters();
 		paramaters.generateMipMaps = true;
@@ -64,6 +66,10 @@ public abstract class Floor {
 			}
 		}
 		brightenArea(tiles.length / 2, tiles[0].length / 2, 10);
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public Player getPlayer() {

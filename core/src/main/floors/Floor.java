@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 import main.entities.Entity;
 import main.entities.Player;
+import main.floormanager.FloorManager;
 import main.tiles.Tile;
 import main.tiles.TileType;
 

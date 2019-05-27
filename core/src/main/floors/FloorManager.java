@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 public class FloorManager {
 	private static HashMap<String, Floor> allFloors = new HashMap<String, Floor>();
-	private Floor currentFloor;
+	private static Floor currentFloor;
 
-	public Floor getFloor() {
+	public static Floor getFloor() {
 		return currentFloor;
 	}
 
-	public void addFloor(Floor floor) {
+	public static void addFloor(Floor floor) {
 		allFloors.put(floor.getName(), floor);
 	}
 
-	public void setCurrentFloor(String name) {
+	public static void setCurrentFloor(String name) {
 		currentFloor = allFloors.get(name);
 	}
 }

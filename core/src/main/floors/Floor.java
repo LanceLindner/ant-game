@@ -46,6 +46,8 @@ public abstract class Floor {
 		tiledMapRenderer = new OrthogonalTiledMapRendererWithBleedingFix(tiledMap);
 
 		player = new Player(this, tiles.length / 2, tiles[0].length / 2);
+
+		FloorManager.addFloor(this);
 	}
 
 	private void tiledMapToTiles() {

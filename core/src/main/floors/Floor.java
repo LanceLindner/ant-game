@@ -63,7 +63,7 @@ public abstract class Floor {
 				setTiledMapTile(i, j, SHADOW_LAYER, id);
 			}
 		}
-		brightenArea(tiles.length / 2, tiles[0].length / 2);
+		brightenArea(tiles.length / 2, tiles[0].length / 2, 10);
 	}
 
 	public Player getPlayer() {
@@ -109,8 +109,10 @@ public abstract class Floor {
 	}
 
 	public void brightenArea(int x, int y) {
-		int radius = 10;
+		brightenArea(x, y, 10);
+	}
 
+	public void brightenArea(int x, int y, int radius) {
 		for (int i = -radius; i < radius; ++i) {
 			for (int j = -radius; j < radius; ++j) {
 				int sumOfLegsSquared = i * i + j * j;

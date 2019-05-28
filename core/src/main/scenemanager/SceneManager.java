@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import main.floors.Floor;
 import main.main.Globals;
 
 public class SceneManager {
@@ -28,9 +29,13 @@ public class SceneManager {
 	private TextureAtlas atlas;
 	private Skin skin;
 
-	public SceneManager(Stage stage) {
+	private Floor floor;
+
+	public SceneManager(Stage stage, Floor floor) {
 		atlas = new TextureAtlas("assets/skinTest.atlas");
 		skin = new Skin(new FileHandle("assets/skinTest.json"), atlas);
+
+		this.floor = floor;
 
 		this.stage = stage;
 		stack = new Stack();
@@ -64,6 +69,7 @@ public class SceneManager {
 		settingsButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				stack.removeActor(gameplayButtonTable);
 				stack.add(settingsTable);
 			};
 		});
@@ -71,71 +77,67 @@ public class SceneManager {
 		designViewButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				stack.removeActor(gameplayButtonTable);
 				stack.add(designViewTable);
 			};
 		});
 
 		Table antTable = new Table();
 
-		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.add(new Button(skin)).width(75).height(75);
 		antTable.row();
-		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.add(new Button(skin)).width(75).height(75);
 		antTable.row();
-		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.add(new Button(skin)).width(75).height(75);
 		antTable.row();
-		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.add(new Button(skin)).width(75).height(75);
 		antTable.row();
-		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.add(new Button(skin)).width(75).height(75);
 		antTable.row();
-		antTable.add(new Button(skin)).width(100).height(100);
+		antTable.add(new Button(skin)).width(75).height(75);
 
 		gameplayButtonTable.debugCell();
-		gameplayButtonTable.add(settingsButton).left().top().width(100).height(100);
+		gameplayButtonTable.add(settingsButton).left().top().width(75).height(75);
 
-		gameplayButtonTable.row().expandX().height(Globals.windowHeight - 200);
+		gameplayButtonTable.row().expandX().height(Globals.windowHeight - 150);
 		gameplayButtonTable.add(antTable).right();
 		gameplayButtonTable.row();
 
-		gameplayButtonTable.add(designViewButton).bottom().right().width(100).height(100);
+		gameplayButtonTable.add(designViewButton).bottom().right().width(75).height(75);
 
 		stack.add(gameplayButtonTable);
 	}
 
 	private void initializeSettingsTable() {
-
-		// Right now this is way more complex than would normally be.
-		// Normally we would use setBackground
-		Button backButton = new Button(skin);
+		Button backButton = new Button(skin, "backButton");
 
 		backButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				stack.removeActor(settingsTable);
+				stack.addActor(gameplayButtonTable);
 			};
 		});
 
 		settingsTable.setBackground("transparentBackground");
-		settingsTable.add(backButton).top().left();
+		settingsTable.add(backButton).padBottom(Globals.windowHeight - 75).padRight(Globals.windowWidth - 75);
 
 		settingsTable.setFillParent(true);
-		// stack.add(settingsTable);
 	}
 
 	private void initializeDesignViewTable() {
-
-		// This is literally the same as settings right no
-		Button backButton = new Button(skin);
+		Button backButton = new Button(skin, "backButton");
 
 		backButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				stack.removeActor(designViewTable);
+				stack.addActor(gameplayButtonTable);
 			};
 		});
 
 		designViewTable.setBackground("transparentBackground");
-		designViewTable.add(backButton).top().right();
+		designViewTable.add(backButton).padBottom(Globals.windowHeight - 75).padRight(Globals.windowWidth - 75);
 
-		designViewTable.setFillParent(true);
 	}
 }

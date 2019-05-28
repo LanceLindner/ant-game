@@ -47,7 +47,7 @@ public class Main extends ApplicationAdapter {
 
 		Viewport viewport = new FitViewport(Globals.windowWidth, Globals.windowHeight);
 		stage = new Stage(viewport);
-		sceneManager = new SceneManager(stage);
+		sceneManager = new SceneManager(stage, floor);
 
 		InputMultiplexer multiplexer = new InputMultiplexer();
 		multiplexer.addProcessor(new InputManager(camera, floor));

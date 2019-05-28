@@ -109,6 +109,10 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 		up: designViewButtonUp
 		down: designViewButtonDown
 	}
+	backButton: {
+		up: backButtonUp
+		down: backButtonDown
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: {

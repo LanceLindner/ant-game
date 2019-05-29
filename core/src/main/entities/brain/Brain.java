@@ -2,6 +2,8 @@ package main.entities.brain;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import main.main.Globals;
 
 public class Brain {
@@ -125,4 +127,20 @@ public class Brain {
 		return outputValues;
 	}
 
+	/**
+	 * Draws the brain to a batch
+	 *
+	 * @param batch The batch that the brain needs to be drawn to
+	 */
+	public void draw(SpriteBatch batch) {
+		for (int i = 0; i < neurons.get(0).length; ++i) {
+			// draw
+		}
+		for (int i = 0; i < neurons.get(1).length; ++i) {
+			// draw
+		}
+		for (int i = 0; i < neurons.get(2).length; ++i) {
+			// draw
+		}
+	}
 }

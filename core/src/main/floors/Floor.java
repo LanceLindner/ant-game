@@ -37,6 +37,8 @@ public abstract class Floor {
 
 	private Player player;
 
+	private boolean paused = false;
+
 	public Floor(String floorFileName) {
 		name = floorFileName;
 		TmxMapLoader tmxMapLoader = new TmxMapLoader();
@@ -81,6 +83,10 @@ public abstract class Floor {
 
 	public Tile getTile(int x, int y) {
 		return tiles[x][y];
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
 	}
 
 	public void setTiledMapTile(int x, int y, int layer, int id) {
@@ -146,17 +152,19 @@ public abstract class Floor {
 	}
 
 	public void update() {
-		int[] bounds = correctTileBounds(player.getVisibleTileBounds());
+		if (paused == false) {
+			int[] bounds = correctTileBounds(player.getVisibleTileBounds());
 
-		for (int i = bounds[0]; i < bounds[1]; ++i) {
-			for (int j = bounds[2]; j < bounds[3]; ++j) {
-				tiles[i][j].update();
+			for (int i = bounds[0]; i < bounds[1]; ++i) {
+				for (int j = bounds[2]; j < bounds[3]; ++j) {
+					tiles[i][j].update();
+				}
 			}
+			for (Entity entity : entities) {
+				entity.update();
+			}
+			player.update();
 		}
-		for (Entity entity : entities) {
-			entity.update();
-		}
-		player.update();
 	}
 
 	public void draw(OrthographicCamera camera, SpriteBatch batch) {

@@ -51,6 +51,10 @@ public class Tile {
 		return selected;
 	}
 
+	public Entity getEntity() {
+		return entity;
+	}
+
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
@@ -120,8 +124,6 @@ public class Tile {
 		if (selected == true) {
 			batch.draw(selectedTileTexture, x * Globals.TILE_SIZE, y * Globals.TILE_SIZE, Globals.TILE_SIZE,
 					Globals.TILE_SIZE);
-			if (entity != null)
-				entity.selectedDraw(batch);
 		}
 
 		if (corpse != null)

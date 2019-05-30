@@ -51,7 +51,7 @@ public class InputManager implements InputProcessor {
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		setMousePosition(screenX, screenY);
 		// make math accurate later
-		selectTile();
+		selectTileAndEntity();
 		return false;
 	}
 
@@ -85,12 +85,13 @@ public class InputManager implements InputProcessor {
 				(double) (Globals.windowHeight - screenY) / Globals.windowHeight };
 	}
 
-	public static void selectTile() {
+	public static void selectTileAndEntity() {
 		int x = (int) (mousePositionByScreenSize[0] * Globals.TILES_PER_WIDTH * camera.zoom + floor.getPlayer().getX()
 				- Globals.TILES_PER_WIDTH * camera.zoom / 2 + 0.5);
 		int y = (int) (mousePositionByScreenSize[1] * Globals.TILES_PER_HEIGHT * camera.zoom + floor.getPlayer().getY()
 				- Globals.TILES_PER_HEIGHT * camera.zoom / 2 + 0.5);
 		floor.selectTile(x, y);
+		floor.selectEntity(x, y);
 	}
 
 	public static void zoom(double amount) {

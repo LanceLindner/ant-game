@@ -11,6 +11,9 @@ public class Neuron {
 	private static Texture inactiveNeuronTexture = Globals.assetManagerManager.getTexture("inactiveNeuron");
 	private static Texture activeNeuronTexture = Globals.assetManagerManager.getTexture("activeNeuron");
 
+	private int x;
+	private int y;
+
 	protected int value = 0;
 	protected boolean active = true;
 	protected int numberOfInputs;
@@ -20,7 +23,9 @@ public class Neuron {
 	/**
 	 * Constructor for Neuron
 	 */
-	public Neuron() {
+	public Neuron(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	/**

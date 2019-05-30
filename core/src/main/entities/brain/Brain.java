@@ -31,11 +31,10 @@ public class Brain {
 
 		for (int i = 0; i < neurons.size(); ++i) {
 			for (int j = 0; j < neurons.get(i).length; ++j) {
-				boolean conjunctive;
 				if (i == 1)
-					neurons.get(i)[j] = new ConjunctiveNeuron();
+					neurons.get(i)[j] = new ConjunctiveNeuron(j, i);
 				else
-					neurons.get(i)[j] = new Neuron();
+					neurons.get(i)[j] = new Neuron(j, i);
 
 			}
 		}

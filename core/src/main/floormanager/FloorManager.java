@@ -11,7 +11,7 @@ public class FloorManager {
 
 	private static ArrayList<FloorObserver> observers = new ArrayList<FloorObserver>();
 
-	public static Floor getFloor() {
+	public static Floor getCurrentFloor() {
 		return currentFloor;
 	}
 

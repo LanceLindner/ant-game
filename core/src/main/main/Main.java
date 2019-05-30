@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import main.floors.Floor;
+import main.floormanager.FloorManager;
 import main.floors.Overworld;
 import main.persistance.Persistance;
 import main.scenemanager.SceneManager;
@@ -23,8 +23,6 @@ public class Main extends Game {
 
 	private Stage stage;
 	private SceneManager sceneManager;
-
-	private Floor floor;
 
 	@Override
 	public void create() {
@@ -43,14 +41,15 @@ public class Main extends Game {
 		camera.setToOrtho(false, Globals.windowWidthInTilePixels, Globals.windowHeightInTilePixels);
 		camera.update();
 
-		floor = new Overworld();
+		FloorManager.addFloor(new Overworld());
+		FloorManager.setCurrentFloor("overworld");
 
 		Viewport viewport = new FitViewport(Globals.windowWidth, Globals.windowHeight);
 		stage = new Stage(viewport);
-		sceneManager = new SceneManager(stage, floor);
+		sceneManager = new SceneManager(stage, FloorManager.getCurrentFloor());
 
 		InputMultiplexer multiplexer = new InputMultiplexer();
-		multiplexer.addProcessor(new InputManager(camera, floor));
+		multiplexer.addProcessor(new InputManager(camera, FloorManager.getCurrentFloor()));
 		multiplexer.addProcessor(stage);
 		Gdx.input.setInputProcessor(multiplexer);
 	}
@@ -63,7 +62,7 @@ public class Main extends Game {
 		Globals.deltaTime = Gdx.graphics.getDeltaTime();
 		Globals.globalTime += Globals.deltaTime;
 
-		floor.render(camera, batch);
+		FloorManager.getCurrentFloor().render(camera, batch);
 		sceneManager.render();
 	}
 
@@ -75,7 +74,7 @@ public class Main extends Game {
 
 		batch.dispose();
 
-		floor.dispose();
+		FloorManager.getCurrentFloor().dispose();
 
 		Globals.assetManagerManager.dispose();
 	}

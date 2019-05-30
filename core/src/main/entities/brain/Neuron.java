@@ -2,6 +2,8 @@ package main.entities.brain;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public class Neuron {
 	protected int value = 0;
 	protected boolean active = true;
@@ -97,5 +99,9 @@ public class Neuron {
 	 */
 	public void changeValue(int difference) {
 		value += difference;
+	}
+
+	public void draw(SpriteBatch batch, int x, int y) {
+
 	}
 }

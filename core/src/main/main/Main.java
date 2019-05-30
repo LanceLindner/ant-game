@@ -1,6 +1,6 @@
 package main.main;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,7 +16,7 @@ import main.floors.Overworld;
 import main.persistance.Persistance;
 import main.scenemanager.SceneManager;
 
-public class Main extends ApplicationAdapter {
+public class Main extends Game {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private static BitmapFont font;
@@ -78,5 +78,12 @@ public class Main extends ApplicationAdapter {
 		floor.dispose();
 
 		Globals.assetManagerManager.dispose();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		stage.getViewport().update(width, height);
+		camera.update();
+
 	}
 }

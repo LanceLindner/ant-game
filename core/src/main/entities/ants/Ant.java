@@ -275,6 +275,6 @@ public class Ant extends Entity {
 
 	@Override
 	public void selectedDraw(SpriteBatch batch) {
-		brain.draw(batch);
+		brain.draw(batch, (int) (x * Globals.TILE_SIZE), (int) (y * Globals.TILE_SIZE));
 	}
 }

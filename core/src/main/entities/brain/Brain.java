@@ -131,10 +131,10 @@ public class Brain {
 	 *
 	 * @param batch The batch that the brain needs to be drawn to
 	 */
-	public void draw(SpriteBatch batch) {
+	public void draw(SpriteBatch batch, int entityOffsetX, int entityOffsetY) {
 		for (int i = 0; i < neurons.size(); ++i) {
 			for (int j = 0; j < neurons.get(i).length; ++j) {
-				neurons.get(i)[j].draw(batch);
+				neurons.get(i)[j].draw(batch, entityOffsetX, entityOffsetY);
 			}
 		}
 	}

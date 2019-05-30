@@ -10,8 +10,8 @@ import main.main.Globals;
 public class Neuron {
 	public static final int NEURON_SIZE = 4;
 	public static final int NEURON_SPACING = 1;
-	public static final int NEURON_OFFSET_X = Globals.windowWidth / 2;
-	public static final int NEURON_OFFSET_Y = Globals.windowHeight / 2;
+	public static final int NEURON_OFFSET_X = Globals.windowWidth / 100;
+	public static final int NEURON_OFFSET_Y = Globals.windowHeight / 100;
 
 	private static Texture inactiveNeuronTexture = Globals.assetManagerManager.getTexture("inactiveNeuron");
 	private static Texture activeNeuronTexture = Globals.assetManagerManager.getTexture("activeNeuron");
@@ -117,15 +117,14 @@ public class Neuron {
 		value += difference;
 	}
 
-	public void draw(SpriteBatch batch) {
+	public void draw(SpriteBatch batch, int entityOffsetX, int entityOffsetY) {
 		Texture texture;
 		if (value > 0.5) {
 			texture = activeNeuronTexture;
 		} else {
 			texture = inactiveNeuronTexture;
 		}
-		batch.draw(texture, x * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_X,
-				y * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_Y, 100, 100);
-		System.out.println((x * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_X));
+		batch.draw(texture, x * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_X + entityOffsetX,
+				y * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_Y + entityOffsetY);
 	}
 }

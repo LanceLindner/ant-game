@@ -2,7 +2,23 @@ package main.entities.brain;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import main.main.Globals;
+
 public class Neuron {
+	public static final int NEURON_SIZE = 4;
+	public static final int NEURON_SPACING = 1;
+	public static final int NEURON_OFFSET_X = Globals.windowWidth / 100;
+	public static final int NEURON_OFFSET_Y = Globals.windowHeight / 100;
+
+	private static Texture inactiveNeuronTexture = Globals.assetManagerManager.getTexture("inactiveNeuron");
+	private static Texture activeNeuronTexture = Globals.assetManagerManager.getTexture("activeNeuron");
+
+	private int x;
+	private int y;
+
 	protected int value = 0;
 	protected boolean active = true;
 	protected int numberOfInputs;
@@ -12,7 +28,9 @@ public class Neuron {
 	/**
 	 * Constructor for Neuron
 	 */
-	public Neuron() {
+	public Neuron(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	/**
@@ -97,5 +115,16 @@ public class Neuron {
 	 */
 	public void changeValue(int difference) {
 		value += difference;
+	}
+
+	public void draw(SpriteBatch batch, int entityOffsetX, int entityOffsetY) {
+		Texture texture;
+		if (value > 0.5) {
+			texture = activeNeuronTexture;
+		} else {
+			texture = inactiveNeuronTexture;
+		}
+		batch.draw(texture, x * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_X + entityOffsetX,
+				y * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_Y + entityOffsetY);
 	}
 }

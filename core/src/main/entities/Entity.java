@@ -53,4 +53,8 @@ public abstract class Entity {
 		batch.draw(new TextureRegion(textureRegion, 0, 0, 16, 16), drawX, drawY, (float) Globals.TILE_SIZE / 2,
 				(float) Globals.TILE_SIZE / 2, Globals.TILE_SIZE, Globals.TILE_SIZE, 1, 1, -(direction + 3) * 90, true);
 	}
+
+	public void selectedDraw(SpriteBatch batch) {
+
+	}
 }

@@ -31,11 +31,10 @@ public class Brain {
 
 		for (int i = 0; i < neurons.size(); ++i) {
 			for (int j = 0; j < neurons.get(i).length; ++j) {
-				boolean conjunctive;
 				if (i == 1)
-					neurons.get(i)[j] = new ConjunctiveNeuron();
+					neurons.get(i)[j] = new ConjunctiveNeuron(j, i);
 				else
-					neurons.get(i)[j] = new Neuron();
+					neurons.get(i)[j] = new Neuron(j, i);
 
 			}
 		}
@@ -132,15 +131,11 @@ public class Brain {
 	 *
 	 * @param batch The batch that the brain needs to be drawn to
 	 */
-	public void draw(SpriteBatch batch) {
-		for (int i = 0; i < neurons.get(0).length; ++i) {
-			// draw
-		}
-		for (int i = 0; i < neurons.get(1).length; ++i) {
-			// draw
-		}
-		for (int i = 0; i < neurons.get(2).length; ++i) {
-			// draw
+	public void draw(SpriteBatch batch, int entityOffsetX, int entityOffsetY) {
+		for (int i = 0; i < neurons.size(); ++i) {
+			for (int j = 0; j < neurons.get(i).length; ++j) {
+				neurons.get(i)[j].draw(batch, entityOffsetX, entityOffsetY);
+			}
 		}
 	}
 }

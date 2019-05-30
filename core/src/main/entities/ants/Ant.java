@@ -33,7 +33,7 @@ public class Ant extends Entity {
 
 		isAlive = true;
 		health = 10;
-		antSpeed = 5;
+		antSpeed = 1;
 		cooldown = 0;
 
 		floor.brightenArea(x, y);
@@ -271,5 +271,10 @@ public class Ant extends Entity {
 		y = tile.getY();
 		AudioManager.playSound(SoundType.getSoundTypeById(1).getSound(), x, y);
 		spriteSheet.setToDie();
+	}
+
+	@Override
+	public void selectedDraw(SpriteBatch batch) {
+		brain.draw(batch, (int) (x * Globals.TILE_SIZE), (int) (y * Globals.TILE_SIZE));
 	}
 }

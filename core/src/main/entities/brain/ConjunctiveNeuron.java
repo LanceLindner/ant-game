@@ -1,6 +1,11 @@
 package main.entities.brain;
 
 public class ConjunctiveNeuron extends Neuron {
+
+	public ConjunctiveNeuron(int x, int y) {
+		super(x, y);
+	}
+
 	/**
 	 * Returns 1 if all of the input neurons are excited
 	 */

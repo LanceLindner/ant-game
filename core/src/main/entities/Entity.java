@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import main.floors.AlteredOrthogonalTiledMapRenderer;
 import main.floors.Floor;
 import main.main.Globals;
 import main.spritesheets.SpriteSheet;
@@ -64,7 +65,7 @@ public abstract class Entity {
 				(float) Globals.TILE_SIZE / 2, Globals.TILE_SIZE, Globals.TILE_SIZE, 1, 1, -(direction + 3) * 90, true);
 	}
 
-	public void selectedDraw(SpriteBatch batch) {
+	public void selectedDraw(SpriteBatch batch, AlteredOrthogonalTiledMapRenderer tiledMapRenderer) {
 
 	}
 }

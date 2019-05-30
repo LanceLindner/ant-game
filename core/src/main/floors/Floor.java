@@ -29,6 +29,7 @@ public abstract class Floor {
 	private String name;
 	private Tile[][] tiles;
 	private Tile selectedTile = new Tile(this, 0, 0, null);
+	private Entity selectedEntity;
 
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRendererWithBleedingFix tiledMapRenderer;
@@ -49,6 +50,7 @@ public abstract class Floor {
 		tiledMapRenderer = new OrthogonalTiledMapRendererWithBleedingFix(tiledMap);
 
 		player = new Player(this, tiles.length / 2, tiles[0].length / 2);
+		selectedEntity = player;
 
 		FloorManager.addFloor(this);
 	}
@@ -115,6 +117,14 @@ public abstract class Floor {
 		selectedTile.setSelected(true);
 	}
 
+	public void selectEntity(int x, int y) {
+		if (tiles[x][y].getEntity() != null) {
+			selectedEntity.setSelected(false);
+			selectedEntity = tiles[x][y].getEntity();
+			selectedEntity.setSelected(true);
+		}
+	}
+
 	public void clearAllResidue() {
 		for (int i = 0; i < tiles.length; ++i) {
 			for (int j = 0; j < tiles[0].length; ++j) {
@@ -178,10 +188,10 @@ public abstract class Floor {
 
 		for (int i = bounds[0]; i < bounds[1]; ++i) {
 			for (int j = bounds[2]; j < bounds[3]; ++j) {
-
 				tiles[i][j].draw(batch);
 			}
 		}
+		selectedEntity.selectedDraw(batch);
 		player.draw(batch);
 		batch.end();
 

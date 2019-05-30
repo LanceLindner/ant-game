@@ -15,6 +15,8 @@ public abstract class Entity {
 
 	protected int direction;
 
+	protected boolean selected = false;
+
 	protected Texture image = Globals.assetManagerManager.getTexture("box");
 	protected SpriteSheet spriteSheet;
 
@@ -32,6 +34,14 @@ public abstract class Entity {
 
 	public double getY() {
 		return y;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 
 	public abstract void update();

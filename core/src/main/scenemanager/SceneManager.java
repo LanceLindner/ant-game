@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -17,7 +16,6 @@ import main.main.Globals;
 public class SceneManager {
 
 	private Stage stage;
-	private Stack stack;
 
 	private Table rootTable;
 
@@ -38,11 +36,10 @@ public class SceneManager {
 		this.floor = floor;
 
 		this.stage = stage;
-		stack = new Stack();
 
-		Gdx.input.setInputProcessor(stage);
+		// Gdx.input.setInputProcessor(stage);
 
-		rootTable = new Table();
+		rootTable = new Table(skin);
 		gameplayButtonTable = new Table();
 		settingsTable = new Table(skin);
 		designViewTable = new Table(skin);
@@ -52,8 +49,6 @@ public class SceneManager {
 		initializeDesignViewTable();
 
 		rootTable.setFillParent(true);
-		stack.setFillParent(true);
-		rootTable.addActor(stack);
 		stage.addActor(rootTable);
 	}
 
@@ -69,75 +64,86 @@ public class SceneManager {
 		settingsButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				stack.removeActor(gameplayButtonTable);
-				stack.add(settingsTable);
+				rootTable.clearChildren();
+				rootTable.addActor(settingsTable);
 			};
 		});
 
 		designViewButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				stack.removeActor(gameplayButtonTable);
-				stack.add(designViewTable);
+				rootTable.clearChildren();
+				rootTable.addActor(designViewTable);
 			};
 		});
 
 		Table antTable = new Table();
 
-		antTable.add(new Button(skin)).width(75).height(75);
+		antTable.add(new Button(skin)).width(75).height(75).right().expandX();
 		antTable.row();
-		antTable.add(new Button(skin)).width(75).height(75);
+		antTable.add(new Button(skin)).width(75).height(75).right();
 		antTable.row();
-		antTable.add(new Button(skin)).width(75).height(75);
+		antTable.add(new Button(skin)).width(75).height(75).right();
 		antTable.row();
-		antTable.add(new Button(skin)).width(75).height(75);
+		antTable.add(new Button(skin)).width(75).height(75).right();
 		antTable.row();
-		antTable.add(new Button(skin)).width(75).height(75);
+		antTable.add(new Button(skin)).width(75).height(75).right();
 		antTable.row();
-		antTable.add(new Button(skin)).width(75).height(75);
+		antTable.add(new Button(skin)).width(75).height(75).right();
 
-		gameplayButtonTable.debugCell();
 		gameplayButtonTable.add(settingsButton).left().top().width(75).height(75);
 
-		gameplayButtonTable.row().expandX().height(Globals.windowHeight - 150);
-		gameplayButtonTable.add(antTable).right();
+		gameplayButtonTable.row().width(Globals.windowWidth).height(Globals.windowHeight - 150);
+		gameplayButtonTable.add(antTable);
 		gameplayButtonTable.row();
 
 		gameplayButtonTable.add(designViewButton).bottom().right().width(75).height(75);
 
-		stack.add(gameplayButtonTable);
+		rootTable.add(gameplayButtonTable);
 	}
 
 	private void initializeSettingsTable() {
+		settingsTable.setFillParent(true);
+		settingsTable.top().left();
+		settingsTable.setDebug(true);
+
 		Button backButton = new Button(skin, "backButton");
 
 		backButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				stack.removeActor(settingsTable);
-				stack.addActor(gameplayButtonTable);
+				rootTable.clearChildren();
+				rootTable.addActor(gameplayButtonTable);
 			};
 		});
 
 		settingsTable.setBackground("transparentBackground");
-		settingsTable.add(backButton).padBottom(Globals.windowHeight - 75).padRight(Globals.windowWidth - 75);
-
-		settingsTable.setFillParent(true);
+		settingsTable.add(backButton);
 	}
 
 	private void initializeDesignViewTable() {
+		designViewTable.setFillParent(true);
+		designViewTable.top().left();
+		designViewTable.setDebug(true);
+
 		Button backButton = new Button(skin, "backButton");
+		Button saveButton = new Button(skin, "saveButton");
+		Button loadButton = new Button(skin, "loadButton");
 
 		backButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				stack.removeActor(designViewTable);
-				stack.addActor(gameplayButtonTable);
+				rootTable.clearChildren();
+				rootTable.addActor(gameplayButtonTable);
 			};
 		});
 
 		designViewTable.setBackground("transparentBackground");
-		designViewTable.add(backButton).padBottom(Globals.windowHeight - 75).padRight(Globals.windowWidth - 75);
+
+		designViewTable.add(backButton).padRight(150);
+
+		designViewTable.add(saveButton);
+		designViewTable.add(loadButton);
 
 	}
 }

@@ -1,47 +1,47 @@
 
 skinTest.png
-size: 512,512
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 backButtonDown
   rotate: false
-  xy: 408, 334
+  xy: 103, 478
   size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 backButtonUp
   rotate: false
-  xy: 306, 189
+  xy: 714, 948
   size: 75, 75
   orig: 75, 75
   offset: 0, 0
   index: -1
 blackPixel
   rotate: false
-  xy: 510, 471
+  xy: 366, 874
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 checkbox
   rotate: false
-  xy: 366, 322
+  xy: 714, 928
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 checkbox-on
   rotate: false
-  xy: 80, 9
+  xy: 791, 957
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 cursor
   rotate: false
-  xy: 507, 402
+  xy: 1, 1
   size: 4, 7
   split: 1, 1, 2, 2
   pad: 0, 0, 0, 0
@@ -50,35 +50,35 @@ cursor
   index: -1
 designViewButtonDown
   rotate: false
-  xy: 408, 411
+  xy: 264, 778
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 designViewButtonUp
   rotate: false
-  xy: 204, 144
+  xy: 408, 923
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 font-export
   rotate: false
-  xy: 264, 368
+  xy: 264, 880
   size: 142, 143
   orig: 142, 143
   offset: 0, 0
   index: -1
 font-title-export
   rotate: false
-  xy: 1, 246
+  xy: 1, 758
   size: 261, 265
   orig: 261, 265
   offset: 0, 0
   index: -1
 horizontal-split-pane
   rotate: false
-  xy: 100, 16
+  xy: 257, 745
   size: 5, 11
   split: 2, 2, 2, 2
   orig: 5, 11
@@ -86,44 +86,58 @@ horizontal-split-pane
   index: -1
 list
   rotate: false
-  xy: 54, 29
+  xy: 264, 764
   size: 51, 12
   split: 2, 2, 2, 2
   pad: 5, 5, 5, 5
   orig: 51, 12
   offset: 0, 0
   index: -1
+loadButtonDown
+  rotate: false
+  xy: 510, 923
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+loadButtonUp
+  rotate: false
+  xy: 1, 249
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 minus
   rotate: false
-  xy: 264, 248
+  xy: 103, 353
   size: 12, 13
   orig: 12, 13
   offset: 0, 0
   index: -1
 optionsButtonDown
   rotate: false
-  xy: 204, 42
+  xy: 1, 351
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 optionsButtonUp
   rotate: false
-  xy: 264, 266
+  xy: 1, 453
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 plus
   rotate: false
-  xy: 392, 353
+  xy: 147, 397
   size: 12, 13
   orig: 12, 13
   offset: 0, 0
   index: -1
 progress-bar
   rotate: false
-  xy: 372, 48
+  xy: 791, 977
   size: 46, 46
   split: 10, 10, 10, 10
   pad: 6, 6, 6, 6
@@ -132,35 +146,35 @@ progress-bar
   index: -1
 progress-bar-fill
   rotate: false
-  xy: 510, 477
+  xy: 248, 680
   size: 1, 34
   orig: 1, 34
   offset: 0, 0
   index: -1
 progress-bar-fill-vert
   rotate: false
-  xy: 264, 263
+  xy: 366, 877
   size: 34, 1
   orig: 34, 1
   offset: 0, 0
   index: -1
 radio
   rotate: false
-  xy: 485, 381
+  xy: 839, 1007
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 radio-on
   rotate: false
-  xy: 366, 304
+  xy: 45, 36
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 round-gray
   rotate: false
-  xy: 372, 4
+  xy: 1, 10
   size: 42, 42
   split: 13, 13, 13, 13
   pad: 9, 9, 5, 5
@@ -169,7 +183,7 @@ round-gray
   index: -1
 round-white
   rotate: false
-  xy: 379, 145
+  xy: 103, 368
   size: 42, 42
   split: 13, 13, 13, 13
   pad: 9, 9, 5, 5
@@ -178,16 +192,30 @@ round-white
   index: -1
 round-white-small
   rotate: false
-  xy: 54, 3
+  xy: 74, 121
   size: 24, 24
   split: 10, 10, 10, 10
   pad: 10, 10, 2, 2
   orig: 24, 24
   offset: 0, 0
   index: -1
+saveButtonDown
+  rotate: false
+  xy: 612, 923
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+saveButtonUp
+  rotate: false
+  xy: 1, 147
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 selectbox
   rotate: false
-  xy: 1, 1
+  xy: 204, 716
   size: 51, 40
   split: 2, 31, 2, 27
   pad: 2, 35, 2, 2
@@ -196,7 +224,7 @@ selectbox
   index: -1
 selection
   rotate: false
-  xy: 366, 293
+  xy: 204, 661
   size: 9, 9
   split: 2, 1, 2, 1
   pad: 4, 3, 4, 3
@@ -205,7 +233,7 @@ selection
   index: -1
 slider-horizontal
   rotate: false
-  xy: 485, 399
+  xy: 180, 543
   size: 20, 10
   split: 4, 4, 4, 4
   pad: 1, 2, 2, 2
@@ -214,14 +242,14 @@ slider-horizontal
   index: -1
 slider-knob
   rotate: false
-  xy: 366, 342
+  xy: 408, 897
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 slider-vertical
   rotate: false
-  xy: 485, 359
+  xy: 169, 456
   size: 9, 20
   split: 4, 3, 3, 3
   pad: 3, 3, 2, 2
@@ -230,7 +258,7 @@ slider-vertical
   index: -1
 textfield
   rotate: false
-  xy: 379, 101
+  xy: 204, 672
   size: 42, 42
   split: 8, 8, 8, 8
   orig: 42, 42
@@ -238,21 +266,21 @@ textfield
   index: -1
 touchpad
   rotate: false
-  xy: 1, 43
+  xy: 1, 555
   size: 201, 201
   orig: 201, 201
   offset: 0, 0
   index: -1
 touchpad-knob
   rotate: false
-  xy: 306, 30
+  xy: 103, 412
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 vertical-split-pane
   rotate: false
-  xy: 107, 36
+  xy: 317, 771
   size: 11, 5
   split: 2, 2, 1, 1
   pad: 1, 1, 1, 1
@@ -261,14 +289,14 @@ vertical-split-pane
   index: -1
 white
   rotate: false
-  xy: 510, 474
+  xy: 264, 761
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 window
   rotate: false
-  xy: 306, 96
+  xy: 1, 54
   size: 71, 91
   split: 15, 15, 35, 15
   pad: 9, 10, 37, 5

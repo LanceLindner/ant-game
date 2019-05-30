@@ -32,7 +32,7 @@ public abstract class Floor {
 	private Entity selectedEntity;
 
 	private TiledMap tiledMap;
-	private OrthogonalTiledMapRendererWithBleedingFix tiledMapRenderer;
+	private AlteredOrthogonalTiledMapRenderer tiledMapRenderer;
 
 	protected ArrayList<Entity> entities = new ArrayList<Entity>();
 
@@ -47,7 +47,7 @@ public abstract class Floor {
 		paramaters.generateMipMaps = true;
 		tiledMap = tmxMapLoader.load("assets/floors/" + floorFileName + ".tmx");
 		tiledMapToTiles();
-		tiledMapRenderer = new OrthogonalTiledMapRendererWithBleedingFix(tiledMap);
+		tiledMapRenderer = new AlteredOrthogonalTiledMapRenderer(tiledMap);
 
 		player = new Player(this, tiles.length / 2, tiles[0].length / 2);
 		selectedEntity = player;
@@ -191,7 +191,7 @@ public abstract class Floor {
 				tiles[i][j].draw(batch);
 			}
 		}
-		selectedEntity.selectedDraw(batch);
+		selectedEntity.selectedDraw(batch, tiledMapRenderer);
 		player.draw(batch);
 		batch.end();
 

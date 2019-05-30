@@ -6,6 +6,7 @@ import main.audio.AudioManager;
 import main.audio.SoundType;
 import main.entities.Entity;
 import main.entities.brain.Brain;
+import main.floors.AlteredOrthogonalTiledMapRenderer;
 import main.floors.Floor;
 import main.main.Globals;
 import main.spritesheets.SpriteSheet;
@@ -274,7 +275,10 @@ public class Ant extends Entity {
 	}
 
 	@Override
-	public void selectedDraw(SpriteBatch batch) {
+	public void selectedDraw(SpriteBatch batch, AlteredOrthogonalTiledMapRenderer tiledMapRenderer) {
+		// tiledMapRenderer.renderTileRegion((int) (tilesWithinSight[0][0].getX()),
+		// (int) (tilesWithinSight[0][0].getY()),
+		// tilesWithinSight.length, tilesWithinSight.length);
 		brain.draw(batch, (int) (x * Globals.TILE_SIZE), (int) (y * Globals.TILE_SIZE));
 	}
 }

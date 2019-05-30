@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -130,6 +131,34 @@ public class SceneManager {
 		Button saveButton = new Button(skin, "saveButton");
 		Button loadButton = new Button(skin, "loadButton");
 
+		ButtonGroup<Button> neuronButtonsGroup = new ButtonGroup();
+
+		Button[] neurons = new Button[12];
+		for (int i = 0; i < 12; i++) {
+			neurons[i] = new Button(skin, "toggle");
+		}
+		neuronButtonsGroup.add(neurons);
+
+		Table neuronTable = new Table();
+
+		int size = 80;
+
+		neuronTable.add(neurons[0]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[1]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[2]).height(size).width(size).pad(3);
+		neuronTable.row();
+		neuronTable.add(neurons[3]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[4]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[5]).height(size).width(size).pad(3);
+		neuronTable.row();
+		neuronTable.add(neurons[6]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[7]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[8]).height(size).width(size).pad(3);
+		neuronTable.row();
+		neuronTable.add(neurons[9]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[10]).height(size).width(size).pad(3);
+		neuronTable.add(neurons[11]).height(size).width(size).pad(3);
+
 		backButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -140,10 +169,13 @@ public class SceneManager {
 
 		designViewTable.setBackground("transparentBackground");
 
-		designViewTable.add(backButton).padRight(150);
+		designViewTable.add(backButton).padRight(50).padBottom(200);
 
-		designViewTable.add(saveButton);
-		designViewTable.add(loadButton);
+		designViewTable.add(saveButton).top().padRight(5);
+		designViewTable.add(loadButton).top();
+
+		designViewTable.row();
+		designViewTable.add(neuronTable).colspan(3);
 
 	}
 }

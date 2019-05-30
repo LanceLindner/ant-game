@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import main.main.Globals;
 
 public class Neuron {
+	public static final int NEURON_SIZE = 4;
+	public static final int NEURON_SPACING = 1;
+	public static final int NEURON_OFFSET_X = Globals.windowWidth / 2;
+	public static final int NEURON_OFFSET_Y = Globals.windowHeight / 2;
+
 	private static Texture inactiveNeuronTexture = Globals.assetManagerManager.getTexture("inactiveNeuron");
 	private static Texture activeNeuronTexture = Globals.assetManagerManager.getTexture("activeNeuron");
 
@@ -119,7 +124,8 @@ public class Neuron {
 		} else {
 			texture = inactiveNeuronTexture;
 		}
-		batch.draw(texture, x * (Globals.NEURON_SIZE + Globals.NEURON_SPACING),
-				y * (Globals.NEURON_SIZE + Globals.NEURON_SPACING));
+		batch.draw(texture, x * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_X,
+				y * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_Y, 100, 100);
+		System.out.println((x * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_X));
 	}
 }

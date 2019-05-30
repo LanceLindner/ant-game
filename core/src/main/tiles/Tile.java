@@ -120,13 +120,13 @@ public class Tile {
 		if (selected == true) {
 			batch.draw(selectedTileTexture, x * Globals.TILE_SIZE, y * Globals.TILE_SIZE, Globals.TILE_SIZE,
 					Globals.TILE_SIZE);
+			if (entity != null)
+				entity.selectedDraw(batch);
 		}
 
-		if (corpse != null) {
+		if (corpse != null)
 			corpse.draw(batch);
-		}
-		if (entity != null) {
+		if (entity != null)
 			entity.draw(batch);
-		}
 	}
 }

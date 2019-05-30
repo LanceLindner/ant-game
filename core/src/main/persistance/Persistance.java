@@ -8,6 +8,10 @@ public class Persistance {
 	private static Json json = new Json();
 	private static SaveData saveData;
 
+	public static SaveData getSaveData() {
+		return saveData;
+	}
+
 	public static void load() {
 		Gdx.files.local("saves/").file().mkdirs();
 		FileHandle file = Gdx.files.local("saves/save.txt");

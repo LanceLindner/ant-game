@@ -10,8 +10,8 @@ import main.main.Globals;
 public class Neuron {
 	public static final int NEURON_SIZE = 4;
 	public static final int NEURON_SPACING = 1;
-	public static final int NEURON_OFFSET_X = Globals.windowWidth / 100;
-	public static final int NEURON_OFFSET_Y = Globals.windowHeight / 100;
+	public static final int NEURON_OFFSET_X = Globals.TILE_SIZE;
+	public static final int NEURON_OFFSET_Y = 0;
 
 	private static Texture inactiveNeuronTexture = Globals.assetManagerManager.getTexture("inactiveNeuron");
 	private static Texture activeNeuronTexture = Globals.assetManagerManager.getTexture("activeNeuron");
@@ -125,6 +125,14 @@ public class Neuron {
 			texture = inactiveNeuronTexture;
 		}
 		batch.draw(texture, x * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_X + entityOffsetX,
-				y * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_Y + entityOffsetY);
+				-y * (NEURON_SIZE + NEURON_SPACING) + NEURON_OFFSET_Y + entityOffsetY);
+		// todo: draw axon lines
+		// Gdx.gl.glLineWidth(1);
+		// batch.setProjectionMatrix(projectionMatrix);
+		// batch.begin(ShapeRenderer.ShapeType.Line);
+		// batch.setColor(color);
+		// batch.line(start, end);
+		// batch.end();
+		// Gdx.gl.glLineWidth(1);
 	}
 }

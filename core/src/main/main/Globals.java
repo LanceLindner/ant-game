@@ -8,6 +8,8 @@ public class Globals {
 	public static final int TILES_PER_HEIGHT = 11;
 	public static final float DEFAULT_FONT_SCALE = 0.2f;
 
+	public static final int NEURON_SIZE = 4;
+	public static final int NEURON_SPACING = 1;
 	public static final int NUMBER_OF_QUALITIES_PER_TILE = 4;
 	public static final int NUMBER_OF_VISIBLE_TILES_X = 3;
 	public static final int NUMBER_OF_VISIBLE_TILES_Y = 4;

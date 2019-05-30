@@ -112,13 +112,14 @@ public class Neuron {
 		value += difference;
 	}
 
-	public void draw(SpriteBatch batch, int x, int y) {
+	public void draw(SpriteBatch batch) {
 		Texture texture;
 		if (value > 0.5) {
 			texture = activeNeuronTexture;
 		} else {
 			texture = inactiveNeuronTexture;
 		}
-		batch.draw(texture, x, y);
+		batch.draw(texture, x * (Globals.NEURON_SIZE + Globals.NEURON_SPACING),
+				y * (Globals.NEURON_SIZE + Globals.NEURON_SPACING));
 	}
 }

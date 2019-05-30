@@ -2,9 +2,15 @@ package main.entities.brain;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import main.main.Globals;
+
 public class Neuron {
+	private static Texture inactiveNeuronTexture = Globals.assetManagerManager.getTexture("inactiveNeuron");
+	private static Texture activeNeuronTexture = Globals.assetManagerManager.getTexture("activeNeuron");
+
 	protected int value = 0;
 	protected boolean active = true;
 	protected int numberOfInputs;
@@ -102,6 +108,12 @@ public class Neuron {
 	}
 
 	public void draw(SpriteBatch batch, int x, int y) {
-
+		Texture texture;
+		if (value > 0.5) {
+			texture = activeNeuronTexture;
+		} else {
+			texture = inactiveNeuronTexture;
+		}
+		batch.draw(texture, x, y);
 	}
 }

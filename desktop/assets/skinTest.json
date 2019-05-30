@@ -113,6 +113,14 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 		up: backButtonUp
 		down: backButtonDown
 	}
+	saveButton: {
+		up: saveButtonUp
+		down: saveButtonDown
+	}
+	loadButton: {
+		up: loadButtonUp
+		down: loadButtonDown
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: {

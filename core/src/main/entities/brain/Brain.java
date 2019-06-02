@@ -127,9 +127,13 @@ public class Brain {
 	}
 
 	/**
-	 * Draws the brain to a batch
+	 * Draws the brain at the given position
 	 *
-	 * @param batch The batch that the brain needs to be drawn to
+	 * @param batch         the batch that the brain is drawn to
+	 * @param entityOffsetX the number of pixels in the x direction to offset the
+	 *                      drawing
+	 * @param entityOffsetY the number of pixels in the y direction to offset the
+	 *                      drawing
 	 */
 	public void draw(SpriteBatch batch, int entityOffsetX, int entityOffsetY) {
 		for (int i = 0; i < neurons.size(); ++i) {

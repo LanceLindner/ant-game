@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import main.entities.brain.Brain;
 import main.floors.Floor;
 import main.main.Globals;
 
@@ -29,6 +30,10 @@ public class SceneManager {
 	private Skin skin;
 
 	private Floor floor;
+
+	private Brain selectedBrain;
+
+	int selectedNeuron = 0;
 
 	public SceneManager(Stage stage, Floor floor) {
 		atlas = new TextureAtlas("assets/skinTest.atlas");
@@ -104,6 +109,7 @@ public class SceneManager {
 	}
 
 	private void initializeSettingsTable() {
+
 		settingsTable.setFillParent(true);
 		settingsTable.top().left();
 		settingsTable.setDebug(true);
@@ -131,12 +137,21 @@ public class SceneManager {
 		Button saveButton = new Button(skin, "saveButton");
 		Button loadButton = new Button(skin, "loadButton");
 
-		ButtonGroup<Button> neuronButtonsGroup = new ButtonGroup<Button>();
+		final ButtonGroup<Button> neuronButtonsGroup = new ButtonGroup<Button>();
 
 		Button[] neurons = new Button[12];
 		for (int i = 0; i < 12; i++) {
 			neurons[i] = new Button(skin, "toggle");
+
+			neurons[i].addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					// Sets selectedNeuron to the index of the button in the buttongroup
+					selectedNeuron = neuronButtonsGroup.getButtons().indexOf((Button) event.getListenerActor(), false);
+				}
+			});
 		}
+
 		neuronButtonsGroup.add(neurons);
 
 		Table neuronTable = new Table();
@@ -164,7 +179,7 @@ public class SceneManager {
 			public void clicked(InputEvent event, float x, float y) {
 				rootTable.clearChildren();
 				rootTable.addActor(gameplayButtonTable);
-			};
+			}
 		});
 
 		designViewTable.setBackground("transparentBackground");
@@ -176,6 +191,5 @@ public class SceneManager {
 
 		designViewTable.row();
 		designViewTable.add(neuronTable).colspan(3);
-
 	}
 }

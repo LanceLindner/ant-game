@@ -54,6 +54,11 @@ public class Ant extends Entity {
 		float drawX = (float) (x * Globals.TILE_SIZE);
 		float drawY = (float) (y * Globals.TILE_SIZE);
 
+		// Direction Compass
+		// 0
+		// 3 1
+		// 2
+
 		// drawY += 2 * Globals.TILE_SIZE;
 		// System.out.println(direction);
 		switch (direction) {
@@ -180,6 +185,10 @@ public class Ant extends Entity {
 
 		switch (direction) {
 		case 0:
+			// 9 A B
+			// 6 7 8
+			// 3 4 5
+			// 0 1 2
 			for (int i = 0; i < 4; i++) {
 				for (int j = 0; j < 3; j++) {
 					tilesToReturn[i][j] = floor.getTile((int) (x + (j - 1)), (int) (y + (i - 1)));
@@ -188,24 +197,34 @@ public class Ant extends Entity {
 			}
 			return tilesToReturn;
 		case 1:
+			// 2 5 8 B
+			// 1 4 7 A
+			// 0 3 6 9
 			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
+				for (int j = 0; j < 3; j++) {
 					tilesToReturn[i][j] = floor.getTile((int) (x + (i - 1)), (int) (y + (j - 1)));
 					// System.out.println(i - 1);
 				}
 			}
 			return tilesToReturn;
 		case 2:
+			// 2 1 0
+			// 5 4 3
+			// 8 7 6
+			// B A 9
 			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
+				for (int j = 0; j < 3; j++) {
 					tilesToReturn[i][j] = floor.getTile((int) (x + (-j + 1)), (int) (y + (-i + 1)));
 					// System.out.println(j + 1);
 				}
 			}
 			return tilesToReturn;
 		case 3:
+			// 9 6 3 0
+			// A 7 4 1
+			// B 8 5 2
 			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
+				for (int j = 0; j < 3; j++) {
 					tilesToReturn[i][j] = floor.getTile((int) (x + (-i + 1)), (int) (y + (-j + 1)));
 					// System.out.println(i + 1);
 				}
@@ -213,7 +232,7 @@ public class Ant extends Entity {
 			return tilesToReturn;
 		default:
 			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
+				for (int j = 0; j < 3; j++) {
 					tilesToReturn[i][j] = floor.getTile((int) (x + (i - 1)), (int) (y + (j - 1)));
 				}
 			}

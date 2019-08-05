@@ -131,7 +131,7 @@ public class SceneManager {
 		Button saveButton = new Button(skin, "saveButton");
 		Button loadButton = new Button(skin, "loadButton");
 
-		ButtonGroup<Button> neuronButtonsGroup = new ButtonGroup();
+		ButtonGroup<Button> neuronButtonsGroup = new ButtonGroup<Button>();
 
 		Button[] neurons = new Button[12];
 		for (int i = 0; i < 12; i++) {

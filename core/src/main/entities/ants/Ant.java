@@ -197,12 +197,12 @@ public class Ant extends Entity {
 			}
 			return tilesToReturn;
 		case 1:
-			// 2 5 8 B
-			// 1 4 7 A
 			// 0 3 6 9
+			// 1 4 7 A
+			// 2 5 8 B
 			for (int i = 0; i < 4; i++) {
 				for (int j = 0; j < 3; j++) {
-					tilesToReturn[i][j] = floor.getTile((int) (x + (i - 1)), (int) (y + (j - 1)));
+					tilesToReturn[i][j] = floor.getTile((int) (x + (i - 1)), (int) (y + (-j + 1)));
 					// System.out.println(i - 1);
 				}
 			}
@@ -220,12 +220,12 @@ public class Ant extends Entity {
 			}
 			return tilesToReturn;
 		case 3:
-			// 9 6 3 0
-			// A 7 4 1
 			// B 8 5 2
+			// A 7 4 1
+			// 9 6 3 0
 			for (int i = 0; i < 4; i++) {
 				for (int j = 0; j < 3; j++) {
-					tilesToReturn[i][j] = floor.getTile((int) (x + (-i + 1)), (int) (y + (-j + 1)));
+					tilesToReturn[i][j] = floor.getTile((int) (x + (-i + 1)), (int) (y + (j - 1)));
 					// System.out.println(i + 1);
 				}
 			}

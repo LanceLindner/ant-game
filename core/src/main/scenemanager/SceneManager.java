@@ -25,6 +25,7 @@ public class SceneManager {
 
 	private Table settingsTable;
 	private Table designViewTable;
+	private Table neuronViewTable;
 
 	private TextureAtlas atlas;
 	private Skin skin;
@@ -49,6 +50,7 @@ public class SceneManager {
 		gameplayButtonTable = new Table();
 		settingsTable = new Table(skin);
 		designViewTable = new Table(skin);
+		neuronViewTable = new Table(skin);
 
 		initializeGameplayButtonTable();
 		initializeSettingsTable();
@@ -137,42 +139,37 @@ public class SceneManager {
 		Button saveButton = new Button(skin, "saveButton");
 		Button loadButton = new Button(skin, "loadButton");
 
-		final ButtonGroup<Button> neuronButtonsGroup = new ButtonGroup<Button>();
+		final ButtonGroup<Button> tileNeuronButtonsGroup = new ButtonGroup<Button>();
 
-		Button[] neurons = new Button[12];
-		for (int i = 0; i < 12; i++) {
-			neurons[i] = new Button(skin, "toggle");
+		Button[] tileNeurons = new Button[Globals.NUMBER_OF_VISIBLE_TILES];
+		for (int i = 0; i < Globals.NUMBER_OF_VISIBLE_TILES; i++) {
+			tileNeurons[i] = new Button(skin, "toggle");
 
-			neurons[i].addListener(new ClickListener() {
+			tileNeurons[i].addListener(new ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					// Sets selectedNeuron to the index of the button in the buttongroup
-					selectedNeuron = neuronButtonsGroup.getButtons().indexOf((Button) event.getListenerActor(), false);
+					selectedNeuron = tileNeuronButtonsGroup.getButtons().indexOf((Button) event.getListenerActor(),
+							false);
+
+					// There will be a function here that is called to update the neuronViewTable
 				}
 			});
 		}
 
-		neuronButtonsGroup.add(neurons);
+		tileNeuronButtonsGroup.add(tileNeurons);
 
-		Table neuronTable = new Table();
+		Table tileNeuronTable = new Table();
 
 		int size = 80;
 
-		neuronTable.add(neurons[0]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[1]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[2]).height(size).width(size).pad(3);
-		neuronTable.row();
-		neuronTable.add(neurons[3]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[4]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[5]).height(size).width(size).pad(3);
-		neuronTable.row();
-		neuronTable.add(neurons[6]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[7]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[8]).height(size).width(size).pad(3);
-		neuronTable.row();
-		neuronTable.add(neurons[9]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[10]).height(size).width(size).pad(3);
-		neuronTable.add(neurons[11]).height(size).width(size).pad(3);
+		for (int i = 0; i < Globals.NUMBER_OF_VISIBLE_TILES; i++) {
+			tileNeuronTable.add(tileNeurons[i]).height(size).width(size).pad(3);
+
+			if (((i + 1) % 3) == 0) {
+				tileNeuronTable.row();
+			}
+		}
 
 		backButton.addListener(new ClickListener() {
 			@Override
@@ -190,6 +187,14 @@ public class SceneManager {
 		designViewTable.add(loadButton).top();
 
 		designViewTable.row();
-		designViewTable.add(neuronTable).colspan(3);
+		designViewTable.add(tileNeuronTable).colspan(3);
+	}
+
+	private void initializeNeuronViewTable() {
+
+	}
+
+	private void updateNeuronViewTable() {
+
 	}
 }

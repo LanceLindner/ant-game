@@ -13,7 +13,7 @@ public class Globals {
 	public static final int NUMBER_OF_VISIBLE_TILES_Y = 4;
 	public static final int NUMBER_OF_VISIBLE_TILES = NUMBER_OF_VISIBLE_TILES_X * NUMBER_OF_VISIBLE_TILES_Y;
 	public static final int NUMBER_OF_INPUT_NEURONS = NUMBER_OF_QUALITIES_PER_TILE * NUMBER_OF_VISIBLE_TILES;
-	public static final int NUMBER_OF_HIDDEN_NEURONS = 48;
+	public static final int NUMBER_OF_HIDDEN_NEURONS = 4;
 	public static final int NUMBER_OF_OUTPUT_NEURONS = 6;
 
 	public static int windowWidth;
